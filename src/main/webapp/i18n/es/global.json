@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "Labprovidencia",
+    "title": "LabProvidencia",
     "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=es\">actualice su navegador</a> para mejorar su experiencia.",
     "menu": {
       "home": "Inicio",
@@ -53,8 +53,11 @@
           "suffix": ", puede intentar con las cuentas predeterminadas:<br/>- Administrador (usuario=\"admin\" y contraseña=\"admin\") <br/>- Usuario (usuario=\"user\" y contraseña=\"user\")."
         },
         "register": {
+          "login": "Para usar LabProvidencia debes",
           "noaccount": "¿Aún no tienes una cuenta?",
-          "link": "Crea una cuenta"
+          "link": "Crea una cuenta",
+          "linknew": "Crea una cuenta",
+          "linklogin": "Iniciar sesión"
         }
       },
       "error": {

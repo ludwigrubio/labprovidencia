@@ -1,0 +1,17 @@
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.footer {
+  padding: 10px;
+  .img-bottom {
+    height: 100px;
+    width: 45px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url('../../../content/images/logo.png') no-repeat center center;
+    background-size: contain;
+  }
+  .address {
+    color: #aaa;
+  }
+}
