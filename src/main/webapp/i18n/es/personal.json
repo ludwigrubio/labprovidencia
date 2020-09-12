@@ -1,0 +1,41 @@
+{
+  "labprovidenciaApp": {
+    "personal": {
+      "home": {
+        "title": "Personals",
+        "createLabel": "Crear nuevo Personal",
+        "createOrEditLabel": "Crear o editar Personal",
+        "notFound": "Ningún Personals encontrado"
+      },
+      "created": "Un nuevo Personal ha sido creado con el identificador {{ param }}",
+      "updated": "Un Personal ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Personal ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Personal {{ id }}?"
+      },
+      "detail": {
+        "title": "Personal"
+      },
+      "nombre": "Nombre",
+      "apellido1": "Apellido 1",
+      "apellido2": "Apellido 2",
+      "alias": "Alias",
+      "domicilio": "Domicilio",
+      "colonia": "Colonia",
+      "localidad": "Localidad",
+      "estado": "Estado",
+      "pais": "Pais",
+      "latitud": "Latitud",
+      "longitud": "Longitud",
+      "cp": "Cp",
+      "telefono": "Telefono",
+      "email": "Email",
+      "rfc": "Rfc",
+      "inicio": "Inicio",
+      "fin": "Fin",
+      "cargo": "Cargo",
+      "comentario": "Comentario",
+      "area": "Area"
+    }
+  }
+}

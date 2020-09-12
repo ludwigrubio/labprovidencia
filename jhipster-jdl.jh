@@ -1,0 +1,36 @@
+entity Personal {
+	nombre String required maxlength(100),
+	apellido1 String maxlength(50),
+	apellido2 String maxlength(45),
+	alias String maxlength(45),
+	domicilio String required maxlength(200),
+	colonia String required maxlength(45),
+	localidad String maxlength(45),
+	estado String required maxlength(45),
+	pais String required maxlength(45),
+	latitud String maxlength(20),
+	longitud String maxlength(20),
+	cp Integer required,
+	telefono String required maxlength(45),
+	email String maxlength(45),
+	rfc String required maxlength(45),
+	inicio Instant required,
+	fin Instant,
+	cargo String required maxlength(45),
+	comentario String maxlength(300)
+ }
+  
+entity Area {
+	area String required maxlength(45),
+    descripcion String maxlength(200),
+}
+
+relationship OneToMany {
+	Area to Personal{area},
+
+}
+filter Area, Personal
+//Service
+service all with serviceClass
+// Set pagination options
+paginate Area, Personal with pagination

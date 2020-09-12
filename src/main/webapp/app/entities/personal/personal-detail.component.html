@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="personal">
+            <h2><span jhiTranslate="labprovidenciaApp.personal.detail.title">Personal</span> {{ personal.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.personal.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{ personal.nombre }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.apellido1">Apellido 1</span></dt>
+                <dd>
+                    <span>{{ personal.apellido1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.apellido2">Apellido 2</span></dt>
+                <dd>
+                    <span>{{ personal.apellido2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.alias">Alias</span></dt>
+                <dd>
+                    <span>{{ personal.alias }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.domicilio">Domicilio</span></dt>
+                <dd>
+                    <span>{{ personal.domicilio }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.colonia">Colonia</span></dt>
+                <dd>
+                    <span>{{ personal.colonia }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.localidad">Localidad</span></dt>
+                <dd>
+                    <span>{{ personal.localidad }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.estado">Estado</span></dt>
+                <dd>
+                    <span>{{ personal.estado }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.pais">Pais</span></dt>
+                <dd>
+                    <span>{{ personal.pais }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.latitud">Latitud</span></dt>
+                <dd>
+                    <span>{{ personal.latitud }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.longitud">Longitud</span></dt>
+                <dd>
+                    <span>{{ personal.longitud }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.cp">Cp</span></dt>
+                <dd>
+                    <span>{{ personal.cp }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{ personal.telefono }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.email">Email</span></dt>
+                <dd>
+                    <span>{{ personal.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.rfc">Rfc</span></dt>
+                <dd>
+                    <span>{{ personal.rfc }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.inicio">Inicio</span></dt>
+                <dd>
+                    <span>{{ personal.inicio }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.fin">Fin</span></dt>
+                <dd>
+                    <span>{{ personal.fin }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.cargo">Cargo</span></dt>
+                <dd>
+                    <span>{{ personal.cargo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{ personal.comentario }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="personal.area">
+                        <a [routerLink]="['/area', personal.area?.id, 'view']">{{ personal.area?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/personal', personal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

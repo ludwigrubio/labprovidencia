@@ -1,0 +1,113 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="labprovidenciaApp.personal.home.title">Personals</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-personal" [routerLink]="['/personal/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="labprovidenciaApp.personal.home.createLabel">
+            Create a new Personal
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="personals?.length === 0">
+        <span jhiTranslate="labprovidenciaApp.personal.home.notFound">No personals found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="personals && personals.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombre"><span jhiTranslate="labprovidenciaApp.personal.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="apellido1"><span jhiTranslate="labprovidenciaApp.personal.apellido1">Apellido 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="apellido2"><span jhiTranslate="labprovidenciaApp.personal.apellido2">Apellido 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="alias"><span jhiTranslate="labprovidenciaApp.personal.alias">Alias</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="domicilio"><span jhiTranslate="labprovidenciaApp.personal.domicilio">Domicilio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="colonia"><span jhiTranslate="labprovidenciaApp.personal.colonia">Colonia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="localidad"><span jhiTranslate="labprovidenciaApp.personal.localidad">Localidad</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="estado"><span jhiTranslate="labprovidenciaApp.personal.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pais"><span jhiTranslate="labprovidenciaApp.personal.pais">Pais</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="latitud"><span jhiTranslate="labprovidenciaApp.personal.latitud">Latitud</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="longitud"><span jhiTranslate="labprovidenciaApp.personal.longitud">Longitud</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cp"><span jhiTranslate="labprovidenciaApp.personal.cp">Cp</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telefono"><span jhiTranslate="labprovidenciaApp.personal.telefono">Telefono</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="labprovidenciaApp.personal.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rfc"><span jhiTranslate="labprovidenciaApp.personal.rfc">Rfc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inicio"><span jhiTranslate="labprovidenciaApp.personal.inicio">Inicio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fin"><span jhiTranslate="labprovidenciaApp.personal.fin">Fin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cargo"><span jhiTranslate="labprovidenciaApp.personal.cargo">Cargo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="comentario"><span jhiTranslate="labprovidenciaApp.personal.comentario">Comentario</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area.id"><span jhiTranslate="labprovidenciaApp.personal.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let personal of personals ;trackBy: trackId">
+                    <td><a [routerLink]="['/personal', personal.id, 'view']">{{ personal.id }}</a></td>
+                    <td>{{ personal.nombre }}</td>
+                    <td>{{ personal.apellido1 }}</td>
+                    <td>{{ personal.apellido2 }}</td>
+                    <td>{{ personal.alias }}</td>
+                    <td>{{ personal.domicilio }}</td>
+                    <td>{{ personal.colonia }}</td>
+                    <td>{{ personal.localidad }}</td>
+                    <td>{{ personal.estado }}</td>
+                    <td>{{ personal.pais }}</td>
+                    <td>{{ personal.latitud }}</td>
+                    <td>{{ personal.longitud }}</td>
+                    <td>{{ personal.cp }}</td>
+                    <td>{{ personal.telefono }}</td>
+                    <td>{{ personal.email }}</td>
+                    <td>{{ personal.rfc }}</td>
+                    <td>{{ personal.inicio | date:'medium' }}</td>
+                    <td>{{ personal.fin | date:'medium' }}</td>
+                    <td>{{ personal.cargo }}</td>
+                    <td>{{ personal.comentario }}</td>
+                    <td>
+                        <div *ngIf="personal.area">
+                            <a [routerLink]="['/area', personal.area?.id, 'view']" >{{ personal.area?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/personal', personal.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/personal', personal.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(personal)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="personals && personals.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
