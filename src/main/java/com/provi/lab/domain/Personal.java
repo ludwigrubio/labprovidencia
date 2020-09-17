@@ -16,7 +16,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "personal")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Personal implements Serializable {
+public class Personal extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

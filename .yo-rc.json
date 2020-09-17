@@ -41,12 +41,9 @@
     "blueprints": [],
     "lastLiquibaseTimestamp": 1600293414000
   },
-  "generator-jhipster-file-handling": {
-    "promptValues": {
-      "gatewayMicroserviceName": "labprovimport",
-      "generalClientRootFolder": "fileUploads",
-      "fileModelTypes": "Dummy"
-    },
-    "lastLiquibaseTimestamp": 1600317785000
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom",
+    "auditPage": true,
+    "lastLiquibaseTimestamp": 1600348955000
   }
 }

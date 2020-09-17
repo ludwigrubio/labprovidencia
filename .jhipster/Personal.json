@@ -141,5 +141,6 @@
   "clientRootFolder": "",
   "applications": "*",
   "searchEngine": false,
-  "databaseType": "sql"
+  "databaseType": "sql",
+  "enableEntityAudit": true
 }

@@ -53,6 +53,7 @@ public class CacheConfiguration {
             createCache(cm, com.provi.lab.domain.Area.class.getName() + ".personals");
             createCache(cm, com.provi.lab.domain.Dummy.class.getName());
             createCache(cm, com.provi.lab.domain.Dummy.class.getName() + ".areas");
+            createCache(cm, com.provi.lab.domain.EntityAuditEvent.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
