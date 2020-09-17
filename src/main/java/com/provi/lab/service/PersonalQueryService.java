@@ -146,6 +146,10 @@ public class PersonalQueryService extends QueryService<Personal> {
                 specification = specification.and(buildSpecification(criteria.getAreaId(),
                     root -> root.join(Personal_.area, JoinType.LEFT).get(Area_.id)));
             }
+            if (criteria.getDummyId() != null) {
+                specification = specification.and(buildSpecification(criteria.getDummyId(),
+                    root -> root.join(Personal_.dummy, JoinType.LEFT).get(Dummy_.id)));
+            }
         }
         return specification;
     }

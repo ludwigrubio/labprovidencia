@@ -107,9 +107,14 @@ public class Personal implements Serializable {
     @Column(name = "comentario", length = 300)
     private String comentario;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = "personals", allowSetters = true)
     private Area area;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "personals", allowSetters = true)
+    private Dummy dummy;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -378,6 +383,19 @@ public class Personal implements Serializable {
 
     public void setArea(Area area) {
         this.area = area;
+    }
+
+    public Dummy getDummy() {
+        return dummy;
+    }
+
+    public Personal dummy(Dummy dummy) {
+        this.dummy = dummy;
+        return this;
+    }
+
+    public void setDummy(Dummy dummy) {
+        this.dummy = dummy;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

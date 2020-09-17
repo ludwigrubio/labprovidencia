@@ -35,7 +35,8 @@
       "fin": "Fin",
       "cargo": "Cargo",
       "comentario": "Comentario",
-      "area": "Area"
+      "area": "Area",
+      "dummy": "Dummy"
     }
   }
 }

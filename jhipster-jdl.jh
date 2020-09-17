@@ -1,7 +1,12 @@
+entity UserExtra{
+	
+}
+
 entity Personal {
 	nombre String required maxlength(100),
 	apellido1 String maxlength(50),
 	apellido2 String maxlength(45),
+    nombreCompleto String maxlength(200),
 	alias String maxlength(45),
 	domicilio String required maxlength(200),
 	colonia String required maxlength(45),
@@ -22,15 +27,106 @@ entity Personal {
   
 entity Area {
 	area String required maxlength(45),
-    descripcion String maxlength(200),
+    descripcion String maxlength(200)
+}
+
+entity Relacion {
+	relacion String required maxlength(45)
+}
+
+entity Recepcion {
+  idRecepcion Integer,
+  idProveedor Integer required,
+  litros Float required,
+  tiempo Instant required,
+  turno String required maxlength(1),
+  incentivoLT Double,
+  incentivoT Double
+}
+
+entity Cultivos {
+	cultivo String required maxlength(45)
+}
+
+entity Superficie {
+	superficie String required maxlength(45),	
+    descripcion String maxlength(200)
+}
+
+entity PruebaMicro{
+	tipodeMuestra Integer required,
+	idCatalogo String maxlength(10) required,
+	lote String maxlength(45),
+	inicio Instant required,
+	fin Instant,
+	resultado Integer,
+	unidades Integer,
+	observaciones String maxlength(100)
+}
+
+entity Producto{
+	producto String  maxlength(45) required,
+    clave String  maxlength(45) required,
+    serieEAN String maxlength(45) required
+}
+
+entity TipoProducto{
+	tipo String  maxlength(45) required
+}
+
+entity FQLeche{
+
+}
+entity FQMantequilla{
+
+}
+entity FQQueso{
+
+}
+entity FQCrema{
+
+}
+entity FQSuero{
+
 }
 
 relationship OneToMany {
-	Area to Personal{area},
+	Area to UserExtra{area(area) required},
+    Area to FQLeche{area(area) required} ,
+    Area to FQMantequilla{area(area) required},
+    Area to FQQueso{area(area) required},
+    Area to FQCrema{area(area) required},
+    Area to FQSuero{area(area) required},
+    Area to PruebaMicro{area(area) required},
+    
+    Relacion to Personal{area(relacion) required},
+    Cultivos to PruebaMicro{cultivo(cultivo)},
+    Superficie to PruebaMicro{superficie(superficie)},
+    Personal to PruebaMicro{analista(nombreCompleto) required},
+    TipoProducto to Producto{tipo(tipo) required},
+    Recepcion to FQLeche{recepcion required },
+    
+    Producto to FQMantequilla{producto(producto) required},
+    Producto to FQQueso{producto(producto) required},
+    Producto to FQCrema{producto(producto) required},
+    Producto to FQSuero{producto(producto) required},
+    
+    Personal to UserExtra{personal(nombreCompleto) required}
+
 
 }
-filter Area, Personal
+
+relationship OneToOne {
+	User to UserExtra{user required}
+}
+
+//Filters
+filter all except TipoProducto, Relacion
 //Service
-service all with serviceClass
+service all with serviceClass except TipoProducto, Relacion
+//Skip client side
+skipClient TipoProducto, Relacion, UserExtra, Recepcion
 // Set pagination options
-paginate Area, Personal with pagination
+paginate all with pagination
+
+

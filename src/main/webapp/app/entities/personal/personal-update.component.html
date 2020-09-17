@@ -278,8 +278,22 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.personal.area" for="field_area">Area</label>
                     <select class="form-control" id="field_area" name="area" formControlName="area">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('area')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="areaOption.id === editForm.get('area')!.value?.id ? editForm.get('area')!.value : areaOption" *ngFor="let areaOption of areas; trackBy: trackById">{{ areaOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('area')!.invalid && (editForm.get('area')!.dirty || editForm.get('area')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.personal.dummy" for="field_dummy">Dummy</label>
+                    <select class="form-control" id="field_dummy" name="dummy" formControlName="dummy">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dummyOption.id === editForm.get('dummy')!.value?.id ? editForm.get('dummy')!.value : dummyOption" *ngFor="let dummyOption of dummies; trackBy: trackById">{{ dummyOption.name }}</option>
                     </select>
                 </div>
             </div>

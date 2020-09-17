@@ -90,6 +90,12 @@
                         <a [routerLink]="['/area', personal.area?.id, 'view']">{{ personal.area?.id }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.dummy">Dummy</span></dt>
+                <dd>
+                    <div *ngIf="personal.dummy">
+                        <a [routerLink]="['/dummy', personal.dummy?.id, 'view']">{{ personal.dummy?.name }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

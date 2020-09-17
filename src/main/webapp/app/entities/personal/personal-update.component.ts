@@ -11,6 +11,10 @@ import { IPersonal, Personal } from 'app/shared/model/personal.model';
 import { PersonalService } from './personal.service';
 import { IArea } from 'app/shared/model/area.model';
 import { AreaService } from 'app/entities/area/area.service';
+import { IDummy } from 'app/shared/model/dummy.model';
+import { DummyService } from 'app/entities/dummy/dummy.service';
+
+type SelectableEntity = IArea | IDummy;
 
 @Component({
   selector: 'jhi-personal-update',
@@ -19,6 +23,7 @@ import { AreaService } from 'app/entities/area/area.service';
 export class PersonalUpdateComponent implements OnInit {
   isSaving = false;
   areas: IArea[] = [];
+  dummies: IDummy[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -41,12 +46,14 @@ export class PersonalUpdateComponent implements OnInit {
     fin: [],
     cargo: [null, [Validators.required, Validators.maxLength(45)]],
     comentario: [null, [Validators.maxLength(300)]],
-    area: [],
+    area: [null, Validators.required],
+    dummy: [],
   });
 
   constructor(
     protected personalService: PersonalService,
     protected areaService: AreaService,
+    protected dummyService: DummyService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -62,6 +69,8 @@ export class PersonalUpdateComponent implements OnInit {
       this.updateForm(personal);
 
       this.areaService.query().subscribe((res: HttpResponse<IArea[]>) => (this.areas = res.body || []));
+
+      this.dummyService.query().subscribe((res: HttpResponse<IDummy[]>) => (this.dummies = res.body || []));
     });
   }
 
@@ -88,6 +97,7 @@ export class PersonalUpdateComponent implements OnInit {
       cargo: personal.cargo,
       comentario: personal.comentario,
       area: personal.area,
+      dummy: personal.dummy,
     });
   }
 
@@ -129,6 +139,7 @@ export class PersonalUpdateComponent implements OnInit {
       cargo: this.editForm.get(['cargo'])!.value,
       comentario: this.editForm.get(['comentario'])!.value,
       area: this.editForm.get(['area'])!.value,
+      dummy: this.editForm.get(['dummy'])!.value,
     };
   }
 
@@ -148,7 +159,7 @@ export class PersonalUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IArea): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

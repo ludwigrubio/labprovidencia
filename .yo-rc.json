@@ -38,6 +38,15 @@
     "enableTranslation": true,
     "nativeLanguage": "es",
     "languages": ["es"],
-    "blueprints": []
+    "blueprints": [],
+    "lastLiquibaseTimestamp": 1600293414000
+  },
+  "generator-jhipster-file-handling": {
+    "promptValues": {
+      "gatewayMicroserviceName": "labprovimport",
+      "generalClientRootFolder": "fileUploads",
+      "fileModelTypes": "Dummy"
+    },
+    "lastLiquibaseTimestamp": 1600317785000
   }
 }

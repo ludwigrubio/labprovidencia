@@ -42,7 +42,8 @@
                     <th scope="col"  jhiSortBy="fin"><span jhiTranslate="labprovidenciaApp.personal.fin">Fin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cargo"><span jhiTranslate="labprovidenciaApp.personal.cargo">Cargo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="comentario"><span jhiTranslate="labprovidenciaApp.personal.comentario">Comentario</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="area.id"><span jhiTranslate="labprovidenciaApp.personal.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area.area"><span jhiTranslate="labprovidenciaApp.personal.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dummy.name"><span jhiTranslate="labprovidenciaApp.personal.dummy">Dummy</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -70,7 +71,12 @@
                     <td>{{ personal.comentario }}</td>
                     <td>
                         <div *ngIf="personal.area">
-                            <a [routerLink]="['/area', personal.area?.id, 'view']" >{{ personal.area?.id }}</a>
+                            <a [routerLink]="['/area', personal.area?.id, 'view']" >{{ personal.area?.area }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="personal.dummy">
+                            <a [routerLink]="['/dummy', personal.dummy?.id, 'view']" >{{ personal.dummy?.name }}</a>
                         </div>
                     </td>
                     <td class="text-right">

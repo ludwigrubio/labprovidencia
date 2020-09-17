@@ -67,6 +67,8 @@ public class PersonalCriteria implements Serializable, Criteria {
 
     private LongFilter areaId;
 
+    private LongFilter dummyId;
+
     public PersonalCriteria() {
     }
 
@@ -92,6 +94,7 @@ public class PersonalCriteria implements Serializable, Criteria {
         this.cargo = other.cargo == null ? null : other.cargo.copy();
         this.comentario = other.comentario == null ? null : other.comentario.copy();
         this.areaId = other.areaId == null ? null : other.areaId.copy();
+        this.dummyId = other.dummyId == null ? null : other.dummyId.copy();
     }
 
     @Override
@@ -267,6 +270,14 @@ public class PersonalCriteria implements Serializable, Criteria {
         this.areaId = areaId;
     }
 
+    public LongFilter getDummyId() {
+        return dummyId;
+    }
+
+    public void setDummyId(LongFilter dummyId) {
+        this.dummyId = dummyId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -298,7 +309,8 @@ public class PersonalCriteria implements Serializable, Criteria {
             Objects.equals(fin, that.fin) &&
             Objects.equals(cargo, that.cargo) &&
             Objects.equals(comentario, that.comentario) &&
-            Objects.equals(areaId, that.areaId);
+            Objects.equals(areaId, that.areaId) &&
+            Objects.equals(dummyId, that.dummyId);
     }
 
     @Override
@@ -324,7 +336,8 @@ public class PersonalCriteria implements Serializable, Criteria {
         fin,
         cargo,
         comentario,
-        areaId
+        areaId,
+        dummyId
         );
     }
 
@@ -353,6 +366,7 @@ public class PersonalCriteria implements Serializable, Criteria {
                 (cargo != null ? "cargo=" + cargo + ", " : "") +
                 (comentario != null ? "comentario=" + comentario + ", " : "") +
                 (areaId != null ? "areaId=" + areaId + ", " : "") +
+                (dummyId != null ? "dummyId=" + dummyId + ", " : "") +
             "}";
     }
 

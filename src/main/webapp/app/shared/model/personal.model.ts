@@ -1,5 +1,6 @@
 import { Moment } from 'moment';
 import { IArea } from 'app/shared/model/area.model';
+import { IDummy } from 'app/shared/model/dummy.model';
 
 export interface IPersonal {
   id?: number;
@@ -23,6 +24,7 @@ export interface IPersonal {
   cargo?: string;
   comentario?: string;
   area?: IArea;
+  dummy?: IDummy;
 }
 
 export class Personal implements IPersonal {
@@ -47,6 +49,7 @@ export class Personal implements IPersonal {
     public fin?: Moment,
     public cargo?: string,
     public comentario?: string,
-    public area?: IArea
+    public area?: IArea,
+    public dummy?: IDummy
   ) {}
 }

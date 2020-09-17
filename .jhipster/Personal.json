@@ -4,135 +4,96 @@
     {
       "fieldName": "nombre",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "100"
     },
     {
       "fieldName": "apellido1",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "50"
     },
     {
       "fieldName": "apellido2",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "alias",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "domicilio",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "200"
     },
     {
       "fieldName": "colonia",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "localidad",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "estado",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "pais",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "latitud",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "20"
     },
     {
       "fieldName": "longitud",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "20"
     },
     {
       "fieldName": "cp",
       "fieldType": "Integer",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "telefono",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "email",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "rfc",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "inicio",
       "fieldType": "Instant",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "fin",
@@ -141,18 +102,13 @@
     {
       "fieldName": "cargo",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
+      "fieldValidateRules": ["required", "maxlength"],
       "fieldValidateRulesMaxlength": "45"
     },
     {
       "fieldName": "comentario",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
+      "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "300"
     }
   ],
@@ -162,7 +118,15 @@
       "otherEntityName": "area",
       "otherEntityRelationshipName": "personal",
       "relationshipName": "area",
-      "otherEntityField": "id"
+      "otherEntityField": "id",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "relationshipName": "dummy",
+      "otherEntityName": "dummy",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "name",
+      "otherEntityRelationshipName": "personal"
     }
   ],
   "changelogDate": "20200911232612",
@@ -175,5 +139,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }
