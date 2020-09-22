@@ -1,0 +1,77 @@
+{
+  "name": "Producto",
+  "fields": [
+    {
+      "fieldName": "producto",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "required"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "clave",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "required"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "serieEAN",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "required"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fQMantequilla",
+      "otherEntityRelationshipName": "producto",
+      "relationshipName": "fQMantequilla"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fQQueso",
+      "otherEntityRelationshipName": "producto",
+      "relationshipName": "fQQueso"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fQCrema",
+      "otherEntityRelationshipName": "producto",
+      "relationshipName": "fQCrema"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "fQSuero",
+      "otherEntityRelationshipName": "producto",
+      "relationshipName": "fQSuero"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tipoProducto",
+      "otherEntityRelationshipName": "producto",
+      "relationshipValidateRules": "required",
+      "relationshipName": "tipo",
+      "otherEntityField": "tipo"
+    }
+  ],
+  "changelogDate": "20200922134926",
+  "entityTableName": "producto",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

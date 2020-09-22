@@ -91,10 +91,6 @@ public class AreaQueryService extends QueryService<Area> {
             if (criteria.getDescripcion() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getDescripcion(), Area_.descripcion));
             }
-            if (criteria.getPersonalId() != null) {
-                specification = specification.and(buildSpecification(criteria.getPersonalId(),
-                    root -> root.join(Area_.personals, JoinType.LEFT).get(Personal_.id)));
-            }
         }
         return specification;
     }

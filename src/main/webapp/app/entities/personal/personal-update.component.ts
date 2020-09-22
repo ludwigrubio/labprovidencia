@@ -9,12 +9,8 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IPersonal, Personal } from 'app/shared/model/personal.model';
 import { PersonalService } from './personal.service';
-import { IArea } from 'app/shared/model/area.model';
-import { AreaService } from 'app/entities/area/area.service';
-import { IDummy } from 'app/shared/model/dummy.model';
-import { DummyService } from 'app/entities/dummy/dummy.service';
-
-type SelectableEntity = IArea | IDummy;
+import { IRelacion } from 'app/shared/model/relacion.model';
+import { RelacionService } from 'app/entities/relacion/relacion.service';
 
 @Component({
   selector: 'jhi-personal-update',
@@ -22,8 +18,7 @@ type SelectableEntity = IArea | IDummy;
 })
 export class PersonalUpdateComponent implements OnInit {
   isSaving = false;
-  areas: IArea[] = [];
-  dummies: IDummy[] = [];
+  relacions: IRelacion[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -46,14 +41,12 @@ export class PersonalUpdateComponent implements OnInit {
     fin: [],
     cargo: [null, [Validators.required, Validators.maxLength(45)]],
     comentario: [null, [Validators.maxLength(300)]],
-    area: [null, Validators.required],
-    dummy: [],
+    relacion: [null, Validators.required],
   });
 
   constructor(
     protected personalService: PersonalService,
-    protected areaService: AreaService,
-    protected dummyService: DummyService,
+    protected relacionService: RelacionService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -68,9 +61,7 @@ export class PersonalUpdateComponent implements OnInit {
 
       this.updateForm(personal);
 
-      this.areaService.query().subscribe((res: HttpResponse<IArea[]>) => (this.areas = res.body || []));
-
-      this.dummyService.query().subscribe((res: HttpResponse<IDummy[]>) => (this.dummies = res.body || []));
+      this.relacionService.query().subscribe((res: HttpResponse<IRelacion[]>) => (this.relacions = res.body || []));
     });
   }
 
@@ -96,8 +87,7 @@ export class PersonalUpdateComponent implements OnInit {
       fin: personal.fin ? personal.fin.format(DATE_TIME_FORMAT) : null,
       cargo: personal.cargo,
       comentario: personal.comentario,
-      area: personal.area,
-      dummy: personal.dummy,
+      relacion: personal.relacion,
     });
   }
 
@@ -138,8 +128,7 @@ export class PersonalUpdateComponent implements OnInit {
       fin: this.editForm.get(['fin'])!.value ? moment(this.editForm.get(['fin'])!.value, DATE_TIME_FORMAT) : undefined,
       cargo: this.editForm.get(['cargo'])!.value,
       comentario: this.editForm.get(['comentario'])!.value,
-      area: this.editForm.get(['area'])!.value,
-      dummy: this.editForm.get(['dummy'])!.value,
+      relacion: this.editForm.get(['relacion'])!.value,
     };
   }
 
@@ -159,7 +148,7 @@ export class PersonalUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: IRelacion): any {
     return item.id;
   }
 }

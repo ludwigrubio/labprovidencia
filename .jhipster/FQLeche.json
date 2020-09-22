@@ -1,0 +1,125 @@
+{
+  "name": "FQLeche",
+  "fields": [
+    {
+      "fieldName": "fecha",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "lote",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "acidez",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "temperatura",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "agua",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "crioscopia",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "antibiotico",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "delvo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "grasa",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "solidos",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "densidad",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "lactosa",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "proteina",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "neutralizantes",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adulterantes",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "reductasa",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fosfatasa",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "ph",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "observaciones",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "area",
+      "otherEntityRelationshipName": "fQLeche",
+      "relationshipValidateRules": "required",
+      "relationshipName": "area",
+      "otherEntityField": "area"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "recepcion",
+      "otherEntityRelationshipName": "fQLeche",
+      "relationshipValidateRules": "required",
+      "relationshipName": "recepcion",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200922135126",
+  "entityTableName": "fq_leche",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

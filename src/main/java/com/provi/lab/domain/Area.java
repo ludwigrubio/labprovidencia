@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Area.
@@ -16,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "area")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Area implements Serializable {
+public class Area extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,10 +30,6 @@ public class Area implements Serializable {
     @Size(max = 200)
     @Column(name = "descripcion", length = 200)
     private String descripcion;
-
-    @OneToMany(mappedBy = "area")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Personal> personals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -70,31 +64,6 @@ public class Area implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Set<Personal> getPersonals() {
-        return personals;
-    }
-
-    public Area personals(Set<Personal> personals) {
-        this.personals = personals;
-        return this;
-    }
-
-    public Area addPersonal(Personal personal) {
-        this.personals.add(personal);
-        personal.setArea(this);
-        return this;
-    }
-
-    public Area removePersonal(Personal personal) {
-        this.personals.remove(personal);
-        personal.setArea(null);
-        return this;
-    }
-
-    public void setPersonals(Set<Personal> personals) {
-        this.personals = personals;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

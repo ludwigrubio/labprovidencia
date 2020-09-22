@@ -10,6 +10,10 @@
         </button>
     </h2>
 
+    <div class="filters-form">
+        <input type="text" [(ngModel)]="filters.name" (ngModelChange)="loadPage()" class="form-control">
+    </div>
+
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>

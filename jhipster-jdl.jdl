@@ -1,0 +1,185 @@
+entity UserExtra {
+	nombreCompleto String maxlength(200),
+}
+
+entity Personal {
+	nombre String required maxlength(100),
+	apellido1 String maxlength(50),
+	apellido2 String maxlength(45),
+	alias String maxlength(45),
+	domicilio String required maxlength(200),
+	colonia String required maxlength(45),
+	localidad String maxlength(45),
+	estado String required maxlength(45),
+	pais String required maxlength(45),
+	latitud String maxlength(20),
+	longitud String maxlength(20),
+	cp Integer required,
+	telefono String required maxlength(45),
+	email String maxlength(45),
+	rfc String required maxlength(45),
+	inicio Instant required,
+	fin Instant,
+	cargo String required maxlength(45),
+	comentario String maxlength(300)
+ }
+  
+entity Area {
+	area String required maxlength(45),
+    descripcion String maxlength(200)
+}
+
+entity Relacion {
+	relacion String required maxlength(45)
+}
+
+entity Recepcion {
+    idProveedor Integer required,
+    litros Float required,
+    tiempo Instant required,
+    turno String required maxlength(1),
+    incentivoLT Double,
+    incentivoT Double
+}
+
+entity Cultivo {
+	cultivo String required maxlength(45)
+}
+
+entity Superficie {
+	superficie String required maxlength(45),	
+    descripcion String maxlength(200)
+}
+
+entity PruebaMicro {
+	tipodeMuestra Integer required,
+	idCatalogo String maxlength(10) required,
+	lote String maxlength(45),
+	inicio Instant required,
+	fin Instant,
+	resultado Integer,
+	unidades Integer,
+	observaciones String maxlength(100)
+}
+
+entity Producto {
+	producto String  maxlength(45) required,
+    clave String  maxlength(45) required,
+    serieEAN String maxlength(45) required
+}
+
+entity TipoProducto {
+	tipo String  maxlength(45) required
+}
+
+entity FQLeche {
+	fecha Instant required,
+    lote String maxlength(45),
+	acidez Double,
+	temperatura Double,
+	agua Double,
+	crioscopia Double,
+	antibiotico Integer,
+	delvo Double,
+	grasa Double,
+	solidos String maxlength(45),
+	densidad Double,
+	lactosa Double,
+	proteina Double,
+	neutralizantes Double,
+	adulterantes Double,
+	reductasa Double,
+	fosfatasa Double,
+	ph Double,
+	observaciones String maxlength(100)
+}
+
+entity FQMantequilla {
+	fecha Instant,
+	lote String maxlength(45) required,
+	ph Double,
+	humedad Double,
+	observaciones String maxlength(100)
+}
+entity FQQueso {
+	fecha Instant required,
+	lote String maxlength(45) required,
+	humedad Double,
+	ph Double,
+	fundicion Integer,
+	presentacion Integer,
+	caducidad Instant,
+	apariencia Integer,
+	sabor Integer,
+	color Integer,
+	olor Integer,
+	textura Integer,
+	hilado Integer,
+	observaciones String maxlength(100)
+}
+entity FQCrema {
+    fecha Instant required,
+    lote String maxlength(45) required,
+    acidez Double,
+    grasa Double,
+    observaciones String maxlength(100)
+}
+entity FQSuero {
+    fecha Instant required,
+    lote String maxlength(45) required,
+    acidez Double,
+    temperatura Double,
+    delvo Double,
+    solidos Double,
+    neutralizantes Double,
+    ph Double,
+    cloro Double,
+    almidon Double,
+    observaciones String maxlength(100)
+}
+
+relationship OneToMany {
+	Area to UserExtra{area(area) required},
+    Area to FQLeche{area(area) required} ,
+    Area to FQMantequilla{area(area) required},
+    Area to FQQueso{area(area) required},
+    Area to FQCrema{area(area) required},
+    Area to FQSuero{area(area) required},
+    Area to PruebaMicro{area(area) required},
+    
+    Relacion to Personal{area(relacion) required},
+    Cultivo to PruebaMicro{cultivo(cultivo)},
+    Superficie to PruebaMicro{superficie(superficie)},
+    TipoProducto to Producto{tipo(tipo) required},
+    Recepcion to FQLeche{recepcion required},
+    
+    Producto to FQMantequilla{producto(producto) required},
+    Producto to FQQueso{producto(producto) required},
+    Producto to FQCrema{producto(producto) required},
+    Producto to FQSuero{producto(producto) required},
+    
+    UserExtra to PruebaMicro{analista(nombreCompleto) required},
+    UserExtra to FQMantequilla{analista(nombreCompleto) required},
+    UserExtra to FQQueso{analista(nombreCompleto) required},
+    UserExtra to FQCrema{analista(nombreCompleto) required},
+    UserExtra to FQSuero{analista(nombreCompleto) required},
+
+    Personal to UserExtra{personal(nombreCompleto) required},
+    Personal to PruebaMicro{proveedor(nombre) required},
+    Personal to FQMantequilla{proveedor(nombre) required},
+    Personal to FQQueso{proveedor(nombre) required},
+    Personal to FQCrema{proveedor(nombre) required},
+    Personal to FQSuero{proveedor(nombre) required},
+    Personal to Recepcion{proveedor(nombre) required},
+}
+
+//Filters
+filter all except TipoProducto, Relacion
+//Service
+service all with serviceClass except TipoProducto, Relacion
+//Skip client side
+skipClient TipoProducto, Relacion, UserExtra, Recepcion
+// Set pagination options
+paginate all with pagination
+
+

@@ -24,6 +24,7 @@ export class DummyComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filters = { name: '' };
 
   constructor(
     protected dummyService: DummyService,
@@ -41,6 +42,7 @@ export class DummyComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'name.contains': this.filters.name,
       })
       .subscribe(
         (res: HttpResponse<IDummy[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),

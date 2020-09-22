@@ -2,8 +2,7 @@ package com.provi.lab.web.rest;
 
 import com.provi.lab.LabprovidenciaApp;
 import com.provi.lab.domain.Personal;
-import com.provi.lab.domain.Area;
-import com.provi.lab.domain.Dummy;
+import com.provi.lab.domain.Relacion;
 import com.provi.lab.repository.PersonalRepository;
 import com.provi.lab.service.PersonalService;
 import com.provi.lab.service.dto.PersonalCriteria;
@@ -139,15 +138,15 @@ public class PersonalResourceIT {
             .cargo(DEFAULT_CARGO)
             .comentario(DEFAULT_COMENTARIO);
         // Add required entity
-        Area area;
-        if (TestUtil.findAll(em, Area.class).isEmpty()) {
-            area = AreaResourceIT.createEntity(em);
-            em.persist(area);
+        Relacion relacion;
+        if (TestUtil.findAll(em, Relacion.class).isEmpty()) {
+            relacion = RelacionResourceIT.createEntity(em);
+            em.persist(relacion);
             em.flush();
         } else {
-            area = TestUtil.findAll(em, Area.class).get(0);
+            relacion = TestUtil.findAll(em, Relacion.class).get(0);
         }
-        personal.setArea(area);
+        personal.setRelacion(relacion);
         return personal;
     }
     /**
@@ -178,15 +177,15 @@ public class PersonalResourceIT {
             .cargo(UPDATED_CARGO)
             .comentario(UPDATED_COMENTARIO);
         // Add required entity
-        Area area;
-        if (TestUtil.findAll(em, Area.class).isEmpty()) {
-            area = AreaResourceIT.createUpdatedEntity(em);
-            em.persist(area);
+        Relacion relacion;
+        if (TestUtil.findAll(em, Relacion.class).isEmpty()) {
+            relacion = RelacionResourceIT.createUpdatedEntity(em);
+            em.persist(relacion);
             em.flush();
         } else {
-            area = TestUtil.findAll(em, Area.class).get(0);
+            relacion = TestUtil.findAll(em, Relacion.class).get(0);
         }
-        personal.setArea(area);
+        personal.setRelacion(relacion);
         return personal;
     }
 
@@ -1983,37 +1982,17 @@ public class PersonalResourceIT {
 
     @Test
     @Transactional
-    public void getAllPersonalsByAreaIsEqualToSomething() throws Exception {
+    public void getAllPersonalsByRelacionIsEqualToSomething() throws Exception {
         // Get already existing entity
-        Area area = personal.getArea();
+        Relacion relacion = personal.getRelacion();
         personalRepository.saveAndFlush(personal);
-        Long areaId = area.getId();
+        Long relacionId = relacion.getId();
 
-        // Get all the personalList where area equals to areaId
-        defaultPersonalShouldBeFound("areaId.equals=" + areaId);
+        // Get all the personalList where relacion equals to relacionId
+        defaultPersonalShouldBeFound("relacionId.equals=" + relacionId);
 
-        // Get all the personalList where area equals to areaId + 1
-        defaultPersonalShouldNotBeFound("areaId.equals=" + (areaId + 1));
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllPersonalsByDummyIsEqualToSomething() throws Exception {
-        // Initialize the database
-        personalRepository.saveAndFlush(personal);
-        Dummy dummy = DummyResourceIT.createEntity(em);
-        em.persist(dummy);
-        em.flush();
-        personal.setDummy(dummy);
-        personalRepository.saveAndFlush(personal);
-        Long dummyId = dummy.getId();
-
-        // Get all the personalList where dummy equals to dummyId
-        defaultPersonalShouldBeFound("dummyId.equals=" + dummyId);
-
-        // Get all the personalList where dummy equals to dummyId + 1
-        defaultPersonalShouldNotBeFound("dummyId.equals=" + (dummyId + 1));
+        // Get all the personalList where relacion equals to relacionId + 1
+        defaultPersonalShouldNotBeFound("relacionId.equals=" + (relacionId + 1));
     }
 
     /**

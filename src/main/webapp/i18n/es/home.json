@@ -4,6 +4,14 @@
     "subtitle": "Sistema de control de laboratorios - Lácteos Providencia",
     "logged": {
       "message": "Está conectado como \"{{username}}\"."
-    }
+    },
+    "createEntity": "Crear nuevo",
+    "listEntity": "Listar",
+    "listEntityCul": " Cultivos",
+    "listEntityRel": " Relaciones",
+    "listEntitySup": " Superficies",
+    "listEntityArea": " Áreas",
+    "importEntity": "Importar CSV",
+    "reportEntity": "Generar nuevo"
   }
 }

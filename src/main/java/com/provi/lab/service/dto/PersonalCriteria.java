@@ -65,9 +65,7 @@ public class PersonalCriteria implements Serializable, Criteria {
 
     private StringFilter comentario;
 
-    private LongFilter areaId;
-
-    private LongFilter dummyId;
+    private LongFilter relacionId;
 
     public PersonalCriteria() {
     }
@@ -93,8 +91,7 @@ public class PersonalCriteria implements Serializable, Criteria {
         this.fin = other.fin == null ? null : other.fin.copy();
         this.cargo = other.cargo == null ? null : other.cargo.copy();
         this.comentario = other.comentario == null ? null : other.comentario.copy();
-        this.areaId = other.areaId == null ? null : other.areaId.copy();
-        this.dummyId = other.dummyId == null ? null : other.dummyId.copy();
+        this.relacionId = other.relacionId == null ? null : other.relacionId.copy();
     }
 
     @Override
@@ -262,20 +259,12 @@ public class PersonalCriteria implements Serializable, Criteria {
         this.comentario = comentario;
     }
 
-    public LongFilter getAreaId() {
-        return areaId;
+    public LongFilter getRelacionId() {
+        return relacionId;
     }
 
-    public void setAreaId(LongFilter areaId) {
-        this.areaId = areaId;
-    }
-
-    public LongFilter getDummyId() {
-        return dummyId;
-    }
-
-    public void setDummyId(LongFilter dummyId) {
-        this.dummyId = dummyId;
+    public void setRelacionId(LongFilter relacionId) {
+        this.relacionId = relacionId;
     }
 
 
@@ -309,8 +298,7 @@ public class PersonalCriteria implements Serializable, Criteria {
             Objects.equals(fin, that.fin) &&
             Objects.equals(cargo, that.cargo) &&
             Objects.equals(comentario, that.comentario) &&
-            Objects.equals(areaId, that.areaId) &&
-            Objects.equals(dummyId, that.dummyId);
+            Objects.equals(relacionId, that.relacionId);
     }
 
     @Override
@@ -336,8 +324,7 @@ public class PersonalCriteria implements Serializable, Criteria {
         fin,
         cargo,
         comentario,
-        areaId,
-        dummyId
+        relacionId
         );
     }
 
@@ -365,8 +352,7 @@ public class PersonalCriteria implements Serializable, Criteria {
                 (fin != null ? "fin=" + fin + ", " : "") +
                 (cargo != null ? "cargo=" + cargo + ", " : "") +
                 (comentario != null ? "comentario=" + comentario + ", " : "") +
-                (areaId != null ? "areaId=" + areaId + ", " : "") +
-                (dummyId != null ? "dummyId=" + dummyId + ", " : "") +
+                (relacionId != null ? "relacionId=" + relacionId + ", " : "") +
             "}";
     }
 

@@ -1,0 +1,107 @@
+{
+  "name": "PruebaMicro",
+  "fields": [
+    {
+      "fieldName": "tipodeMuestra",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "idCatalogo",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "required"
+      ],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "lote",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "inicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "fin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "resultado",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unidades",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "observaciones",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "area",
+      "otherEntityRelationshipName": "pruebaMicro",
+      "relationshipValidateRules": "required",
+      "relationshipName": "area",
+      "otherEntityField": "area"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cultivo",
+      "otherEntityRelationshipName": "pruebaMicro",
+      "relationshipName": "cultivo",
+      "otherEntityField": "cultivo"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "superficie",
+      "otherEntityRelationshipName": "pruebaMicro",
+      "relationshipName": "superficie",
+      "otherEntityField": "superficie"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userExtra",
+      "otherEntityRelationshipName": "pruebaMicro",
+      "relationshipValidateRules": "required",
+      "relationshipName": "analista",
+      "otherEntityField": "nombreCompleto"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personal",
+      "otherEntityRelationshipName": "pruebaMicro",
+      "relationshipValidateRules": "required",
+      "relationshipName": "proveedor",
+      "otherEntityField": "nombre"
+    }
+  ],
+  "changelogDate": "20200922134826",
+  "entityTableName": "prueba_micro",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

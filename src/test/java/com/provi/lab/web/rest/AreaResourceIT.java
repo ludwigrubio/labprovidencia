@@ -2,7 +2,6 @@ package com.provi.lab.web.rest;
 
 import com.provi.lab.LabprovidenciaApp;
 import com.provi.lab.domain.Area;
-import com.provi.lab.domain.Personal;
 import com.provi.lab.repository.AreaRepository;
 import com.provi.lab.service.AreaService;
 import com.provi.lab.service.dto.AreaCriteria;
@@ -346,26 +345,6 @@ public class AreaResourceIT {
 
         // Get all the areaList where descripcion does not contain UPDATED_DESCRIPCION
         defaultAreaShouldBeFound("descripcion.doesNotContain=" + UPDATED_DESCRIPCION);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllAreasByPersonalIsEqualToSomething() throws Exception {
-        // Initialize the database
-        areaRepository.saveAndFlush(area);
-        Personal personal = PersonalResourceIT.createEntity(em);
-        em.persist(personal);
-        em.flush();
-        area.addPersonal(personal);
-        areaRepository.saveAndFlush(area);
-        Long personalId = personal.getId();
-
-        // Get all the areaList where personal equals to personalId
-        defaultAreaShouldBeFound("personalId.equals=" + personalId);
-
-        // Get all the areaList where personal equals to personalId + 1
-        defaultAreaShouldNotBeFound("personalId.equals=" + (personalId + 1));
     }
 
     /**

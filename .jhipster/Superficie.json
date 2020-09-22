@@ -1,0 +1,41 @@
+{
+  "name": "Superficie",
+  "fields": [
+    {
+      "fieldName": "superficie",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "200"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "pruebaMicro",
+      "otherEntityRelationshipName": "superficie",
+      "relationshipName": "pruebaMicro"
+    }
+  ],
+  "changelogDate": "20200922134726",
+  "entityTableName": "superficie",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

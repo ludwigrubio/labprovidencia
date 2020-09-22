@@ -6,19 +6,13 @@
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="labprovidenciaApp.area.home.createLabel">
             Create a new Area
-
             </span>
         </button>
     </h2>
 
-    <div>
-        <input type="text" [(ngModel)]="filters.area" (ngModelChange)="loadPage()" class="form-control">
-    </div>
-
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>
-
 
     <div class="alert alert-warning" id="no-result" *ngIf="areas?.length === 0">
         <span jhiTranslate="labprovidenciaApp.area.home.notFound">No areas found</span>

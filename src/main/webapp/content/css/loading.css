@@ -133,7 +133,7 @@
   left: 0px;
   width: 24px;
   height: 16px;
-  background-image: url('../images/logo_gray.png');
+  background-image: url('../images/logo.png');
   background-size: contain;
   background-repeat: no-repeat;
   -webkit-animation: lds-pacman-3 1s linear infinite;

@@ -30,8 +30,6 @@ public class AreaCriteria implements Serializable, Criteria {
 
     private StringFilter descripcion;
 
-    private LongFilter personalId;
-
     public AreaCriteria() {
     }
 
@@ -39,7 +37,6 @@ public class AreaCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.area = other.area == null ? null : other.area.copy();
         this.descripcion = other.descripcion == null ? null : other.descripcion.copy();
-        this.personalId = other.personalId == null ? null : other.personalId.copy();
     }
 
     @Override
@@ -71,14 +68,6 @@ public class AreaCriteria implements Serializable, Criteria {
         this.descripcion = descripcion;
     }
 
-    public LongFilter getPersonalId() {
-        return personalId;
-    }
-
-    public void setPersonalId(LongFilter personalId) {
-        this.personalId = personalId;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -92,8 +81,7 @@ public class AreaCriteria implements Serializable, Criteria {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(area, that.area) &&
-            Objects.equals(descripcion, that.descripcion) &&
-            Objects.equals(personalId, that.personalId);
+            Objects.equals(descripcion, that.descripcion);
     }
 
     @Override
@@ -101,8 +89,7 @@ public class AreaCriteria implements Serializable, Criteria {
         return Objects.hash(
         id,
         area,
-        descripcion,
-        personalId
+        descripcion
         );
     }
 
@@ -113,7 +100,6 @@ public class AreaCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (area != null ? "area=" + area + ", " : "") +
                 (descripcion != null ? "descripcion=" + descripcion + ", " : "") +
-                (personalId != null ? "personalId=" + personalId + ", " : "") +
             "}";
     }
 

@@ -54,6 +54,15 @@ public class CacheConfiguration {
             createCache(cm, com.provi.lab.domain.Dummy.class.getName());
             createCache(cm, com.provi.lab.domain.Dummy.class.getName() + ".areas");
             createCache(cm, com.provi.lab.domain.EntityAuditEvent.class.getName());
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".userExtras");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".fQLeches");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".fQMantequillas");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".fQQuesos");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".fQCremas");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".fQSueros");
+            createCache(cm, com.provi.lab.domain.Area.class.getName() + ".pruebaMicros");
+            createCache(cm, com.provi.lab.domain.Relacion.class.getName());
+            createCache(cm, com.provi.lab.domain.Relacion.class.getName() + ".personals");
             // jhipster-needle-ehcache-add-entry
         };
     }

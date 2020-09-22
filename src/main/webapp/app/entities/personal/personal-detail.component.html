@@ -84,16 +84,10 @@
                 <dd>
                     <span>{{ personal.comentario }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.personal.area">Area</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.personal.relacion">Relacion</span></dt>
                 <dd>
-                    <div *ngIf="personal.area">
-                        <a [routerLink]="['/area', personal.area?.id, 'view']">{{ personal.area?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.personal.dummy">Dummy</span></dt>
-                <dd>
-                    <div *ngIf="personal.dummy">
-                        <a [routerLink]="['/dummy', personal.dummy?.id, 'view']">{{ personal.dummy?.name }}</a>
+                    <div *ngIf="personal.relacion">
+                        <a [routerLink]="['/relacion', personal.relacion?.id, 'view']">{{ personal.relacion?.relacion }}</a>
                     </div>
                 </dd>
             </dl>

@@ -3,16 +3,16 @@
 
     <jhi-alert></jhi-alert>
 
+    <h4 jhiTranslate="entityAudit.home.filter">Filter</h4>
     <div class="row">
-        <div class="col-md-5">
-            <h4  jhiTranslate="entityAudit.home.filter"  >Filter</h4>
-            <form name="auditEventForm" class="form-inline" #auditEventForm="ngForm">
-                <div class="d-flex">
-                  <label class="form-control-label mr-sm-2 col-2" for="entityName"
+          <div class="col-xs-12 col-sm-12 col-md-10">
+            <form name="auditEventForm"  #auditEventForm="ngForm">
+                <div class="row">
+                  <label class="form-control-label col-sm-3 col-md-2 text-center" for="entityName"
                            jhiTranslate="entityAudit.home.entityOrTable"  >
                       Entity/Table
                   </label>
-                  <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="entityName"
+                  <select class="form-control col-sm-3 col-md-2" id="entityName"
                           name="entityName" required [(ngModel)]="selectedEntity"
                           #entityName="ngModel">
                       <option [value]="entityOption" *ngFor="let entityOption of entitiesSimple">
@@ -20,36 +20,38 @@
                       </option>
                   </select>
 
-                  <label class="form-control-label mr-sm-2 col-2" for="limit"
+                  <label class="form-control-label col-sm-3 col-md-2 text-center" for="limit"
                            jhiTranslate="entityAudit.home.limitTo"  >
                       Limit to
                   </label>
-                  <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="limit"
+                  <select class="form-control col-sm-3 col-md-2" id="limit"
                           name="limit" required [(ngModel)]="selectedLimit">
                       <option [value]="limitOption" *ngFor="let limitOption of limits">
                           {{ limitOption }}
                       </option>
                   </select>
 
-                  <button class="btn btn-primary float-right" (click)="loadChanges()"
+                  <button class="btn btn-primary ml-2 mt-sm-2 mt-md-0 col-md-2" (click)="loadChanges()"
                           [disabled]="!auditEventForm.form.valid">
                         <fa-icon icon="sync"></fa-icon>
                       <span  jhiTranslate="entityAudit.home.loadChangeList"  >Load Change List</span>
                   </button>
                 </div>
             </form>
-        </div>
+          </div>
     </div>
 
     <div [hidden]="loading">
         <div class="table-responsive mt-2" *ngIf="audits">
-            <p *ngIf="selectedEntity" jhiTranslate="entityAudit.result.showInfo" [translateValues]="{ limit: selectedLimit, entity: selectedEntity }">
+            <div class="alert alert-success alert-dismissible" *ngIf="selectedEntity" jhiTranslate="entityAudit.result.showInfo" [translateValues]="{ limit: selectedLimit, entity: selectedEntity }">
                 Last <strong>{{ selectedLimit }}</strong>
                 Changes for <strong>{{ selectedEntity }}</strong>
-            </p>
-
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <form class="form-inline mb-2">
-                <div class="form-group">
+                <div class="mt-5 form-group">
                     <label for="searchFieldEntityId"
                              jhiTranslate="entityAudit.result.searchFieldLabel"  >
                         Filter:

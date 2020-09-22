@@ -7,7 +7,7 @@
         <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
 
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
-        <jhi-alert>dfggdfg</jhi-alert>
+
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success alert-dismissible fade show" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
@@ -29,85 +29,187 @@
             </div>
 
             <div class="row" *ngSwitchCase="true">
-                <div class="col-md-4">
-                    <div class="card bg-light" >
-                        <h5 class="card-header">Análisis Físico/Químicos</h5>
+                <div class="col-md-12">
+                    <div class="card" >
+                        <h5 class="card-header">
+                            <fa-icon icon="flask"></fa-icon>
+                            &nbsp;Análisis Físico/Químicos</h5>
                         <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
-                            </p>
-                            <p class="card-text">Pequeña descripción</p>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                   <h6 class="sub-title">Leche:</h6>
+                                    <button type="button" class="btn btn-primary">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span jhiTranslate="home.createEntity">Crear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" disabled="">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.importEntity">Importar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <h6 class="sub-title">Queso:</h6>
+                                    <button type="button" class="btn btn-primary">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span jhiTranslate="home.createEntity">Crear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" disabled="">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.importEntity">Importar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <h6 class="sub-title">Mantequilla:</h6>
+                                    <button type="button" class="btn btn-primary">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span jhiTranslate="home.createEntity">Crear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" disabled="">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.importEntity">Importar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div><h6 class="sub-title"> Suero:</h6></div>
+                                    <button type="button" class="btn btn-primary">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span jhiTranslate="home.createEntity">Crear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" disabled="">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.importEntity">Importar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div><h6 class="sub-title"> Crema:</h6></div>
+                                    <button type="button" class="btn btn-primary">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span jhiTranslate="home.createEntity">Crear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" disabled="">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.importEntity">Importar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card bg-light">
-                        <h5 class="card-header">Análisis Microbiológicos</h5>
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <fa-icon icon="microscope"></fa-icon>
+                            &nbsp;Análisis Microbiológicos</h5>
                         <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
-                            </p>
-                            <p class="card-text">Pequeña descripción</p>
+                            <div><h6 class="sub-title"> Pruebas sensoriales:</h6></div>
+                            <button type="button" class="btn btn-primary">
+                                <fa-icon icon="plus"></fa-icon>
+                                <span jhiTranslate="home.createEntity">Crear</span>
+                            </button>
+                            <button type="button" class="btn btn-info" disabled="">
+                                <fa-icon icon="file-upload"></fa-icon>
+                                <span jhiTranslate="home.importEntity">Importar</span>
+                            </button>
+                            <button type="button" class="btn btn-dark">
+                                <fa-icon icon="list"></fa-icon>
+                                <span jhiTranslate="home.listEntity">Listado</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card bg-light">
-                        <h5 class="card-header">Recepción</h5>
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <fa-icon icon="tasks"></fa-icon>
+                            &nbsp;Reportes</h5>
                         <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
-                            </p>
-                            <p class="card-text">Pequeña descripción</p>
+                            <div><h6 class="sub-title"> Descargar reportes:</h6></div>
+                            <button type="button" class="btn btn-dark" disabled="">
+                                <fa-icon icon="download"></fa-icon>
+                                <span jhiTranslate="home.reportEntity">Descargar Reporte</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row" *ngSwitchCase="true">
+                <div class="col-md-8" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <fa-icon icon="list"></fa-icon>
+                            &nbsp;Cátalogos</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a class="btn btn-dark" href="/cultivo">
+                                    <fa-icon icon="list"></fa-icon>
+                                    <span jhiTranslate="home.listEntityCul">Cultivos</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-dark" href="/superficie">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntitySup">Superficie</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-dark" href="/dummy">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntityRel">Relación</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-dark" href="/area">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntityArea">Áreas</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-md-4">
-                    <div class="card bg-light">
-                        <h5 class="card-header">Superficie</h5>
-                        <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
-                            </p>
-                            <p class="card-text">Pequeña descripción</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-4" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
-                    <div class="card bg-light">
-                        <h5 class="card-header">Personal</h5>
+                    <div class="card">
+                        <h5 class="card-header">
+                            <fa-icon icon="user"> </fa-icon>
+                            &nbsp;Usuarios</h5>
                         <div class="card-body">
                             <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
+                                <button type="button"  class="btn btn-primary" [routerLink]="['/admin/user-management/new']">
+                                    <fa-icon icon="plus"></fa-icon>
+                                    <span jhiTranslate="home.createEntity">Crear</span>
+                                </button>
+                                <a  class="btn btn-dark" href="/admin/user-management">
+                                    <fa-icon icon="list"></fa-icon>
+                                    <span jhiTranslate="home.listEntity">Listado</span>
+                                </a>
                             </p>
-                            <p class="card-text">Pequeña descripción</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
-                    <div class="card bg-light">
-                        <h5 class="card-header">Cátalogos</h5>
-                        <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary">Crear</button>
-                                <button type="button" class="btn btn-dark">Listado</button>
-                            </p>
-                            <p class="card-text">Pequeña descripción</p>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>

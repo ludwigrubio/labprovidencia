@@ -9,9 +9,9 @@
     },
     "result": {
       "showInfo": "Últimos <strong>{{ limit }}</strong> cambios realizado para <strong>{{ entity }}</strong>",
-      "searchFieldLabel": "Filtro:",
+      "searchFieldLabel": "Filtrar Tabla:",
       "globalFilter": "filtro global",
-      "entityIdFilter": "Filtrar por id",
+      "entityIdFilter": "Filtrar por ID",
       "tableHeader": {
         "entityId": "Entidad ID",
         "action": "Acción",

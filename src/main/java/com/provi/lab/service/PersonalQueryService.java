@@ -142,13 +142,9 @@ public class PersonalQueryService extends QueryService<Personal> {
             if (criteria.getComentario() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getComentario(), Personal_.comentario));
             }
-            if (criteria.getAreaId() != null) {
-                specification = specification.and(buildSpecification(criteria.getAreaId(),
-                    root -> root.join(Personal_.area, JoinType.LEFT).get(Area_.id)));
-            }
-            if (criteria.getDummyId() != null) {
-                specification = specification.and(buildSpecification(criteria.getDummyId(),
-                    root -> root.join(Personal_.dummy, JoinType.LEFT).get(Dummy_.id)));
+            if (criteria.getRelacionId() != null) {
+                specification = specification.and(buildSpecification(criteria.getRelacionId(),
+                    root -> root.join(Personal_.relacion, JoinType.LEFT).get(Relacion_.id)));
             }
         }
         return specification;

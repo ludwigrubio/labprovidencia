@@ -14,6 +14,15 @@ Main page styles
   margin-bottom: 18px;
 }
 
+h6.sub-title {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #888;
+}
+
+.hipster {
+  max-height: 300px !important;
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),

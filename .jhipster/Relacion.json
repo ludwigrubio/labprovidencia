@@ -1,0 +1,26 @@
+{
+    "name": "Relacion",
+    "fields": [
+        {
+            "fieldName": "relacion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        }
+    ],
+    "changelogDate": "20200922134426",
+    "entityTableName": "relacion",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
+}

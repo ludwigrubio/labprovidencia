@@ -10,6 +10,7 @@
         "personal": "Personal",
         "area": "Area",
         "dummy": "Dummy",
+        "relacion": "Relacion",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

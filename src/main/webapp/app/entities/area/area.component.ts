@@ -4,7 +4,6 @@ import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl } from '@angular/forms';
 
 import { IArea } from 'app/shared/model/area.model';
 
@@ -25,10 +24,6 @@ export class AreaComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-  userForm = new FormGroup({
-    firstname: new FormControl('test'),
-  });
-  filters = { area: '' };
 
   constructor(
     protected areaService: AreaService,
@@ -46,7 +41,6 @@ export class AreaComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-        'area.contains': this.filters.area,
       })
       .subscribe(
         (res: HttpResponse<IArea[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),

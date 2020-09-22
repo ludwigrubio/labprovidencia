@@ -1,0 +1,33 @@
+{
+  "name": "Cultivo",
+  "fields": [
+    {
+      "fieldName": "cultivo",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "pruebaMicro",
+      "otherEntityRelationshipName": "cultivo",
+      "relationshipName": "pruebaMicro"
+    }
+  ],
+  "changelogDate": "20200922134626",
+  "entityTableName": "cultivo",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
