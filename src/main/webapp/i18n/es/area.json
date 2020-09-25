@@ -1,23 +1,23 @@
 {
   "labprovidenciaApp": {
-    "área": {
+    "area": {
       "home": {
-        "title": "Areas",
-        "createLabel": "Crear nuevo Area",
-        "createOrEditLabel": "Crear o editar Area",
-        "notFound": "Ningún Areas encontrado"
+        "title": "Áreas",
+        "createLabel": "Crear nueva Área",
+        "createOrEditLabel": "Crear o editar Área",
+        "notFound": "Ningúna Área encontrada"
       },
-      "created": "Un nuevo Area ha sido creado con el identificador {{ param }}",
-      "updated": "Un Area ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Area ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Área ha sido creado con el identificador {{ param }}",
+      "updated": "Una Área ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Una Área ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Area {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Área {{ id }}?"
       },
       "detail": {
-        "title": "Area"
+        "title": "Área"
       },
-      "área": "Area",
-      "descripcion": "Descripcion"
+      "area": "Área",
+      "descripcion": "Descripción"
     }
   }
 }

@@ -16,15 +16,15 @@
       "detail": {
         "title": "Prueba Micro"
       },
-      "tipodeMuestra": "Tipode Muestra",
-      "idCatalogo": "Id Catalogo",
+      "tipodeMuestra": "Tipo de Muestra",
+      "idCatalogo": "ID Catalogo",
       "lote": "Lote",
       "inicio": "Inicio",
       "fin": "Fin",
       "resultado": "Resultado",
       "unidades": "Unidades",
       "observaciones": "Observaciones",
-      "área": "Area",
+      "area": "Área",
       "cultivo": "Cultivo",
       "superficie": "Superficie",
       "analista": "Analista",

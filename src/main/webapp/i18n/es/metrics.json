@@ -20,7 +20,7 @@
         "blocked": "Bloqueados",
         "dump": {
           "title": "Volcado de hilos",
-          "id": "Id: ",
+          "id": "ID: ",
           "blockedtime": "Tiempo bloqueado",
           "blockedcount": "Contador bloqueados",
           "waitedtime": "Tiempo en espera",

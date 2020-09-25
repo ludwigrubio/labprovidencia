@@ -2,10 +2,10 @@
   "labprovidenciaApp": {
     "personal": {
       "home": {
-        "title": "Personals",
+        "title": "Personal",
         "createLabel": "Crear nuevo Personal",
         "createOrEditLabel": "Crear o editar Personal",
-        "notFound": "Ningún Personals encontrado"
+        "notFound": "Ningún Personal encontrado"
       },
       "created": "Un nuevo Personal ha sido creado con el identificador {{ param }}",
       "updated": "Un Personal ha sido actualizado con el identificador {{ param }}",
@@ -24,18 +24,18 @@
       "colonia": "Colonia",
       "localidad": "Localidad",
       "estado": "Estado",
-      "pais": "Pais",
+      "pais": "País",
       "latitud": "Latitud",
       "longitud": "Longitud",
-      "cp": "Cp",
-      "telefono": "Telefono",
+      "cp": "CP",
+      "telefono": "Teléfono",
       "email": "Email",
-      "rfc": "Rfc",
+      "rfc": "RFC",
       "inicio": "Inicio",
       "fin": "Fin",
       "cargo": "Cargo",
       "comentario": "Comentario",
-      "relacion": "Relacion"
+      "relacion": "Relación"
     }
   }
 }

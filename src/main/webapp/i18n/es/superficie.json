@@ -3,21 +3,21 @@
     "superficie": {
       "home": {
         "title": "Superficies",
-        "createLabel": "Crear nuevo Superficie",
+        "createLabel": "Crear nueva Superficie",
         "createOrEditLabel": "Crear o editar Superficie",
-        "notFound": "Ningún Superficies encontrado"
+        "notFound": "Ningúna Superficie encontrada"
       },
-      "created": "Un nuevo Superficie ha sido creado con el identificador {{ param }}",
-      "updated": "Un Superficie ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Superficie ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Superficie ha sido creada con el identificador {{ param }}",
+      "updated": "Una Superficie ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Superficie ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Superficie {{ id }}?"
+        "question": "¿Seguro que quiere eliminar la Superficie {{ id }}?"
       },
       "detail": {
         "title": "Superficie"
       },
       "superficie": "Superficie",
-      "descripcion": "Descripcion"
+      "descripcion": "Descripción"
     }
   }
 }

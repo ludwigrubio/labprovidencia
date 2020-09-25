@@ -2,21 +2,21 @@
   "labprovidenciaApp": {
     "relacion": {
       "home": {
-        "title": "Relacions",
-        "createLabel": "Crear nuevo Relacion",
-        "createOrEditLabel": "Crear o editar Relacion",
-        "notFound": "Ningún Relacions encontrado"
+        "title": "Relaciones",
+        "createLabel": "Crear nueva Relación",
+        "createOrEditLabel": "Crear o editar Relación",
+        "notFound": "Ningúna Relacion encontrado"
       },
-      "created": "Un nuevo Relacion ha sido creado con el identificador {{ param }}",
-      "updated": "Un Relacion ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Relacion ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Relación ha sido creada con el identificador {{ param }}",
+      "updated": "Una Relación ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Relación ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Relacion {{ id }}?"
+        "question": "¿Seguro que quiere eliminar la Relación {{ id }}?"
       },
       "detail": {
-        "title": "Relacion"
+        "title": "Relación"
       },
-      "relacion": "Relacion"
+      "relacion": "Relación"
     }
   }
 }
