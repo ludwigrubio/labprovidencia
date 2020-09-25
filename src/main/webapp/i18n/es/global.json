@@ -8,9 +8,21 @@
       "entities": {
         "main": "Entidades",
         "personal": "Personal",
-        "area": "Area",
+        "área": "Área",
         "dummy": "Dummy",
-        "relacion": "Relacion",
+        "relacion": "Relacón",
+        "cultivo": "Cultivo",
+        "superficie": "Superficie",
+        "recepcion": "Recepción",
+        "tipoProducto": "Tipo Producto",
+        "producto": "Producto",
+        "userExtra": "Usuario",
+        "pruebaMicro": "Prueba Micro",
+        "fqCrema": "FQ Crema",
+        "fqLeche": "FQ Leche",
+        "fqMantequilla": "FQ Mantequilla",
+        "fqQueso": "FQ Queso",
+        "fqSuero": "FQ Suero",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -125,7 +137,8 @@
       "maxbytes": "Este campo no puede tener más de {{max}} bytes.",
       "pattern": "Este campo debe seguir el patrón {{pattern}}.",
       "number": "Este campo debe ser un número.",
-      "datetimelocal": "Este campo debe ser una fecha y hora."
+      "datetimelocal": "Este campo debe ser una fecha y hora.",
+      "patternLogin": "Este campo no acepta caracteres especiales."
     }
   },
   "error": {

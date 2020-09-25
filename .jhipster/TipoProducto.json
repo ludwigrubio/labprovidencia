@@ -1,34 +1,26 @@
 {
-  "name": "TipoProducto",
-  "fields": [
-    {
-      "fieldName": "tipo",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength",
-        "required"
-      ],
-      "fieldValidateRulesMaxlength": "45"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "producto",
-      "otherEntityRelationshipName": "tipo",
-      "relationshipName": "producto"
-    }
-  ],
-  "changelogDate": "20200922135026",
-  "entityTableName": "tipo_producto",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "no",
-  "jpaMetamodelFiltering": false,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*",
-  "skipClient": true
+    "name": "TipoProducto",
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        }
+    ],
+    "changelogDate": "20200922135026",
+    "entityTableName": "tipo_producto",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
 }

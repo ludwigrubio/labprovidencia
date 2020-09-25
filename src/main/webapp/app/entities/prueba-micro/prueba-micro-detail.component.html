@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pruebaMicro">
+            <h2><span jhiTranslate="labprovidenciaApp.pruebaMicro.detail.title">Prueba Micro</span> {{ pruebaMicro.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.tipodeMuestra">Tipode Muestra</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.tipodeMuestra }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.idCatalogo">Id Catalogo</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.idCatalogo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.inicio">Inicio</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.inicio }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.fin">Fin</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.fin }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.resultado">Resultado</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.resultado }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.unidades">Unidades</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.unidades }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ pruebaMicro.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.area">
+                        <a [routerLink]="['/area', pruebaMicro.area?.id, 'view']">{{ pruebaMicro.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo">Cultivo</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.cultivo">
+                        <a [routerLink]="['/cultivo', pruebaMicro.cultivo?.id, 'view']">{{ pruebaMicro.cultivo?.cultivo }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.superficie">Superficie</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.superficie">
+                        <a [routerLink]="['/superficie', pruebaMicro.superficie?.id, 'view']">{{ pruebaMicro.superficie?.superficie }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.analista">
+                        <a [routerLink]="['/user-extra', pruebaMicro.analista?.id, 'view']">{{ pruebaMicro.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.proveedor">
+                        <a [routerLink]="['/personal', pruebaMicro.proveedor?.id, 'view']">{{ pruebaMicro.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/prueba-micro', pruebaMicro.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "labprovidenciaApp": {
+    "fQQueso": {
+      "home": {
+        "title": "FQ Quesos",
+        "createLabel": "Crear nuevo FQ Queso",
+        "createOrEditLabel": "Crear o editar FQ Queso",
+        "notFound": "Ningún FQ Quesos encontrado"
+      },
+      "created": "Un nuevo FQ Queso ha sido creado con el identificador {{ param }}",
+      "updated": "Un FQ Queso ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un FQ Queso ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar FQ Queso {{ id }}?"
+      },
+      "detail": {
+        "title": "FQ Queso"
+      },
+      "fecha": "Fecha",
+      "lote": "Lote",
+      "humedad": "Humedad",
+      "ph": "Ph",
+      "fundicion": "Fundicion",
+      "presentacion": "Presentacion",
+      "caducidad": "Caducidad",
+      "apariencia": "Apariencia",
+      "sabor": "Sabor",
+      "color": "Color",
+      "olor": "Olor",
+      "textura": "Textura",
+      "hilado": "Hilado",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "producto": "Producto",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

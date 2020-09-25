@@ -1,82 +1,83 @@
 {
-  "name": "FQCrema",
-  "fields": [
-    {
-      "fieldName": "fecha",
-      "fieldType": "Instant",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "lote",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength",
-        "required"
-      ],
-      "fieldValidateRulesMaxlength": "45"
-    },
-    {
-      "fieldName": "acidez",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "grasa",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "observaciones",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
-      "fieldValidateRulesMaxlength": "100"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "area",
-      "otherEntityRelationshipName": "fQCrema",
-      "relationshipValidateRules": "required",
-      "relationshipName": "area",
-      "otherEntityField": "area"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "producto",
-      "otherEntityRelationshipName": "fQCrema",
-      "relationshipValidateRules": "required",
-      "relationshipName": "producto",
-      "otherEntityField": "producto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "userExtra",
-      "otherEntityRelationshipName": "fQCrema",
-      "relationshipValidateRules": "required",
-      "relationshipName": "analista",
-      "otherEntityField": "nombreCompleto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "personal",
-      "otherEntityRelationshipName": "fQCrema",
-      "relationshipValidateRules": "required",
-      "relationshipName": "proveedor",
-      "otherEntityField": "nombre"
-    }
-  ],
-  "changelogDate": "20200922135426",
-  "entityTableName": "fq_crema",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*"
+    "name": "FQCrema",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lote",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        },
+        {
+            "fieldName": "acidez",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "grasa",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "area",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipValidateRules": "required",
+            "relationshipName": "area",
+            "otherEntityField": "area"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipValidateRules": "required",
+            "relationshipName": "producto",
+            "otherEntityField": "producto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "userExtra",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipValidateRules": "required",
+            "relationshipName": "analista",
+            "otherEntityField": "nombreCompleto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipValidateRules": "required",
+            "relationshipName": "proveedor",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20200922135426",
+    "entityTableName": "fq_crema",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
 }

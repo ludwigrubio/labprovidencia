@@ -1,0 +1,121 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="labprovidenciaApp.fQQueso.home.title">FQ Quesos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fq-queso" [routerLink]="['/fq-queso/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="labprovidenciaApp.fQQueso.home.createLabel">
+            Create a new FQ Queso
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="fQQuesos?.length === 0">
+        <span jhiTranslate="labprovidenciaApp.fQQueso.home.notFound">No fQQuesos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="fQQuesos && fQQuesos.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fecha"><span jhiTranslate="labprovidenciaApp.fQQueso.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lote"><span jhiTranslate="labprovidenciaApp.fQQueso.lote">Lote</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="humedad"><span jhiTranslate="labprovidenciaApp.fQQueso.humedad">Humedad</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ph"><span jhiTranslate="labprovidenciaApp.fQQueso.ph">Ph</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fundicion"><span jhiTranslate="labprovidenciaApp.fQQueso.fundicion">Fundicion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="presentacion"><span jhiTranslate="labprovidenciaApp.fQQueso.presentacion">Presentacion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="caducidad"><span jhiTranslate="labprovidenciaApp.fQQueso.caducidad">Caducidad</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="apariencia"><span jhiTranslate="labprovidenciaApp.fQQueso.apariencia">Apariencia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sabor"><span jhiTranslate="labprovidenciaApp.fQQueso.sabor">Sabor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="color"><span jhiTranslate="labprovidenciaApp.fQQueso.color">Color</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="olor"><span jhiTranslate="labprovidenciaApp.fQQueso.olor">Olor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="textura"><span jhiTranslate="labprovidenciaApp.fQQueso.textura">Textura</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="hilado"><span jhiTranslate="labprovidenciaApp.fQQueso.hilado">Hilado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="observaciones"><span jhiTranslate="labprovidenciaApp.fQQueso.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area.area"><span jhiTranslate="labprovidenciaApp.fQQueso.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="producto.producto"><span jhiTranslate="labprovidenciaApp.fQQueso.producto">Producto</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.fQQueso.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.fQQueso.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fQQueso of fQQuesos ;trackBy: trackId">
+                    <td><a [routerLink]="['/fq-queso', fQQueso.id, 'view']">{{ fQQueso.id }}</a></td>
+                    <td>{{ fQQueso.fecha | date:'medium' }}</td>
+                    <td>{{ fQQueso.lote }}</td>
+                    <td>{{ fQQueso.humedad }}</td>
+                    <td>{{ fQQueso.ph }}</td>
+                    <td>{{ fQQueso.fundicion }}</td>
+                    <td>{{ fQQueso.presentacion }}</td>
+                    <td>{{ fQQueso.caducidad | date:'medium' }}</td>
+                    <td>{{ fQQueso.apariencia }}</td>
+                    <td>{{ fQQueso.sabor }}</td>
+                    <td>{{ fQQueso.color }}</td>
+                    <td>{{ fQQueso.olor }}</td>
+                    <td>{{ fQQueso.textura }}</td>
+                    <td>{{ fQQueso.hilado }}</td>
+                    <td>{{ fQQueso.observaciones }}</td>
+                    <td>
+                        <div *ngIf="fQQueso.area">
+                            <a [routerLink]="['/area', fQQueso.area?.id, 'view']" >{{ fQQueso.area?.area }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQQueso.producto">
+                            <a [routerLink]="['/producto', fQQueso.producto?.id, 'view']" >{{ fQQueso.producto?.producto }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQQueso.analista">
+                            <a [routerLink]="['/user-extra', fQQueso.analista?.id, 'view']" >{{ fQQueso.analista?.nombreCompleto }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQQueso.proveedor">
+                            <a [routerLink]="['/personal', fQQueso.proveedor?.id, 'view']" >{{ fQQueso.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/fq-queso', fQQueso.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/fq-queso', fQQueso.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(fQQueso)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="fQQuesos && fQQuesos.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

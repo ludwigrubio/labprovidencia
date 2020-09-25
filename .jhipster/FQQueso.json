@@ -1,118 +1,119 @@
 {
-  "name": "FQQueso",
-  "fields": [
-    {
-      "fieldName": "fecha",
-      "fieldType": "Instant",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "lote",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength",
-        "required"
-      ],
-      "fieldValidateRulesMaxlength": "45"
-    },
-    {
-      "fieldName": "humedad",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "ph",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "fundicion",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "presentacion",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "caducidad",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "apariencia",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "sabor",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "color",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "olor",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "textura",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "hilado",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "observaciones",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
-      "fieldValidateRulesMaxlength": "100"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "area",
-      "otherEntityRelationshipName": "fQQueso",
-      "relationshipValidateRules": "required",
-      "relationshipName": "area",
-      "otherEntityField": "area"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "producto",
-      "otherEntityRelationshipName": "fQQueso",
-      "relationshipValidateRules": "required",
-      "relationshipName": "producto",
-      "otherEntityField": "producto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "userExtra",
-      "otherEntityRelationshipName": "fQQueso",
-      "relationshipValidateRules": "required",
-      "relationshipName": "analista",
-      "otherEntityField": "nombreCompleto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "personal",
-      "otherEntityRelationshipName": "fQQueso",
-      "relationshipValidateRules": "required",
-      "relationshipName": "proveedor",
-      "otherEntityField": "nombre"
-    }
-  ],
-  "changelogDate": "20200922135326",
-  "entityTableName": "fq_queso",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*"
+    "name": "FQQueso",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lote",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        },
+        {
+            "fieldName": "humedad",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ph",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fundicion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "presentacion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "caducidad",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "apariencia",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sabor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "color",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "olor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "textura",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hilado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "area",
+            "otherEntityRelationshipName": "fQQueso",
+            "relationshipValidateRules": "required",
+            "relationshipName": "area",
+            "otherEntityField": "area"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "fQQueso",
+            "relationshipValidateRules": "required",
+            "relationshipName": "producto",
+            "otherEntityField": "producto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "userExtra",
+            "otherEntityRelationshipName": "fQQueso",
+            "relationshipValidateRules": "required",
+            "relationshipName": "analista",
+            "otherEntityField": "nombreCompleto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "fQQueso",
+            "relationshipValidateRules": "required",
+            "relationshipName": "proveedor",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20200922135326",
+    "entityTableName": "fq_queso",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
 }

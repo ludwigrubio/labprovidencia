@@ -19,9 +19,30 @@
     <include file="config/liquibase/changelog/20200911232712_added_entity_Area.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200916215654_added_entity_Dummy.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200922134426_added_entity_Relacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134626_added_entity_Cultivo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134726_added_entity_Superficie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134526_added_entity_Recepcion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135026_added_entity_TipoProducto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134926_added_entity_Producto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134126_added_entity_UserExtra.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134826_added_entity_PruebaMicro.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135426_added_entity_FQCrema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135126_added_entity_FQLeche.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135226_added_entity_FQMantequilla.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135326_added_entity_FQQueso.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135526_added_entity_FQSuero.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200911232612_added_entity_constraints_Personal.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200916215654_added_entity_constraints_Dummy.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134526_added_entity_constraints_Recepcion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134926_added_entity_constraints_Producto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134126_added_entity_constraints_UserExtra.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922134826_added_entity_constraints_PruebaMicro.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135426_added_entity_constraints_FQCrema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135126_added_entity_constraints_FQLeche.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135226_added_entity_constraints_FQMantequilla.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135326_added_entity_constraints_FQQueso.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200922135526_added_entity_constraints_FQSuero.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

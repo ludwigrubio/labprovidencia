@@ -1,0 +1,131 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="labprovidenciaApp.fQLeche.home.title">FQ Leches</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fq-leche" [routerLink]="['/fq-leche/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="labprovidenciaApp.fQLeche.home.createLabel">
+            Create a new FQ Leche
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="fQLeches?.length === 0">
+        <span jhiTranslate="labprovidenciaApp.fQLeche.home.notFound">No fQLeches found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="fQLeches && fQLeches.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fecha"><span jhiTranslate="labprovidenciaApp.fQLeche.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lote"><span jhiTranslate="labprovidenciaApp.fQLeche.lote">Lote</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="acidez"><span jhiTranslate="labprovidenciaApp.fQLeche.acidez">Acidez</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="temperatura"><span jhiTranslate="labprovidenciaApp.fQLeche.temperatura">Temperatura</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="agua"><span jhiTranslate="labprovidenciaApp.fQLeche.agua">Agua</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="crioscopia"><span jhiTranslate="labprovidenciaApp.fQLeche.crioscopia">Crioscopia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="antibiotico"><span jhiTranslate="labprovidenciaApp.fQLeche.antibiotico">Antibiotico</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="delvo"><span jhiTranslate="labprovidenciaApp.fQLeche.delvo">Delvo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="grasa"><span jhiTranslate="labprovidenciaApp.fQLeche.grasa">Grasa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="solidos"><span jhiTranslate="labprovidenciaApp.fQLeche.solidos">Solidos</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="densidad"><span jhiTranslate="labprovidenciaApp.fQLeche.densidad">Densidad</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lactosa"><span jhiTranslate="labprovidenciaApp.fQLeche.lactosa">Lactosa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proteina"><span jhiTranslate="labprovidenciaApp.fQLeche.proteina">Proteina</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="neutralizantes"><span jhiTranslate="labprovidenciaApp.fQLeche.neutralizantes">Neutralizantes</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adulterantes"><span jhiTranslate="labprovidenciaApp.fQLeche.adulterantes">Adulterantes</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="reductasa"><span jhiTranslate="labprovidenciaApp.fQLeche.reductasa">Reductasa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fosfatasa"><span jhiTranslate="labprovidenciaApp.fQLeche.fosfatasa">Fosfatasa</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ph"><span jhiTranslate="labprovidenciaApp.fQLeche.ph">Ph</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="observaciones"><span jhiTranslate="labprovidenciaApp.fQLeche.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area.area"><span jhiTranslate="labprovidenciaApp.fQLeche.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="recepcion.id"><span jhiTranslate="labprovidenciaApp.fQLeche.recepcion">Recepcion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.fQLeche.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.fQLeche.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fQLeche of fQLeches ;trackBy: trackId">
+                    <td><a [routerLink]="['/fq-leche', fQLeche.id, 'view']">{{ fQLeche.id }}</a></td>
+                    <td>{{ fQLeche.fecha | date:'medium' }}</td>
+                    <td>{{ fQLeche.lote }}</td>
+                    <td>{{ fQLeche.acidez }}</td>
+                    <td>{{ fQLeche.temperatura }}</td>
+                    <td>{{ fQLeche.agua }}</td>
+                    <td>{{ fQLeche.crioscopia }}</td>
+                    <td>{{ fQLeche.antibiotico }}</td>
+                    <td>{{ fQLeche.delvo }}</td>
+                    <td>{{ fQLeche.grasa }}</td>
+                    <td>{{ fQLeche.solidos }}</td>
+                    <td>{{ fQLeche.densidad }}</td>
+                    <td>{{ fQLeche.lactosa }}</td>
+                    <td>{{ fQLeche.proteina }}</td>
+                    <td>{{ fQLeche.neutralizantes }}</td>
+                    <td>{{ fQLeche.adulterantes }}</td>
+                    <td>{{ fQLeche.reductasa }}</td>
+                    <td>{{ fQLeche.fosfatasa }}</td>
+                    <td>{{ fQLeche.ph }}</td>
+                    <td>{{ fQLeche.observaciones }}</td>
+                    <td>
+                        <div *ngIf="fQLeche.area">
+                            <a [routerLink]="['/area', fQLeche.area?.id, 'view']" >{{ fQLeche.area?.area }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQLeche.recepcion">
+                            <a [routerLink]="['/recepcion', fQLeche.recepcion?.id, 'view']" >{{ fQLeche.recepcion?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQLeche.analista">
+                            <a [routerLink]="['/user-extra', fQLeche.analista?.id, 'view']" >{{ fQLeche.analista?.nombreCompleto }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQLeche.proveedor">
+                            <a [routerLink]="['/personal', fQLeche.proveedor?.id, 'view']" >{{ fQLeche.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/fq-leche', fQLeche.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/fq-leche', fQLeche.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(fQLeche)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="fQLeches && fQLeches.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

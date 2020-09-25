@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fQCrema">
+            <h2><span jhiTranslate="labprovidenciaApp.fQCrema.detail.title">FQ Crema</span> {{ fQCrema.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ fQCrema.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ fQCrema.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.acidez">Acidez</span></dt>
+                <dd>
+                    <span>{{ fQCrema.acidez }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.grasa">Grasa</span></dt>
+                <dd>
+                    <span>{{ fQCrema.grasa }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ fQCrema.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.area">
+                        <a [routerLink]="['/area', fQCrema.area?.id, 'view']">{{ fQCrema.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.producto">
+                        <a [routerLink]="['/producto', fQCrema.producto?.id, 'view']">{{ fQCrema.producto?.producto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.analista">
+                        <a [routerLink]="['/user-extra', fQCrema.analista?.id, 'view']">{{ fQCrema.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.proveedor">
+                        <a [routerLink]="['/personal', fQCrema.proveedor?.id, 'view']">{{ fQCrema.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fq-crema', fQCrema.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

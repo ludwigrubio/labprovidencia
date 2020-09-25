@@ -1,0 +1,23 @@
+{
+  "labprovidenciaApp": {
+    "superficie": {
+      "home": {
+        "title": "Superficies",
+        "createLabel": "Crear nuevo Superficie",
+        "createOrEditLabel": "Crear o editar Superficie",
+        "notFound": "Ningún Superficies encontrado"
+      },
+      "created": "Un nuevo Superficie ha sido creado con el identificador {{ param }}",
+      "updated": "Un Superficie ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Superficie ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Superficie {{ id }}?"
+      },
+      "detail": {
+        "title": "Superficie"
+      },
+      "superficie": "Superficie",
+      "descripcion": "Descripcion"
+    }
+  }
+}

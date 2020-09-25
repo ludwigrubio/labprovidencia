@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fQMantequilla">
+            <h2><span jhiTranslate="labprovidenciaApp.fQMantequilla.detail.title">FQ Mantequilla</span> {{ fQMantequilla.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.ph">Ph</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.ph }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.humedad">Humedad</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.humedad }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.area">
+                        <a [routerLink]="['/area', fQMantequilla.area?.id, 'view']">{{ fQMantequilla.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.producto">
+                        <a [routerLink]="['/producto', fQMantequilla.producto?.id, 'view']">{{ fQMantequilla.producto?.producto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.analista">
+                        <a [routerLink]="['/user-extra', fQMantequilla.analista?.id, 'view']">{{ fQMantequilla.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.proveedor">
+                        <a [routerLink]="['/personal', fQMantequilla.proveedor?.id, 'view']">{{ fQMantequilla.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fq-mantequilla', fQMantequilla.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

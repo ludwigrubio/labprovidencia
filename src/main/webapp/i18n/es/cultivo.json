@@ -1,0 +1,22 @@
+{
+  "labprovidenciaApp": {
+    "cultivo": {
+      "home": {
+        "title": "Cultivos",
+        "createLabel": "Crear nuevo Cultivo",
+        "createOrEditLabel": "Crear o editar Cultivo",
+        "notFound": "Ningún Cultivos encontrado"
+      },
+      "created": "Un nuevo Cultivo ha sido creado con el identificador {{ param }}",
+      "updated": "Un Cultivo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Cultivo ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Cultivo {{ id }}?"
+      },
+      "detail": {
+        "title": "Cultivo"
+      },
+      "cultivo": "Cultivo"
+    }
+  }
+}

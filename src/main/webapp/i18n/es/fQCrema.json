@@ -1,0 +1,30 @@
+{
+  "labprovidenciaApp": {
+    "fQCrema": {
+      "home": {
+        "title": "FQ Cremas",
+        "createLabel": "Crear nuevo FQ Crema",
+        "createOrEditLabel": "Crear o editar FQ Crema",
+        "notFound": "Ningún FQ Cremas encontrado"
+      },
+      "created": "Un nuevo FQ Crema ha sido creado con el identificador {{ param }}",
+      "updated": "Un FQ Crema ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un FQ Crema ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar FQ Crema {{ id }}?"
+      },
+      "detail": {
+        "title": "FQ Crema"
+      },
+      "fecha": "Fecha",
+      "lote": "Lote",
+      "acidez": "Acidez",
+      "grasa": "Grasa",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "producto": "Producto",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

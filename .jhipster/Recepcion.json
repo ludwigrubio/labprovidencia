@@ -1,71 +1,65 @@
 {
-  "name": "Recepcion",
-  "fields": [
-    {
-      "fieldName": "idProveedor",
-      "fieldType": "Integer",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "litros",
-      "fieldType": "Float",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "tiempo",
-      "fieldType": "Instant",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "turno",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required",
-        "maxlength"
-      ],
-      "fieldValidateRulesMaxlength": "1"
-    },
-    {
-      "fieldName": "incentivoLT",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "incentivoT",
-      "fieldType": "Double"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "fQLeche",
-      "otherEntityRelationshipName": "recepcion",
-      "relationshipName": "fQLeche"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "personal",
-      "otherEntityRelationshipName": "recepcion",
-      "relationshipValidateRules": "required",
-      "relationshipName": "proveedor",
-      "otherEntityField": "nombre"
-    }
-  ],
-  "changelogDate": "20200922134526",
-  "entityTableName": "recepcion",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*",
-  "skipClient": true
+    "name": "Recepcion",
+    "fields": [
+        {
+            "fieldName": "idProveedor",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "litros",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tiempo",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "turno",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1"
+        },
+        {
+            "fieldName": "incentivoLT",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "incentivoT",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "recepcion",
+            "relationshipValidateRules": "required",
+            "relationshipName": "proveedor",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20200922134526",
+    "entityTableName": "recepcion",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
 }

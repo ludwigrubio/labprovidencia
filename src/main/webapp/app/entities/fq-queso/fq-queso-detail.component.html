@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fQQueso">
+            <h2><span jhiTranslate="labprovidenciaApp.fQQueso.detail.title">FQ Queso</span> {{ fQQueso.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ fQQueso.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ fQQueso.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.humedad">Humedad</span></dt>
+                <dd>
+                    <span>{{ fQQueso.humedad }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.ph">Ph</span></dt>
+                <dd>
+                    <span>{{ fQQueso.ph }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.fundicion">Fundicion</span></dt>
+                <dd>
+                    <span>{{ fQQueso.fundicion }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.presentacion">Presentacion</span></dt>
+                <dd>
+                    <span>{{ fQQueso.presentacion }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.caducidad">Caducidad</span></dt>
+                <dd>
+                    <span>{{ fQQueso.caducidad }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.apariencia">Apariencia</span></dt>
+                <dd>
+                    <span>{{ fQQueso.apariencia }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.sabor">Sabor</span></dt>
+                <dd>
+                    <span>{{ fQQueso.sabor }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.color">Color</span></dt>
+                <dd>
+                    <span>{{ fQQueso.color }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.olor">Olor</span></dt>
+                <dd>
+                    <span>{{ fQQueso.olor }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.textura">Textura</span></dt>
+                <dd>
+                    <span>{{ fQQueso.textura }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.hilado">Hilado</span></dt>
+                <dd>
+                    <span>{{ fQQueso.hilado }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ fQQueso.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="fQQueso.area">
+                        <a [routerLink]="['/area', fQQueso.area?.id, 'view']">{{ fQQueso.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="fQQueso.producto">
+                        <a [routerLink]="['/producto', fQQueso.producto?.id, 'view']">{{ fQQueso.producto?.producto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="fQQueso.analista">
+                        <a [routerLink]="['/user-extra', fQQueso.analista?.id, 'view']">{{ fQQueso.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="fQQueso.proveedor">
+                        <a [routerLink]="['/personal', fQQueso.proveedor?.id, 'view']">{{ fQQueso.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fq-queso', fQQueso.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

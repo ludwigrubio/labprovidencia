@@ -1,0 +1,126 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fQLeche">
+            <h2><span jhiTranslate="labprovidenciaApp.fQLeche.detail.title">FQ Leche</span> {{ fQLeche.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ fQLeche.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ fQLeche.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.acidez">Acidez</span></dt>
+                <dd>
+                    <span>{{ fQLeche.acidez }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.temperatura">Temperatura</span></dt>
+                <dd>
+                    <span>{{ fQLeche.temperatura }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.agua">Agua</span></dt>
+                <dd>
+                    <span>{{ fQLeche.agua }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.crioscopia">Crioscopia</span></dt>
+                <dd>
+                    <span>{{ fQLeche.crioscopia }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.antibiotico">Antibiotico</span></dt>
+                <dd>
+                    <span>{{ fQLeche.antibiotico }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.delvo">Delvo</span></dt>
+                <dd>
+                    <span>{{ fQLeche.delvo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.grasa">Grasa</span></dt>
+                <dd>
+                    <span>{{ fQLeche.grasa }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.solidos">Solidos</span></dt>
+                <dd>
+                    <span>{{ fQLeche.solidos }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.densidad">Densidad</span></dt>
+                <dd>
+                    <span>{{ fQLeche.densidad }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.lactosa">Lactosa</span></dt>
+                <dd>
+                    <span>{{ fQLeche.lactosa }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.proteina">Proteina</span></dt>
+                <dd>
+                    <span>{{ fQLeche.proteina }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.neutralizantes">Neutralizantes</span></dt>
+                <dd>
+                    <span>{{ fQLeche.neutralizantes }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.adulterantes">Adulterantes</span></dt>
+                <dd>
+                    <span>{{ fQLeche.adulterantes }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.reductasa">Reductasa</span></dt>
+                <dd>
+                    <span>{{ fQLeche.reductasa }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.fosfatasa">Fosfatasa</span></dt>
+                <dd>
+                    <span>{{ fQLeche.fosfatasa }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.ph">Ph</span></dt>
+                <dd>
+                    <span>{{ fQLeche.ph }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ fQLeche.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="fQLeche.area">
+                        <a [routerLink]="['/area', fQLeche.area?.id, 'view']">{{ fQLeche.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.recepcion">Recepcion</span></dt>
+                <dd>
+                    <div *ngIf="fQLeche.recepcion">
+                        <a [routerLink]="['/recepcion', fQLeche.recepcion?.id, 'view']">{{ fQLeche.recepcion?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="fQLeche.analista">
+                        <a [routerLink]="['/user-extra', fQLeche.analista?.id, 'view']">{{ fQLeche.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="fQLeche.proveedor">
+                        <a [routerLink]="['/personal', fQLeche.proveedor?.id, 'view']">{{ fQLeche.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fq-leche', fQLeche.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

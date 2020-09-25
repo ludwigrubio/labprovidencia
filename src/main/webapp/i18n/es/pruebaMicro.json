@@ -1,0 +1,34 @@
+{
+  "labprovidenciaApp": {
+    "pruebaMicro": {
+      "home": {
+        "title": "Prueba Micros",
+        "createLabel": "Crear nuevo Prueba Micro",
+        "createOrEditLabel": "Crear o editar Prueba Micro",
+        "notFound": "Ningún Prueba Micros encontrado"
+      },
+      "created": "Un nuevo Prueba Micro ha sido creado con el identificador {{ param }}",
+      "updated": "Un Prueba Micro ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Prueba Micro ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Prueba Micro {{ id }}?"
+      },
+      "detail": {
+        "title": "Prueba Micro"
+      },
+      "tipodeMuestra": "Tipode Muestra",
+      "idCatalogo": "Id Catalogo",
+      "lote": "Lote",
+      "inicio": "Inicio",
+      "fin": "Fin",
+      "resultado": "Resultado",
+      "unidades": "Unidades",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "cultivo": "Cultivo",
+      "superficie": "Superficie",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

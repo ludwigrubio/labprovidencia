@@ -1,0 +1,28 @@
+{
+  "labprovidenciaApp": {
+    "recepcion": {
+      "home": {
+        "title": "Recepcions",
+        "createLabel": "Crear nuevo Recepcion",
+        "createOrEditLabel": "Crear o editar Recepcion",
+        "notFound": "Ningún Recepcions encontrado"
+      },
+      "created": "Un nuevo Recepcion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Recepcion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Recepcion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Recepcion {{ id }}?"
+      },
+      "detail": {
+        "title": "Recepcion"
+      },
+      "idProveedor": "Id Proveedor",
+      "litros": "Litros",
+      "tiempo": "Tiempo",
+      "turno": "Turno",
+      "incentivoLT": "Incentivo LT",
+      "incentivoT": "Incentivo T",
+      "proveedor": "Proveedor"
+    }
+  }
+}

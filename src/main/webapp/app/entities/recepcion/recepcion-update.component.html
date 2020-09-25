@@ -1,0 +1,117 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-recepcion-heading" jhiTranslate="labprovidenciaApp.recepcion.home.createOrEditLabel">Create or edit a Recepcion</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.idProveedor" for="field_idProveedor">Id Proveedor</label>
+                    <input type="number" class="form-control" name="idProveedor" id="field_idProveedor"
+                           formControlName="idProveedor"/>
+                    <div *ngIf="editForm.get('idProveedor')!.invalid && (editForm.get('idProveedor')!.dirty || editForm.get('idProveedor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('idProveedor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('idProveedor')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.litros" for="field_litros">Litros</label>
+                    <input type="number" class="form-control" name="litros" id="field_litros"
+                           formControlName="litros"/>
+                    <div *ngIf="editForm.get('litros')!.invalid && (editForm.get('litros')!.dirty || editForm.get('litros')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('litros')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('litros')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.tiempo" for="field_tiempo">Tiempo</label>
+                    <div class="d-flex">
+                        <input id="field_tiempo" type="datetime-local" class="form-control" name="tiempo" formControlName="tiempo" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('tiempo')!.invalid && (editForm.get('tiempo')!.dirty || editForm.get('tiempo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tiempo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('tiempo')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.turno" for="field_turno">Turno</label>
+                    <input type="text" class="form-control" name="turno" id="field_turno"
+                           formControlName="turno"/>
+                    <div *ngIf="editForm.get('turno')!.invalid && (editForm.get('turno')!.dirty || editForm.get('turno')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('turno')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('turno')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1 }">
+                        This field cannot be longer than 1 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.incentivoLT" for="field_incentivoLT">Incentivo LT</label>
+                    <input type="number" class="form-control" name="incentivoLT" id="field_incentivoLT"
+                           formControlName="incentivoLT"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.incentivoT" for="field_incentivoT">Incentivo T</label>
+                    <input type="number" class="form-control" name="incentivoT" id="field_incentivoT"
+                           formControlName="incentivoT"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.proveedor" for="field_proveedor">Proveedor</label>
+                    <select class="form-control" id="field_proveedor" name="proveedor" formControlName="proveedor">
+                        <option *ngIf="!editForm.get('proveedor')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="personalOption.id === editForm.get('proveedor')!.value?.id ? editForm.get('proveedor')!.value : personalOption" *ngFor="let personalOption of personals; trackBy: trackById">{{ personalOption.nombre }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('proveedor')!.invalid && (editForm.get('proveedor')!.dirty || editForm.get('proveedor')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('proveedor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "labprovidenciaApp": {
+    "fQMantequilla": {
+      "home": {
+        "title": "FQ Mantequillas",
+        "createLabel": "Crear nuevo FQ Mantequilla",
+        "createOrEditLabel": "Crear o editar FQ Mantequilla",
+        "notFound": "Ningún FQ Mantequillas encontrado"
+      },
+      "created": "Un nuevo FQ Mantequilla ha sido creado con el identificador {{ param }}",
+      "updated": "Un FQ Mantequilla ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un FQ Mantequilla ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar FQ Mantequilla {{ id }}?"
+      },
+      "detail": {
+        "title": "FQ Mantequilla"
+      },
+      "fecha": "Fecha",
+      "lote": "Lote",
+      "ph": "Ph",
+      "humedad": "Humedad",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "producto": "Producto",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "labprovidenciaApp": {
-    "area": {
+    "área": {
       "home": {
         "title": "Areas",
         "createLabel": "Crear nuevo Area",
@@ -16,7 +16,7 @@
       "detail": {
         "title": "Area"
       },
-      "area": "Area",
+      "área": "Area",
       "descripcion": "Descripcion"
     }
   }

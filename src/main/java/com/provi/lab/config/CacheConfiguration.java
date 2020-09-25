@@ -63,6 +63,18 @@ public class CacheConfiguration {
             createCache(cm, com.provi.lab.domain.Area.class.getName() + ".pruebaMicros");
             createCache(cm, com.provi.lab.domain.Relacion.class.getName());
             createCache(cm, com.provi.lab.domain.Relacion.class.getName() + ".personals");
+            createCache(cm, com.provi.lab.domain.Cultivo.class.getName());
+            createCache(cm, com.provi.lab.domain.Superficie.class.getName());
+            createCache(cm, com.provi.lab.domain.Recepcion.class.getName());
+            createCache(cm, com.provi.lab.domain.TipoProducto.class.getName());
+            createCache(cm, com.provi.lab.domain.Producto.class.getName());
+            createCache(cm, com.provi.lab.domain.UserExtra.class.getName());
+            createCache(cm, com.provi.lab.domain.PruebaMicro.class.getName());
+            createCache(cm, com.provi.lab.domain.FQCrema.class.getName());
+            createCache(cm, com.provi.lab.domain.FQLeche.class.getName());
+            createCache(cm, com.provi.lab.domain.FQMantequilla.class.getName());
+            createCache(cm, com.provi.lab.domain.FQQueso.class.getName());
+            createCache(cm, com.provi.lab.domain.FQSuero.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

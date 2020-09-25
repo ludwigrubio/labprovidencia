@@ -1,0 +1,115 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="labprovidenciaApp.pruebaMicro.home.title">Prueba Micros</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-prueba-micro" [routerLink]="['/prueba-micro/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="labprovidenciaApp.pruebaMicro.home.createLabel">
+            Create a new Prueba Micro
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="pruebaMicros?.length === 0">
+        <span jhiTranslate="labprovidenciaApp.pruebaMicro.home.notFound">No pruebaMicros found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="pruebaMicros && pruebaMicros.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tipodeMuestra"><span jhiTranslate="labprovidenciaApp.pruebaMicro.tipodeMuestra">Tipode Muestra</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="idCatalogo"><span jhiTranslate="labprovidenciaApp.pruebaMicro.idCatalogo">Id Catalogo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lote"><span jhiTranslate="labprovidenciaApp.pruebaMicro.lote">Lote</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inicio"><span jhiTranslate="labprovidenciaApp.pruebaMicro.inicio">Inicio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fin"><span jhiTranslate="labprovidenciaApp.pruebaMicro.fin">Fin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="resultado"><span jhiTranslate="labprovidenciaApp.pruebaMicro.resultado">Resultado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="unidades"><span jhiTranslate="labprovidenciaApp.pruebaMicro.unidades">Unidades</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="observaciones"><span jhiTranslate="labprovidenciaApp.pruebaMicro.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="area.area"><span jhiTranslate="labprovidenciaApp.pruebaMicro.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cultivo.cultivo"><span jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo">Cultivo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="superficie.superficie"><span jhiTranslate="labprovidenciaApp.pruebaMicro.superficie">Superficie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.pruebaMicro.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.pruebaMicro.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pruebaMicro of pruebaMicros ;trackBy: trackId">
+                    <td><a [routerLink]="['/prueba-micro', pruebaMicro.id, 'view']">{{ pruebaMicro.id }}</a></td>
+                    <td>{{ pruebaMicro.tipodeMuestra }}</td>
+                    <td>{{ pruebaMicro.idCatalogo }}</td>
+                    <td>{{ pruebaMicro.lote }}</td>
+                    <td>{{ pruebaMicro.inicio | date:'medium' }}</td>
+                    <td>{{ pruebaMicro.fin | date:'medium' }}</td>
+                    <td>{{ pruebaMicro.resultado }}</td>
+                    <td>{{ pruebaMicro.unidades }}</td>
+                    <td>{{ pruebaMicro.observaciones }}</td>
+                    <td>
+                        <div *ngIf="pruebaMicro.area">
+                            <a [routerLink]="['/area', pruebaMicro.area?.id, 'view']" >{{ pruebaMicro.area?.area }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.cultivo">
+                            <a [routerLink]="['/cultivo', pruebaMicro.cultivo?.id, 'view']" >{{ pruebaMicro.cultivo?.cultivo }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.superficie">
+                            <a [routerLink]="['/superficie', pruebaMicro.superficie?.id, 'view']" >{{ pruebaMicro.superficie?.superficie }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.analista">
+                            <a [routerLink]="['/user-extra', pruebaMicro.analista?.id, 'view']" >{{ pruebaMicro.analista?.nombreCompleto }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.proveedor">
+                            <a [routerLink]="['/personal', pruebaMicro.proveedor?.id, 'view']" >{{ pruebaMicro.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/prueba-micro', pruebaMicro.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/prueba-micro', pruebaMicro.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(pruebaMicro)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="pruebaMicros && pruebaMicros.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,79 +1,80 @@
 {
-  "name": "FQMantequilla",
-  "fields": [
-    {
-      "fieldName": "fecha",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "lote",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength",
-        "required"
-      ],
-      "fieldValidateRulesMaxlength": "45"
-    },
-    {
-      "fieldName": "ph",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "humedad",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "observaciones",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
-      "fieldValidateRulesMaxlength": "100"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "area",
-      "otherEntityRelationshipName": "fQMantequilla",
-      "relationshipValidateRules": "required",
-      "relationshipName": "area",
-      "otherEntityField": "area"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "producto",
-      "otherEntityRelationshipName": "fQMantequilla",
-      "relationshipValidateRules": "required",
-      "relationshipName": "producto",
-      "otherEntityField": "producto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "userExtra",
-      "otherEntityRelationshipName": "fQMantequilla",
-      "relationshipValidateRules": "required",
-      "relationshipName": "analista",
-      "otherEntityField": "nombreCompleto"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "personal",
-      "otherEntityRelationshipName": "fQMantequilla",
-      "relationshipValidateRules": "required",
-      "relationshipName": "proveedor",
-      "otherEntityField": "nombre"
-    }
-  ],
-  "changelogDate": "20200922135226",
-  "entityTableName": "fq_mantequilla",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*"
+    "name": "FQMantequilla",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "lote",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        },
+        {
+            "fieldName": "ph",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "humedad",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "area",
+            "otherEntityRelationshipName": "fQMantequilla",
+            "relationshipValidateRules": "required",
+            "relationshipName": "area",
+            "otherEntityField": "area"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "fQMantequilla",
+            "relationshipValidateRules": "required",
+            "relationshipName": "producto",
+            "otherEntityField": "producto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "userExtra",
+            "otherEntityRelationshipName": "fQMantequilla",
+            "relationshipValidateRules": "required",
+            "relationshipName": "analista",
+            "otherEntityField": "nombreCompleto"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "fQMantequilla",
+            "relationshipValidateRules": "required",
+            "relationshipName": "proveedor",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20200922135226",
+    "entityTableName": "fq_mantequilla",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
 }

@@ -1,73 +1,57 @@
 {
-  "name": "UserExtra",
-  "fields": [
-    {
-      "fieldName": "nombreCompleto",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "maxlength"
-      ],
-      "fieldValidateRulesMaxlength": "200"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "pruebaMicro",
-      "otherEntityRelationshipName": "analista",
-      "relationshipName": "pruebaMicro"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "fQMantequilla",
-      "otherEntityRelationshipName": "analista",
-      "relationshipName": "fQMantequilla"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "fQQueso",
-      "otherEntityRelationshipName": "analista",
-      "relationshipName": "fQQueso"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "fQCrema",
-      "otherEntityRelationshipName": "analista",
-      "relationshipName": "fQCrema"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "fQSuero",
-      "otherEntityRelationshipName": "analista",
-      "relationshipName": "fQSuero"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "area",
-      "otherEntityRelationshipName": "userExtra",
-      "relationshipValidateRules": "required",
-      "relationshipName": "area",
-      "otherEntityField": "area"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "personal",
-      "otherEntityRelationshipName": "userExtra",
-      "relationshipValidateRules": "required",
-      "relationshipName": "personal",
-      "otherEntityField": "nombreCompleto"
-    }
-  ],
-  "changelogDate": "20200922134126",
-  "entityTableName": "user_extra",
-  "dto": "no",
-  "pagination": "pagination",
-  "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
-  "fluentMethods": true,
-  "readOnly": false,
-  "embedded": false,
-  "clientRootFolder": "",
-  "applications": "*",
-  "skipClient": true
+    "name": "UserExtra",
+    "fields": [
+        {
+            "fieldName": "nombreCompleto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "200"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "area",
+            "otherEntityRelationshipName": "userExtra",
+            "relationshipValidateRules": "required",
+            "relationshipName": "area",
+            "otherEntityField": "area"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "userExtra",
+            "relationshipValidateRules": "required",
+            "relationshipName": "personal",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "userExtra"
+        }
+    ],
+    "changelogDate": "20200922134126",
+    "entityTableName": "user_extra",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true,
+    "searchEngine": false,
+    "databaseType": "sql"
 }

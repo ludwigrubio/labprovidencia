@@ -1,0 +1,44 @@
+{
+  "labprovidenciaApp": {
+    "fQLeche": {
+      "home": {
+        "title": "FQ Leches",
+        "createLabel": "Crear nuevo FQ Leche",
+        "createOrEditLabel": "Crear o editar FQ Leche",
+        "notFound": "Ningún FQ Leches encontrado"
+      },
+      "created": "Un nuevo FQ Leche ha sido creado con el identificador {{ param }}",
+      "updated": "Un FQ Leche ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un FQ Leche ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar FQ Leche {{ id }}?"
+      },
+      "detail": {
+        "title": "FQ Leche"
+      },
+      "fecha": "Fecha",
+      "lote": "Lote",
+      "acidez": "Acidez",
+      "temperatura": "Temperatura",
+      "agua": "Agua",
+      "crioscopia": "Crioscopia",
+      "antibiotico": "Antibiotico",
+      "delvo": "Delvo",
+      "grasa": "Grasa",
+      "solidos": "Solidos",
+      "densidad": "Densidad",
+      "lactosa": "Lactosa",
+      "proteina": "Proteina",
+      "neutralizantes": "Neutralizantes",
+      "adulterantes": "Adulterantes",
+      "reductasa": "Reductasa",
+      "fosfatasa": "Fosfatasa",
+      "ph": "Ph",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "recepcion": "Recepcion",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

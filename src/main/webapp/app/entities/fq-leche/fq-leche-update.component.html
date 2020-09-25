@@ -1,0 +1,225 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-fq-leche-heading" jhiTranslate="labprovidenciaApp.fQLeche.home.createOrEditLabel">Create or edit a FQ Leche</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.fecha" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" formControlName="fecha" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('fecha')!.invalid && (editForm.get('fecha')!.dirty || editForm.get('fecha')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fecha')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fecha')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.lote" for="field_lote">Lote</label>
+                    <input type="text" class="form-control" name="lote" id="field_lote"
+                           formControlName="lote"/>
+                    <div *ngIf="editForm.get('lote')!.invalid && (editForm.get('lote')!.dirty || editForm.get('lote')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lote')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 45 }">
+                        This field cannot be longer than 45 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.acidez" for="field_acidez">Acidez</label>
+                    <input type="number" class="form-control" name="acidez" id="field_acidez"
+                           formControlName="acidez"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.temperatura" for="field_temperatura">Temperatura</label>
+                    <input type="number" class="form-control" name="temperatura" id="field_temperatura"
+                           formControlName="temperatura"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.agua" for="field_agua">Agua</label>
+                    <input type="number" class="form-control" name="agua" id="field_agua"
+                           formControlName="agua"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.crioscopia" for="field_crioscopia">Crioscopia</label>
+                    <input type="number" class="form-control" name="crioscopia" id="field_crioscopia"
+                           formControlName="crioscopia"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.antibiotico" for="field_antibiotico">Antibiotico</label>
+                    <input type="number" class="form-control" name="antibiotico" id="field_antibiotico"
+                           formControlName="antibiotico"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.delvo" for="field_delvo">Delvo</label>
+                    <input type="number" class="form-control" name="delvo" id="field_delvo"
+                           formControlName="delvo"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.grasa" for="field_grasa">Grasa</label>
+                    <input type="number" class="form-control" name="grasa" id="field_grasa"
+                           formControlName="grasa"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.solidos" for="field_solidos">Solidos</label>
+                    <input type="text" class="form-control" name="solidos" id="field_solidos"
+                           formControlName="solidos"/>
+                    <div *ngIf="editForm.get('solidos')!.invalid && (editForm.get('solidos')!.dirty || editForm.get('solidos')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('solidos')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 45 }">
+                        This field cannot be longer than 45 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.densidad" for="field_densidad">Densidad</label>
+                    <input type="number" class="form-control" name="densidad" id="field_densidad"
+                           formControlName="densidad"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.lactosa" for="field_lactosa">Lactosa</label>
+                    <input type="number" class="form-control" name="lactosa" id="field_lactosa"
+                           formControlName="lactosa"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.proteina" for="field_proteina">Proteina</label>
+                    <input type="number" class="form-control" name="proteina" id="field_proteina"
+                           formControlName="proteina"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.neutralizantes" for="field_neutralizantes">Neutralizantes</label>
+                    <input type="number" class="form-control" name="neutralizantes" id="field_neutralizantes"
+                           formControlName="neutralizantes"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.adulterantes" for="field_adulterantes">Adulterantes</label>
+                    <input type="number" class="form-control" name="adulterantes" id="field_adulterantes"
+                           formControlName="adulterantes"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.reductasa" for="field_reductasa">Reductasa</label>
+                    <input type="number" class="form-control" name="reductasa" id="field_reductasa"
+                           formControlName="reductasa"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.fosfatasa" for="field_fosfatasa">Fosfatasa</label>
+                    <input type="number" class="form-control" name="fosfatasa" id="field_fosfatasa"
+                           formControlName="fosfatasa"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.ph" for="field_ph">Ph</label>
+                    <input type="number" class="form-control" name="ph" id="field_ph"
+                           formControlName="ph"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.observaciones" for="field_observaciones">Observaciones</label>
+                    <input type="text" class="form-control" name="observaciones" id="field_observaciones"
+                           formControlName="observaciones"/>
+                    <div *ngIf="editForm.get('observaciones')!.invalid && (editForm.get('observaciones')!.dirty || editForm.get('observaciones')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('observaciones')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.area" for="field_area">Area</label>
+                    <select class="form-control" id="field_area" name="area" formControlName="area">
+                        <option *ngIf="!editForm.get('area')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="areaOption.id === editForm.get('area')!.value?.id ? editForm.get('area')!.value : areaOption" *ngFor="let areaOption of areas; trackBy: trackById">{{ areaOption.area }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('area')!.invalid && (editForm.get('area')!.dirty || editForm.get('area')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.recepcion" for="field_recepcion">Recepcion</label>
+                    <select class="form-control" id="field_recepcion" name="recepcion" formControlName="recepcion">
+                        <option *ngIf="!editForm.get('recepcion')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="recepcionOption.id === editForm.get('recepcion')!.value?.id ? editForm.get('recepcion')!.value : recepcionOption" *ngFor="let recepcionOption of recepcions; trackBy: trackById">{{ recepcionOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('recepcion')!.invalid && (editForm.get('recepcion')!.dirty || editForm.get('recepcion')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('recepcion')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.analista" for="field_analista">Analista</label>
+                    <select class="form-control" id="field_analista" name="analista" formControlName="analista">
+                        <option *ngIf="!editForm.get('analista')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userExtraOption.id === editForm.get('analista')!.value?.id ? editForm.get('analista')!.value : userExtraOption" *ngFor="let userExtraOption of userextras; trackBy: trackById">{{ userExtraOption.nombreCompleto }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('analista')!.invalid && (editForm.get('analista')!.dirty || editForm.get('analista')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('analista')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.proveedor" for="field_proveedor">Proveedor</label>
+                    <select class="form-control" id="field_proveedor" name="proveedor" formControlName="proveedor">
+                        <option *ngIf="!editForm.get('proveedor')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="personalOption.id === editForm.get('proveedor')!.value?.id ? editForm.get('proveedor')!.value : personalOption" *ngFor="let personalOption of personals; trackBy: trackById">{{ personalOption.nombre }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('proveedor')!.invalid && (editForm.get('proveedor')!.dirty || editForm.get('proveedor')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('proveedor')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                    <h6 class="sub-title">Leche:</h6>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary"  [routerLink]="['/fq-leche/new']">
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
@@ -46,14 +46,14 @@
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-leche']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
                                     </button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <h6 class="sub-title">Queso:</h6>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" [routerLink]="['/fq-queso/new']">
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
@@ -61,14 +61,14 @@
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-queso']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
                                     </button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <h6 class="sub-title">Mantequilla:</h6>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary"  [routerLink]="['/fq-mantequilla/new']">
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
@@ -76,14 +76,14 @@
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-mantequilla']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
                                     </button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div><h6 class="sub-title"> Suero:</h6></div>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" [routerLink]="['/fq-suero/new']">
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
@@ -91,14 +91,14 @@
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-suero']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
                                     </button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div><h6 class="sub-title"> Crema:</h6></div>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" [routerLink]="['/fq-crema/new']">
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
@@ -106,7 +106,7 @@
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
                                     </button>
-                                    <button type="button" class="btn btn-dark">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-crema']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
                                     </button>
@@ -122,7 +122,7 @@
                             &nbsp;Análisis Microbiológicos</h5>
                         <div class="card-body">
                             <div><h6 class="sub-title"> Pruebas sensoriales:</h6></div>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" [routerLink]="['/prueba-micro/new']">
                                 <fa-icon icon="plus"></fa-icon>
                                 <span jhiTranslate="home.createEntity">Crear</span>
                             </button>
@@ -130,7 +130,7 @@
                                 <fa-icon icon="file-upload"></fa-icon>
                                 <span jhiTranslate="home.importEntity">Importar</span>
                             </button>
-                            <button type="button" class="btn btn-dark">
+                            <button type="button" class="btn btn-dark"  [routerLink]="['/prueba-micro']">
                                 <fa-icon icon="list"></fa-icon>
                                 <span jhiTranslate="home.listEntity">Listado</span>
                             </button>
@@ -152,38 +152,37 @@
                     </div>
                 </div>
             </div>
-
             <div class="row" *ngSwitchCase="true">
                 <div class="col-md-8" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
                     <div class="card">
                         <h5 class="card-header">
                             <fa-icon icon="list"></fa-icon>
-                            &nbsp;Cátalogos</h5>
+                            &nbsp;Catálogos</h5>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a class="btn btn-dark" href="/cultivo">
-                                    <fa-icon icon="list"></fa-icon>
-                                    <span jhiTranslate="home.listEntityCul">Cultivos</span>
-                                    </a>
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/cultivo']">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span jhiTranslate="home.listEntityCul">Cultivos</span>
+                                    </button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn btn-dark" href="/superficie">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/superficie']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntitySup">Superficie</span>
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn btn-dark" href="/dummy">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/relacion']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntityRel">Relación</span>
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn btn-dark" href="/area">
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/area']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntityArea">Áreas</span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -197,14 +196,14 @@
                             &nbsp;Usuarios</h5>
                         <div class="card-body">
                             <p>
-                                <button type="button"  class="btn btn-primary" [routerLink]="['/admin/user-management/new']">
+                                <button type="button" class="btn btn-primary" [routerLink]="['/admin/user-management/new']">
                                     <fa-icon icon="plus"></fa-icon>
                                     <span jhiTranslate="home.createEntity">Crear</span>
                                 </button>
-                                <a  class="btn btn-dark" href="/admin/user-management">
+                                <button type="button" class="btn btn-dark" [routerLink]="['/admin/user-management']">
                                     <fa-icon icon="list"></fa-icon>
                                     <span jhiTranslate="home.listEntity">Listado</span>
-                                </a>
+                                </button>
                             </p>
                         </div>
                     </div>

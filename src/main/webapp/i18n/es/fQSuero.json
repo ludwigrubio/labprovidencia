@@ -1,0 +1,36 @@
+{
+  "labprovidenciaApp": {
+    "fQSuero": {
+      "home": {
+        "title": "FQ Sueros",
+        "createLabel": "Crear nuevo FQ Suero",
+        "createOrEditLabel": "Crear o editar FQ Suero",
+        "notFound": "Ningún FQ Sueros encontrado"
+      },
+      "created": "Un nuevo FQ Suero ha sido creado con el identificador {{ param }}",
+      "updated": "Un FQ Suero ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un FQ Suero ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar FQ Suero {{ id }}?"
+      },
+      "detail": {
+        "title": "FQ Suero"
+      },
+      "fecha": "Fecha",
+      "lote": "Lote",
+      "acidez": "Acidez",
+      "temperatura": "Temperatura",
+      "delvo": "Delvo",
+      "solidos": "Solidos",
+      "neutralizantes": "Neutralizantes",
+      "ph": "Ph",
+      "cloro": "Cloro",
+      "almidon": "Almidon",
+      "observaciones": "Observaciones",
+      "área": "Area",
+      "producto": "Producto",
+      "analista": "Analista",
+      "proveedor": "Proveedor"
+    }
+  }
+}

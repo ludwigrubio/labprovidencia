@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fQSuero">
+            <h2><span jhiTranslate="labprovidenciaApp.fQSuero.detail.title">FQ Suero</span> {{ fQSuero.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ fQSuero.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.lote">Lote</span></dt>
+                <dd>
+                    <span>{{ fQSuero.lote }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.acidez">Acidez</span></dt>
+                <dd>
+                    <span>{{ fQSuero.acidez }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.temperatura">Temperatura</span></dt>
+                <dd>
+                    <span>{{ fQSuero.temperatura }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.delvo">Delvo</span></dt>
+                <dd>
+                    <span>{{ fQSuero.delvo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.solidos">Solidos</span></dt>
+                <dd>
+                    <span>{{ fQSuero.solidos }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.neutralizantes">Neutralizantes</span></dt>
+                <dd>
+                    <span>{{ fQSuero.neutralizantes }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.ph">Ph</span></dt>
+                <dd>
+                    <span>{{ fQSuero.ph }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.cloro">Cloro</span></dt>
+                <dd>
+                    <span>{{ fQSuero.cloro }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.almidon">Almidon</span></dt>
+                <dd>
+                    <span>{{ fQSuero.almidon }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.observaciones">Observaciones</span></dt>
+                <dd>
+                    <span>{{ fQSuero.observaciones }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.area">Area</span></dt>
+                <dd>
+                    <div *ngIf="fQSuero.area">
+                        <a [routerLink]="['/area', fQSuero.area?.id, 'view']">{{ fQSuero.area?.area }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="fQSuero.producto">
+                        <a [routerLink]="['/producto', fQSuero.producto?.id, 'view']">{{ fQSuero.producto?.producto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.analista">Analista</span></dt>
+                <dd>
+                    <div *ngIf="fQSuero.analista">
+                        <a [routerLink]="['/user-extra', fQSuero.analista?.id, 'view']">{{ fQSuero.analista?.nombreCompleto }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQSuero.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="fQSuero.proveedor">
+                        <a [routerLink]="['/personal', fQSuero.proveedor?.id, 'view']">{{ fQSuero.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fq-suero', fQSuero.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="recepcion">
+            <h2><span jhiTranslate="labprovidenciaApp.recepcion.detail.title">Recepcion</span> {{ recepcion.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.idProveedor">Id Proveedor</span></dt>
+                <dd>
+                    <span>{{ recepcion.idProveedor }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.litros">Litros</span></dt>
+                <dd>
+                    <span>{{ recepcion.litros }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.tiempo">Tiempo</span></dt>
+                <dd>
+                    <span>{{ recepcion.tiempo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.turno">Turno</span></dt>
+                <dd>
+                    <span>{{ recepcion.turno }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.incentivoLT">Incentivo LT</span></dt>
+                <dd>
+                    <span>{{ recepcion.incentivoLT }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.incentivoT">Incentivo T</span></dt>
+                <dd>
+                    <span>{{ recepcion.incentivoT }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.recepcion.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="recepcion.proveedor">
+                        <a [routerLink]="['/personal', recepcion.proveedor?.id, 'view']">{{ recepcion.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/recepcion', recepcion.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
