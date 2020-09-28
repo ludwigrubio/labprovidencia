@@ -10,6 +10,21 @@
         </button>
     </h2>
 
+    <div class="filters-form card mt-4 mb-4">
+        <div class="card-header">Filtrar:</div>
+        <div class="card-body row">
+            <div class="col-md-4">
+                <input type="text"
+                       id="filter_area"
+                       [(ngModel)]="filters.area"
+                       (ngModelChange)="loadPage()"
+                       class="form-control"
+                       [ngModelOptions]="{standalone: true}"
+                       placeholder="Filtrar por {{'labprovidenciaApp.area.area'| translate}}" />
+            </div>
+        </div>
+    </div>
+
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>

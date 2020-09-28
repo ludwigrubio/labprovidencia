@@ -103,21 +103,6 @@
                     </div>
                 </div>
 
-                <div class="form-check">
-                    <label class="form-check-label" for="activated">
-                        <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"
-                               type="checkbox" id="activated" name="activated" formControlName="activated">
-                        <span jhiTranslate="userManagement.activated">Activated</span>
-                    </label>
-                </div>
-
-                <div class="form-group" *ngIf="languages && languages.length > 0">
-                    <label jhiTranslate="userManagement.langKey">Lang Key</label>
-                    <select class="form-control" id="langKey" name="langKey" formControlName="langKey">
-                        <option *ngFor="let language of languages" [value]="language">{{ language | findLanguageFromKey }}</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <label jhiTranslate="userManagement.profiles">Profiles</label>
                     <select class="form-control" multiple name="authority" formControlName="authorities">
@@ -125,7 +110,15 @@
                     </select>
                 </div>
             </div>
-
+            <hr>
+            <div class="form-check">
+                <label class="form-check-label" for="activated">
+                    <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"
+                           type="checkbox" id="activated" name="activated" formControlName="activated">
+                    <span jhiTranslate="userManagement.activated">Activated</span>
+                </label>
+            </div>
+            <hr>
             <div *ngIf="user">
                 <button type="button" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
@@ -135,6 +128,7 @@
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
+
         </form>
     </div>
 </div>

@@ -24,6 +24,7 @@ export class SuperficieComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filters = { superficie: '' };
 
   constructor(
     protected superficieService: SuperficieService,
@@ -41,6 +42,7 @@ export class SuperficieComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'superficie.contains': this.filters.superficie || '',
       })
       .subscribe(
         (res: HttpResponse<ISuperficie[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),

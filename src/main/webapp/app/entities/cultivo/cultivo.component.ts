@@ -24,6 +24,7 @@ export class CultivoComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filters = { cultivo: '' };
 
   constructor(
     protected cultivoService: CultivoService,
@@ -41,6 +42,7 @@ export class CultivoComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'cultivo.contains': this.filters.cultivo || '',
       })
       .subscribe(
         (res: HttpResponse<ICultivo[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),

@@ -25,6 +25,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   page!: number;
   predicate!: string;
   ascending!: boolean;
+  filters = { login: '' };
 
   constructor(
     private userService: UserService,

@@ -11,6 +11,15 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { DummyService } from './dummy.service';
 import { DummyDeleteDialogComponent } from './dummy-delete-dialog.component';
 
+// Filter added
+import { IArea } from 'app/shared/model/area.model';
+import { AreaService } from 'app/entities/area/area.service';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'jhi-dummy',
   templateUrl: './dummy.component.html',
@@ -24,10 +33,12 @@ export class DummyComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-  filters = { name: '' };
+  filters = { name: '', area: { id: '' } };
+  areas: IArea[] = [];
 
   constructor(
     protected dummyService: DummyService,
+    protected areaService: AreaService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
@@ -42,7 +53,8 @@ export class DummyComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-        'name.contains': this.filters.name,
+        'name.contains': this.filters.name || '',
+        'areaId.equals': this.filters.area.id || '',
       })
       .subscribe(
         (res: HttpResponse<IDummy[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
@@ -117,4 +129,14 @@ export class DummyComponent implements OnInit, OnDestroy {
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
   }
+
+  formatterArea = (x: { area: string }) => x.area;
+
+  searchArea = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.areaService.query({ 'area.contains': term }))),
+      map((res: HttpResponse<IArea[]>) => res.body || [])
+    );
 }

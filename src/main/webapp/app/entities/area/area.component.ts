@@ -24,6 +24,7 @@ export class AreaComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filters = { area: '' };
 
   constructor(
     protected areaService: AreaService,
@@ -41,6 +42,7 @@ export class AreaComponent implements OnInit, OnDestroy {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
+        'area.contains': this.filters.area || '',
       })
       .subscribe(
         (res: HttpResponse<IArea[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),

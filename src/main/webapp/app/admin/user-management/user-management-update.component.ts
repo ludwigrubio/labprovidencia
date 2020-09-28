@@ -80,7 +80,7 @@ export class UserManagementUpdateComponent implements OnInit {
       lastName: user.lastName,
       email: user.email,
       activated: user.activated,
-      langKey: user.langKey,
+      langKey: 'es',
       authorities: user.authorities,
     });
   }
