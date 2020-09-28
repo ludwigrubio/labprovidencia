@@ -19,13 +19,13 @@
 
             <div class="alert alert-warning" *ngSwitchCase="false">
 
-                <p>
+                <div>
                     <span jhiTranslate="global.messages.info.register.login">To use the system a user is required </span>&nbsp;
                     <a class="alert-link" (click)="login()"  jhiTranslate="global.messages.info.register.linklogin">Log In</a>
-                </p>
-                <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
+                </div>
+             <!--   <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
                 <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.linknew">Register a new account</a>
-
+                -->
             </div>
 
             <div class="row" *ngSwitchCase="true">

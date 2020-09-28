@@ -11,10 +11,14 @@ import com.provi.lab.web.rest.errors.*;
 import com.provi.lab.web.rest.vm.KeyAndPasswordVM;
 import com.provi.lab.web.rest.vm.ManagedUserVM;
 
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +39,9 @@ public class AccountResource {
     }
 
     private final Logger log = LoggerFactory.getLogger(AccountResource.class);
+
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
 
     private final UserRepository userRepository;
 
@@ -59,12 +66,17 @@ public class AccountResource {
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public ResponseEntity<User> registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
+
+        Optional<User> updatedUser = userService.getUserWithAuthoritiesByLogin(user.getLogin());
+
+        return ResponseUtil.wrapOrNotFound(updatedUser,
+            HeaderUtil.createAlert(applicationName, "userManagement.created", user.getLogin()));
     }
 
     /**

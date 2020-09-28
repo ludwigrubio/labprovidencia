@@ -6,6 +6,7 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-register',
@@ -14,12 +15,13 @@ import { RegisterService } from './register.service';
 export class RegisterComponent implements AfterViewInit {
   @ViewChild('login', { static: false })
   login?: ElementRef;
+  authorities: string[] = [];
+  isSaving = false;
 
   doNotMatch = false;
   error = false;
   errorEmailExists = false;
   errorUserExists = false;
-  success = false;
 
   registerForm = this.fb.group({
     login: [
@@ -34,19 +36,26 @@ export class RegisterComponent implements AfterViewInit {
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+    firstName: ['', [Validators.maxLength(50)]],
+    lastName: ['', [Validators.maxLength(50)]],
+    authorities: [],
   });
 
   constructor(
     private languageService: JhiLanguageService,
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService
   ) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
       this.login.nativeElement.focus();
     }
+    this.userService.authorities().subscribe(authorities => {
+      this.authorities = authorities;
+    });
   }
 
   register(): void {
@@ -61,15 +70,39 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       const login = this.registerForm.get(['login'])!.value;
       const email = this.registerForm.get(['email'])!.value;
-      this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
-      );
+      const firstName = this.registerForm.get(['firstName'])!.value;
+      const lastName = this.registerForm.get(['lastName'])!.value;
+      const authorities = this.registerForm.get(['authorities'])!.value;
+      console.error(authorities);
+      this.registerService
+        .save({
+          login,
+          email,
+          password,
+          langKey: this.languageService.getCurrentLanguage(),
+          activated: true,
+          firstName,
+          authorities,
+          lastName,
+        })
+        .subscribe(
+          () => this.onSaveSuccess(),
+          response => this.processError(response)
+        );
     }
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 
   openLogin(): void {
     this.loginModalService.open();
+  }
+
+  private onSaveSuccess(): void {
+    this.isSaving = false;
+    this.previousState();
   }
 
   private processError(response: HttpErrorResponse): void {
