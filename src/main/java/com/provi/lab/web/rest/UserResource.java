@@ -2,7 +2,9 @@ package com.provi.lab.web.rest;
 
 import com.provi.lab.config.Constants;
 import com.provi.lab.domain.User;
+import com.provi.lab.domain.UserExtra;
 import com.provi.lab.repository.UserRepository;
+import com.provi.lab.service.UserExtraService;
 import com.provi.lab.security.AuthoritiesConstants;
 import com.provi.lab.service.MailService;
 import com.provi.lab.service.UserService;
@@ -69,12 +71,15 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
+    private UserExtraService userExtraService;
+
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService,UserExtraService userExtraService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.userExtraService = userExtraService;
     }
 
     /**
@@ -183,7 +188,12 @@ public class UserResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
+        Long idUser = userService.getUserIDWithLogin(login);
+        if(userExtraService.findOne(idUser).isPresent()) {
+            userExtraService.delete(idUser);
+        }
         userService.deleteUser(login);
+
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
     }
 }

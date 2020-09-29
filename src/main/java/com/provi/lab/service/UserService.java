@@ -1,10 +1,15 @@
 package com.provi.lab.service;
 
 import com.provi.lab.config.Constants;
+import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Authority;
 import com.provi.lab.domain.User;
+import com.provi.lab.domain.UserExtra;
 import com.provi.lab.repository.AuthorityRepository;
 import com.provi.lab.repository.UserRepository;
+import com.provi.lab.repository.AreaRepository;
+import com.provi.lab.repository.PersonalRepository;
+import com.provi.lab.repository.UserExtraRepository;
 import com.provi.lab.security.AuthoritiesConstants;
 import com.provi.lab.security.SecurityUtils;
 import com.provi.lab.service.dto.UserDTO;
@@ -37,17 +42,32 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserExtraRepository userExtraRepository;
+
+    private final AreaRepository areaRepository;
+
+    private final PersonalRepository personalRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                       AuthorityRepository authorityRepository,
+                       CacheManager cacheManager,
+                       UserExtraRepository userExtraRepository,
+                       AreaRepository areaRepository,
+                       PersonalRepository personalRepository) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.userExtraRepository = userExtraRepository;
+        this.areaRepository = areaRepository;
+        this.personalRepository = personalRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -87,7 +107,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
+    public User registerUser(UserDTO userDTO, String password, Long area, Long personal) {
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {
@@ -129,6 +149,16 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        UserExtra newUserExtra = new UserExtra();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setNombreCompleto(userDTO.getFirstName() +" "+userDTO.getLastName());
+
+        newUserExtra.setArea(areaRepository.findById(area).get());
+        newUserExtra.setPersonal(personalRepository.findById(personal).get());
+        userExtraRepository.save(newUserExtra);
+        log.debug("Created Information for UserExtra: {}", newUserExtra);
+
         return newUser;
     }
 
@@ -307,5 +337,10 @@ public class UserService {
         if (user.getEmail() != null) {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Long getUserIDWithLogin(String login) {
+        return userRepository.findUserIDByLogin(login);
     }
 }

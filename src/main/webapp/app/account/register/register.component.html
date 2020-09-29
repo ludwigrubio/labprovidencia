@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-2">
         <div class="col-md-8">
             <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
                 <div class="form-group">
@@ -56,38 +56,95 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ 'global.form.email.placeholder' | translate }}"
-                             formControlName="email">
+                <div class="card border-info mb-3">
+                    <div class="card-header">Datos CONTPAQi</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="labprovidenciaApp.userExtra.contpaq" for="field_personal">Personal</label>
 
-                    <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('email')?.errors?.required"
-                               jhiTranslate="global.messages.validate.email.required">
-                            Your email is required.
-                        </small>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><fa-icon icon="list"></fa-icon></span>
+                                </div>
+                                <input type="text" class="form-control" id="field_personal" formControlName="personal"
+                                       placeholder="Buscar empleado"
+                                       [ngbTypeahead]="searchPersonal"
+                                       [inputFormatter]="formatterPersonal"
+                                       [resultFormatter]="formatterPersonal"
+                                       [editable]='false' />
+                                </div>
+                            </div>
+                            <div *ngIf="registerForm.get('personal')!.invalid && (registerForm.get('personal')!.dirty || registerForm.get('personal')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="registerForm.get('personal')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
 
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('email')?.errors?.invalid"
-                               jhiTranslate="global.messages.validate.email.invalid">
-                            Your email is invalid.
-                        </small>
+                        <div class="form-group">
+                            <label class="form-control-label" for="email" jhiTranslate="global.form.email.label">Email</label>
+                            <input type="email" class="form-control" [readonly]="true" id="email" name="email" placeholder="{{ 'global.form.email.placeholder' | translate }}"
+                                   formControlName="email">
 
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('email')?.errors?.minlength"
-                               jhiTranslate="global.messages.validate.email.minlength">
-                            Your email is required to be at least 5 characters.
-                        </small>
+                            <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('email')?.errors?.required"
+                                       jhiTranslate="global.messages.validate.email.required">
+                                    Your email is required.
+                                </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('email')?.errors?.maxlength"
-                               jhiTranslate="global.messages.validate.email.maxlength">
-                            Your email cannot be longer than 100 characters.
-                        </small>
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('email')?.errors?.invalid"
+                                       jhiTranslate="global.messages.validate.email.invalid">
+                                    Your email is invalid.
+                                </small>
+
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('email')?.errors?.minlength"
+                                       jhiTranslate="global.messages.validate.email.minlength">
+                                    Your email is required to be at least 5 characters.
+                                </small>
+
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('email')?.errors?.maxlength"
+                                       jhiTranslate="global.messages.validate.email.maxlength">
+                                    Your email cannot be longer than 100 characters.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
+                            <input [readonly]="true" type="text" placeholder="Nombre(s)" class="form-control" name="firstName"
+                                   formControlName="firstName">
+
+                            <div *ngIf="registerForm.get('firstName')!.invalid && (registerForm.get('firstName')!.dirty || registerForm.get('firstName')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('firstName')?.errors?.maxlength"
+                                       jhiTranslate="entity.validation.maxlength"
+                                       [translateValues]="{ max: 50 }">
+                                    This field cannot be longer than 50 characters.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label jhiTranslate="userManagement.lastName">Last Name</label>
+                            <input [readonly]="true" type="text" class="form-control" name="lastName"
+                                   formControlName="lastName" placeholder="Apellido(s)">
+
+                            <div *ngIf="registerForm.get('lastName')!.invalid && (registerForm.get('lastName')!.dirty || registerForm.get('lastName')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="registerForm.get('lastName')?.errors?.maxlength"
+                                       jhiTranslate="entity.validation.maxlength"
+                                       [translateValues]="{ max: 50 }">
+                                    This field cannot be longer than 50 characters.
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card card-body mb-3">
+
+                <div class="card card-body border-info mt-4 mb-3">
                     <div class="form-group">
                         <label class="form-control-label" for="password" jhiTranslate="global.form.newpassword.label">New password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="{{ 'global.form.newpassword.placeholder' | translate }}"
@@ -142,42 +199,32 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
-                    <input [disabled]="true" type="text" class="form-control" name="firstName"
-                           formControlName="firstName">
-
-                    <div *ngIf="registerForm.get('firstName')!.invalid && (registerForm.get('firstName')!.dirty || registerForm.get('firstName')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('firstName')?.errors?.maxlength"
-                               jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 50 }">
-                            This field cannot be longer than 50 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label jhiTranslate="userManagement.lastName">Last Name</label>
-                    <input [disabled]="true" type="text" class="form-control" name="lastName"
-                           formControlName="lastName">
-
-                    <div *ngIf="registerForm.get('lastName')!.invalid && (registerForm.get('lastName')!.dirty || registerForm.get('lastName')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="registerForm.get('lastName')?.errors?.maxlength"
-                               jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 50 }">
-                            This field cannot be longer than 50 characters.
-                        </small>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label jhiTranslate="userManagement.profiles">Profiles</label>
                     <select class="form-control" multiple name="authority" formControlName="authorities">
                         <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
                     </select>
+                </div>
+                <div class="form-group">
+
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.userExtra.area" for="field_area">Area</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-area"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_area" formControlName="area"
+                               placeholder="Buscar área"
+                               [ngbTypeahead]="searchArea"
+                               [inputFormatter]="formatterArea"
+                               [resultFormatter]="formatterArea"
+                               [editable]='false' />
+                    </div>
+                    <div *ngIf="registerForm.get('area')!.invalid && (registerForm.get('area')!.dirty || registerForm.get('area')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="registerForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <button type="submit" [disabled]="registerForm.invalid || isSaving" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>

@@ -8,6 +8,18 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
 import { UserService } from 'app/core/user/user.service';
 
+import { IArea } from 'app/shared/model/area.model';
+import { AreaService } from 'app/entities/area/area.service';
+import { IPersonal } from 'app/shared/model/personal.model';
+import { PersonalService } from 'app/entities/personal/personal.service';
+
+import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'jhi-register',
   templateUrl: './register.component.html',
@@ -39,12 +51,16 @@ export class RegisterComponent implements AfterViewInit {
     firstName: ['', [Validators.maxLength(50)]],
     lastName: ['', [Validators.maxLength(50)]],
     authorities: [],
+    area: [null, Validators.required],
+    personal: [null, Validators.required],
   });
 
   constructor(
     private languageService: JhiLanguageService,
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
+    protected areaService: AreaService,
+    protected personalService: PersonalService,
     private fb: FormBuilder,
     private userService: UserService
   ) {}
@@ -55,6 +71,17 @@ export class RegisterComponent implements AfterViewInit {
     }
     this.userService.authorities().subscribe(authorities => {
       this.authorities = authorities;
+    });
+    this.registerForm.controls['personal'].valueChanges.subscribe(value => {
+      if (value) {
+        this.registerForm.controls['email'].setValue(value['email']);
+        this.registerForm.controls['firstName'].setValue(value['nombre']);
+        this.registerForm.controls['lastName'].setValue(value['apellido1'] + ' ' + value['apellido2']);
+      } else {
+        this.registerForm.controls['email'].setValue('');
+        this.registerForm.controls['firstName'].setValue('');
+        this.registerForm.controls['lastName'].setValue('');
+      }
     });
   }
 
@@ -73,7 +100,9 @@ export class RegisterComponent implements AfterViewInit {
       const firstName = this.registerForm.get(['firstName'])!.value;
       const lastName = this.registerForm.get(['lastName'])!.value;
       const authorities = this.registerForm.get(['authorities'])!.value;
-      console.error(authorities);
+      const area = this.registerForm.get(['area'])!.value;
+      const personal = this.registerForm.get(['personal'])!.value;
+
       this.registerService
         .save({
           login,
@@ -84,6 +113,8 @@ export class RegisterComponent implements AfterViewInit {
           firstName,
           authorities,
           lastName,
+          area: area.id,
+          personal: personal.id,
         })
         .subscribe(
           () => this.onSaveSuccess(),
@@ -104,6 +135,26 @@ export class RegisterComponent implements AfterViewInit {
     this.isSaving = false;
     this.previousState();
   }
+
+  formatterArea = (x: { area: string }) => x.area;
+
+  searchArea = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.areaService.query({ 'area.contains': term }))),
+      map((res: HttpResponse<IArea[]>) => res.body || [])
+    );
+
+  formatterPersonal = (x: { nombre: string; apellido1: string; apellido2: string }) => x.nombre + ' ' + x.apellido1 + ' ' + x.apellido2;
+
+  searchPersonal = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term }))),
+      map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
 
   private processError(response: HttpErrorResponse): void {
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
