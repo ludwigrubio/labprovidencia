@@ -1,0 +1,7 @@
+id,cultivo,created_by,created_date,last_modified_by,last_modified_date
+1,Enterobacterias,system,"2020-09-22 12:22:09",admin,"2020-09-29 19:34:50"
+2,Hongos,system,"2020-09-22 12:22:09",admin,"2020-09-29 19:34:56"
+3,Levaduras,system,"2020-09-22 12:22:09",admin,"2020-09-29 19:35:02"
+4,Coliformes,system,"2020-09-22 12:22:09",admin,"2020-09-29 19:35:08"
+5,"Mesófilos aerobios",system,"2020-09-22 12:22:09",admin,"2020-09-29 19:35:17"
+6,"E Coli",admin,"2020-09-29 19:37:37",admin,"2020-09-29 19:37:37"

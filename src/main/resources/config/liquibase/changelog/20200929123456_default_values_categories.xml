@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="20200929123456-1" author="ludwig" context="pro">
+        <loadData
+            file="config/liquibase/data/relacion.csv"
+            separator=","
+            encoding="UTF-8"
+            tableName="relacion">
+            <column name="id" type="numeric"/>
+            <column name="relacion" type="string"/>
+            <column name="created_by" type="string"/>
+            <column name="created_date" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <column name="last_modified_date" type="date"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-2" author="ludwig">
+        <loadData
+            file="config/liquibase/data/area.csv"
+            separator=","
+            encoding="UTF-8"
+            tableName="area">
+            <column name="id" type="numeric"/>
+            <column name="area" type="string"/>
+            <column name="descripcion" type="string"/>
+            <column name="created_by" type="string"/>
+            <column name="created_date" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <column name="last_modified_date" type="date"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-3" author="ludwig">
+        <loadData
+            file="config/liquibase/data/cultivo.csv"
+            separator=","
+            encoding="UTF-8"
+            tableName="cultivo">
+            <column name="id" type="numeric"/>
+            <column name="cultivo" type="string"/>
+            <column name="created_by" type="string"/>
+            <column name="created_date" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <column name="last_modified_date" type="date"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-4" author="ludwig">
+        <loadData
+            file="config/liquibase/data/superficie.csv"
+            separator=","
+            encoding="UTF-8"
+            tableName="superficie">
+            <column name="id" type="numeric"/>
+            <column name="superficie" type="string"/>
+            <column name="descripcion" type="string"/>
+            <column name="created_by" type="string"/>
+            <column name="created_date" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <column name="last_modified_date" type="date"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

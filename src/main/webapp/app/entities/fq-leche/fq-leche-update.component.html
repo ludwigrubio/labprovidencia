@@ -156,10 +156,17 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.area" for="field_area">Area</label>
-                    <select class="form-control" id="field_area" name="area" formControlName="area">
-                        <option *ngIf="!editForm.get('area')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="areaOption.id === editForm.get('area')!.value?.id ? editForm.get('area')!.value : areaOption" *ngFor="let areaOption of areas; trackBy: trackById">{{ areaOption.area }}</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-area"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_area" formControlName="area"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchArea"
+                               [inputFormatter]="formatterArea"
+                               [resultFormatter]="formatterArea"
+                               [editable]='false' />
+                    </div>
                 </div>
                 <div *ngIf="editForm.get('area')!.invalid && (editForm.get('area')!.dirty || editForm.get('area')!.touched)">
                     <small class="form-text text-danger"
@@ -170,10 +177,17 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.recepcion" for="field_recepcion">Recepcion</label>
-                    <select class="form-control" id="field_recepcion" name="recepcion" formControlName="recepcion">
-                        <option *ngIf="!editForm.get('recepcion')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="recepcionOption.id === editForm.get('recepcion')!.value?.id ? editForm.get('recepcion')!.value : recepcionOption" *ngFor="let recepcionOption of recepcions; trackBy: trackById">{{ recepcionOption.id }}</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-recepcion"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_recepcion" formControlName="recepcion"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchRecepcion"
+                               [inputFormatter]="formatterRecepcion"
+                               [resultFormatter]="formatterRecepcion"
+                               [editable]='false' />
+                    </div>
                 </div>
                 <div *ngIf="editForm.get('recepcion')!.invalid && (editForm.get('recepcion')!.dirty || editForm.get('recepcion')!.touched)">
                     <small class="form-text text-danger"
@@ -184,10 +198,17 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.analista" for="field_analista">Analista</label>
-                    <select class="form-control" id="field_analista" name="analista" formControlName="analista">
-                        <option *ngIf="!editForm.get('analista')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="userExtraOption.id === editForm.get('analista')!.value?.id ? editForm.get('analista')!.value : userExtraOption" *ngFor="let userExtraOption of userextras; trackBy: trackById">{{ userExtraOption.nombreCompleto }}</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-analista"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_analista" formControlName="analista"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchAnalista"
+                               [inputFormatter]="formatterAnalista"
+                               [resultFormatter]="formatterAnalista"
+                               [editable]='false' />
+                    </div>
                 </div>
                 <div *ngIf="editForm.get('analista')!.invalid && (editForm.get('analista')!.dirty || editForm.get('analista')!.touched)">
                     <small class="form-text text-danger"
@@ -198,10 +219,17 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.proveedor" for="field_proveedor">Proveedor</label>
-                    <select class="form-control" id="field_proveedor" name="proveedor" formControlName="proveedor">
-                        <option *ngIf="!editForm.get('proveedor')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="personalOption.id === editForm.get('proveedor')!.value?.id ? editForm.get('proveedor')!.value : personalOption" *ngFor="let personalOption of personals; trackBy: trackById">{{ personalOption.nombre }}</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-proveedor"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_proveedor" formControlName="proveedor"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchProveedor"
+                               [inputFormatter]="formatterProveedor"
+                               [resultFormatter]="formatterProveedor"
+                               [editable]='false' />
+                    </div>
                 </div>
                 <div *ngIf="editForm.get('proveedor')!.invalid && (editForm.get('proveedor')!.dirty || editForm.get('proveedor')!.touched)">
                     <small class="form-text text-danger"

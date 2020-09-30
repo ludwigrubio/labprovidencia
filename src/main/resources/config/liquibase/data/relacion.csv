@@ -1,0 +1,3 @@
+id,relacion,created_by,created_date,last_modified_by,last_modified_date
+1,Empleado,system,"2020-09-22 11:40:49",admin,"2020-09-29 18:23:53"
+2,Proveedor,system,"2020-09-22 11:40:49",admin,"2020-09-29 18:24:00"

@@ -1,0 +1,12 @@
+id,area,descripcion,created_by,created_date,last_modified_by,last_modified_date
+1,Pasteurización,"Pasteurización descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:31:33"
+2,Prensado,"Prensado descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:31:41"
+3,"Cámara de Producto Semiterminado","Cámara de Producto Semiterminado descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:31:49"
+4,Malaxadoras,"Malaxadoras descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:00"
+5,"Lavadora de Moldes","Lavadora de Moldes descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:09"
+6,"Lavado y Secado","Lavado y Secado descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:18"
+7,Empaque,"Empaque descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:28"
+8,Cubicado,"Cubicado descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:37"
+9,"Cámara de Producto Terminado","Cámara de Producto Terminado descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:32:49"
+10,Almacén,"Almacén descripción",system,"2020-09-22 11:40:49",admin,"2020-09-29 19:34:02"
+11,"Recepción de Leche","Recepción de Leche descripción",admin,"2020-09-29 19:33:26",admin,"2020-09-29 19:33:26"

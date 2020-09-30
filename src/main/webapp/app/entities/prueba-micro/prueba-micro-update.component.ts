@@ -20,6 +20,12 @@ import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
 
+import { AccountService } from 'app/core/auth/account.service';
+import { debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 type SelectableEntity = IArea | ICultivo | ISuperficie | IUserExtra | IPersonal;
 
 @Component({
@@ -28,11 +34,6 @@ type SelectableEntity = IArea | ICultivo | ISuperficie | IUserExtra | IPersonal;
 })
 export class PruebaMicroUpdateComponent implements OnInit {
   isSaving = false;
-  areas: IArea[] = [];
-  cultivos: ICultivo[] = [];
-  superficies: ISuperficie[] = [];
-  userextras: IUserExtra[] = [];
-  personals: IPersonal[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -59,7 +60,8 @@ export class PruebaMicroUpdateComponent implements OnInit {
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    protected accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -72,15 +74,13 @@ export class PruebaMicroUpdateComponent implements OnInit {
 
       this.updateForm(pruebaMicro);
 
-      this.areaService.query().subscribe((res: HttpResponse<IArea[]>) => (this.areas = res.body || []));
-
-      this.cultivoService.query().subscribe((res: HttpResponse<ICultivo[]>) => (this.cultivos = res.body || []));
-
-      this.superficieService.query().subscribe((res: HttpResponse<ISuperficie[]>) => (this.superficies = res.body || []));
-
-      this.userExtraService.query().subscribe((res: HttpResponse<IUserExtra[]>) => (this.userextras = res.body || []));
-
-      this.personalService.query().subscribe((res: HttpResponse<IPersonal[]>) => (this.personals = res.body || []));
+      this.accountService.getAuthenticationState().subscribe(account => {
+        if (account!['id']) {
+          this.userExtraService
+            .query({ 'id.equals': account!['id'] })
+            .subscribe((res: HttpResponse<IUserExtra[]>) => this.editForm.patchValue({ analista: res.body![0] }));
+        }
+      });
     });
   }
 
@@ -156,4 +156,53 @@ export class PruebaMicroUpdateComponent implements OnInit {
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
+  formatterArea = (x: { area: string }) => x.area;
+
+  searchArea = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.areaService.query({ 'area.contains': term }))),
+      map((res: HttpResponse<IArea[]>) => res.body || [])
+    );
+
+  formatterCultivo = (x: { cultivo: string }) => x.cultivo;
+
+  searchCultivo = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.cultivoService.query({ 'cultivo.contains': term }))),
+      map((res: HttpResponse<ICultivo[]>) => res.body || [])
+    );
+
+  formatterSuperficie = (x: { superficie: string }) => x.superficie;
+
+  searchSuperficie = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.superficieService.query({ 'superficie.contains': term }))),
+      map((res: HttpResponse<ISuperficie[]>) => res.body || [])
+    );
+
+  formatterAnalista = (x: { nombreCompleto: string }) => x.nombreCompleto;
+
+  searchAnalista = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.userExtraService.query({ 'nombreCompleto.contains': term }))),
+      map((res: HttpResponse<IUserExtra[]>) => res.body || [])
+    );
+
+  formatterProveedor = (x: { nombre: string }) => x.nombre;
+
+  searchProveedor = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term, 'relacionId.equals': '2' }))),
+      map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
 }
