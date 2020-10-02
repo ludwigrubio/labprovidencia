@@ -10,6 +10,92 @@
         </button>
     </h2>
 
+    <div class="filters-form card mt-4 mb-4">
+        <div class="card-header">Filtros</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <input type="text"
+                           id="filter_lote"
+                           [(ngModel)]="filters.lote"
+                           (ngModelChange)="loadPage()"
+                           class="form-control"
+                           [ngModelOptions]="{standalone: true}"
+                           placeholder="Filtrar por {{'labprovidenciaApp.fQQueso.lote'| translate}}" />
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <input id="field_fecha"
+                           type="date"
+                           [(ngModel)]="filters.fecha"
+                           (ngModelChange)="loadPage()"
+                           class="form-control"
+                           [ngModelOptions]="{standalone: true}"
+                           placeholder="YYYY-MM-DD"/>
+                </div>
+
+                <div class="col-md-4 input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-empleado"><fa-icon icon="list"></fa-icon></span>
+                    </div>
+                    <input type="text" class="form-control" id="filter_area"
+                           placeholder="Filtrar por {{'labprovidenciaApp.fQQueso.area'| translate}}"
+                           [ngbTypeahead]="searchArea"
+                           [inputFormatter]="formatterArea"
+                           [resultFormatter]="formatterArea"
+                           [(ngModel)]="filters.area"
+                           (ngModelChange)="loadPage()"
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-analista"><fa-icon icon="list"></fa-icon></span>
+                    </div>
+                    <input type="text" class="form-control" id="filter_analista"
+                           placeholder="Filtrar por {{'labprovidenciaApp.fQQueso.analista'| translate}}"
+                           [ngbTypeahead]="searchAnalista"
+                           [inputFormatter]="formatterAnalista"
+                           [resultFormatter]="formatterAnalista"
+                           [(ngModel)]="filters.analista"
+                           (ngModelChange)="loadPage()"
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="col-md-4 input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-producto"><fa-icon icon="list"></fa-icon></span>
+                    </div>
+                    <input type="text" class="form-control" id="filter_producto"
+                           placeholder="Filtrar por {{'labprovidenciaApp.fQQueso.producto'| translate}}"
+                           [ngbTypeahead]="searchProducto"
+                           [inputFormatter]="formatterProducto"
+                           [resultFormatter]="formatterProducto"
+                           [(ngModel)]="filters.producto"
+                           (ngModelChange)="loadPage()"
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="col-md-4 input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-proveedor"><fa-icon icon="list"></fa-icon></span>
+                    </div>
+                    <input type="text" class="form-control" id="filter_proveedor"
+                           placeholder="Filtrar por {{'labprovidenciaApp.fQQueso.proveedor'| translate}}"
+                           [ngbTypeahead]="searchProveedor"
+                           [inputFormatter]="formatterProveedor"
+                           [resultFormatter]="formatterProveedor"
+                           [(ngModel)]="filters.proveedor"
+                           (ngModelChange)="loadPage()"
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>
