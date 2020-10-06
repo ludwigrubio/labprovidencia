@@ -39,7 +39,7 @@ export const cultivoRoute: Routes = [
     path: '',
     component: CultivoComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       defaultSort: 'id,asc',
       pageTitle: 'labprovidenciaApp.cultivo.home.title',
     },
@@ -52,7 +52,7 @@ export const cultivoRoute: Routes = [
       cultivo: CultivoResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.cultivo.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const cultivoRoute: Routes = [
       cultivo: CultivoResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.cultivo.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const cultivoRoute: Routes = [
       cultivo: CultivoResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.cultivo.home.title',
     },
     canActivate: [UserRouteAccessService],

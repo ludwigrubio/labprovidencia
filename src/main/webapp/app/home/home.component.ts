@@ -13,11 +13,19 @@ import { Account } from 'app/core/user/account.model';
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
+  sizeCol?: string;
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => {
+      this.account = account;
+      if (this.account?.authorities?.includes('ROLE_ADMIN')) {
+        this.sizeCol = 'col-md-8';
+      } else {
+        this.sizeCol = 'col-md-12';
+      }
+    });
   }
 
   isAuthenticated(): boolean {

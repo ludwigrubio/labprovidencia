@@ -76,7 +76,7 @@ export const pruebaMicroRoute: Routes = [
       pruebaMicro: PruebaMicroResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.pruebaMicro.home.title',
     },
     canActivate: [UserRouteAccessService],

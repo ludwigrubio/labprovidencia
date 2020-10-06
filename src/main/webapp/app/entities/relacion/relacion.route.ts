@@ -39,7 +39,7 @@ export const relacionRoute: Routes = [
     path: '',
     component: RelacionComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       defaultSort: 'id,asc',
       pageTitle: 'labprovidenciaApp.relacion.home.title',
     },
@@ -52,7 +52,7 @@ export const relacionRoute: Routes = [
       relacion: RelacionResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.relacion.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const relacionRoute: Routes = [
       relacion: RelacionResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.relacion.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const relacionRoute: Routes = [
       relacion: RelacionResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.relacion.home.title',
     },
     canActivate: [UserRouteAccessService],

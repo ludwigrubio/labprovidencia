@@ -76,7 +76,7 @@ export const fQCremaRoute: Routes = [
       fQCrema: FQCremaResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.fQCrema.home.title',
     },
     canActivate: [UserRouteAccessService],

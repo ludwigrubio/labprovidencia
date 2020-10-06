@@ -76,7 +76,7 @@ export const fQLecheRoute: Routes = [
       fQLeche: FQLecheResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.fQLeche.home.title',
     },
     canActivate: [UserRouteAccessService],

@@ -39,7 +39,7 @@ export const superficieRoute: Routes = [
     path: '',
     component: SuperficieComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       defaultSort: 'id,asc',
       pageTitle: 'labprovidenciaApp.superficie.home.title',
     },
@@ -52,7 +52,7 @@ export const superficieRoute: Routes = [
       superficie: SuperficieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.superficie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const superficieRoute: Routes = [
       superficie: SuperficieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.superficie.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const superficieRoute: Routes = [
       superficie: SuperficieResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.superficie.home.title',
     },
     canActivate: [UserRouteAccessService],

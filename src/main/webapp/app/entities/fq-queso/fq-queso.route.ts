@@ -76,7 +76,7 @@ export const fQQuesoRoute: Routes = [
       fQQueso: FQQuesoResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.fQQueso.home.title',
     },
     canActivate: [UserRouteAccessService],

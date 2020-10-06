@@ -39,7 +39,7 @@ export const areaRoute: Routes = [
     path: '',
     component: AreaComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       defaultSort: 'id,asc',
       pageTitle: 'labprovidenciaApp.area.home.title',
     },
@@ -52,7 +52,7 @@ export const areaRoute: Routes = [
       area: AreaResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.area.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const areaRoute: Routes = [
       area: AreaResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.area.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const areaRoute: Routes = [
       area: AreaResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.area.home.title',
     },
     canActivate: [UserRouteAccessService],

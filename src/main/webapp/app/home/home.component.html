@@ -153,7 +153,7 @@
                 </div>
             </div>
             <div class="row" *ngSwitchCase="true">
-                <div class="col-md-8" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
+                <div class="{{sizeCol}}" *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']">
                     <div class="card">
                         <h5 class="card-header">
                             <fa-icon icon="list"></fa-icon>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4" *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EDITOR'">
+                <div class="col-md-4" *jhiHasAnyAuthority="['ROLE_ADMIN']">
                     <div class="card">
                         <h5 class="card-header">
                             <fa-icon icon="user"> </fa-icon>

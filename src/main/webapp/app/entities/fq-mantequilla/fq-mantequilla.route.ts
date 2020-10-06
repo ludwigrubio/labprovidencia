@@ -76,7 +76,7 @@ export const fQMantequillaRoute: Routes = [
       fQMantequilla: FQMantequillaResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN, Authority.EDITOR],
       pageTitle: 'labprovidenciaApp.fQMantequilla.home.title',
     },
     canActivate: [UserRouteAccessService],
