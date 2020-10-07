@@ -15,6 +15,8 @@ import { ICultivo } from 'app/shared/model/cultivo.model';
 import { CultivoService } from 'app/entities/cultivo/cultivo.service';
 import { ISuperficie } from 'app/shared/model/superficie.model';
 import { SuperficieService } from 'app/entities/superficie/superficie.service';
+import { IProducto } from 'app/shared/model/producto.model';
+import { ProductoService } from 'app/entities/producto/producto.service';
 import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
@@ -26,7 +28,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
-type SelectableEntity = IArea | ICultivo | ISuperficie | IUserExtra | IPersonal;
+type SelectableEntity = IArea | ICultivo | ISuperficie | IProducto | IUserExtra | IPersonal;
 
 @Component({
   selector: 'jhi-prueba-micro-update',
@@ -34,11 +36,12 @@ type SelectableEntity = IArea | ICultivo | ISuperficie | IUserExtra | IPersonal;
 })
 export class PruebaMicroUpdateComponent implements OnInit {
   isSaving = false;
+  areas: IArea[] = [];
+  cultivos: ICultivo[] = [];
 
   editForm = this.fb.group({
     id: [],
     tipodeMuestra: [null, [Validators.required]],
-    idCatalogo: [null, [Validators.required, Validators.maxLength(10)]],
     lote: [null, [Validators.maxLength(45)]],
     inicio: [null, [Validators.required]],
     fin: [],
@@ -48,6 +51,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
     area: [null, Validators.required],
     cultivo: [],
     superficie: [],
+    producto: [],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
   });
@@ -57,11 +61,12 @@ export class PruebaMicroUpdateComponent implements OnInit {
     protected areaService: AreaService,
     protected cultivoService: CultivoService,
     protected superficieService: SuperficieService,
+    protected productoService: ProductoService,
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    protected accountService: AccountService
+    protected accountService: AccountService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -81,6 +86,16 @@ export class PruebaMicroUpdateComponent implements OnInit {
             .subscribe((res: HttpResponse<IUserExtra[]>) => this.editForm.patchValue({ analista: res.body![0] }));
         }
       });
+
+      this.cultivoService.query().subscribe((res: HttpResponse<ICultivo[]>) => (this.cultivos = res.body || []));
+
+      this.editForm.controls['tipodeMuestra'].valueChanges.subscribe(value => {
+        if (value === '2') {
+          this.editForm.controls['producto'].setValue([]);
+        } else {
+          this.editForm.controls['superficie'].setValue([]);
+        }
+      });
     });
   }
 
@@ -88,7 +103,6 @@ export class PruebaMicroUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: pruebaMicro.id,
       tipodeMuestra: pruebaMicro.tipodeMuestra,
-      idCatalogo: pruebaMicro.idCatalogo,
       lote: pruebaMicro.lote,
       inicio: pruebaMicro.inicio ? pruebaMicro.inicio.format(DATE_TIME_FORMAT) : null,
       fin: pruebaMicro.fin ? pruebaMicro.fin.format(DATE_TIME_FORMAT) : null,
@@ -98,6 +112,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
       area: pruebaMicro.area,
       cultivo: pruebaMicro.cultivo,
       superficie: pruebaMicro.superficie,
+      producto: pruebaMicro.producto,
       analista: pruebaMicro.analista,
       proveedor: pruebaMicro.proveedor,
     });
@@ -122,7 +137,6 @@ export class PruebaMicroUpdateComponent implements OnInit {
       ...new PruebaMicro(),
       id: this.editForm.get(['id'])!.value,
       tipodeMuestra: this.editForm.get(['tipodeMuestra'])!.value,
-      idCatalogo: this.editForm.get(['idCatalogo'])!.value,
       lote: this.editForm.get(['lote'])!.value,
       inicio: this.editForm.get(['inicio'])!.value ? moment(this.editForm.get(['inicio'])!.value, DATE_TIME_FORMAT) : undefined,
       fin: this.editForm.get(['fin'])!.value ? moment(this.editForm.get(['fin'])!.value, DATE_TIME_FORMAT) : undefined,
@@ -132,6 +146,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
       area: this.editForm.get(['area'])!.value,
       cultivo: this.editForm.get(['cultivo'])!.value,
       superficie: this.editForm.get(['superficie'])!.value,
+      producto: this.editForm.get(['producto'])!.value,
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
     };
@@ -156,6 +171,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
+
   formatterArea = (x: { area: string }) => x.area;
 
   searchArea = (text$: Observable<string>) =>
@@ -164,26 +180,6 @@ export class PruebaMicroUpdateComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.areaService.query({ 'area.contains': term }))),
       map((res: HttpResponse<IArea[]>) => res.body || [])
-    );
-
-  formatterCultivo = (x: { cultivo: string }) => x.cultivo;
-
-  searchCultivo = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(term => (term.length < 2 ? [] : this.cultivoService.query({ 'cultivo.contains': term }))),
-      map((res: HttpResponse<ICultivo[]>) => res.body || [])
-    );
-
-  formatterSuperficie = (x: { superficie: string }) => x.superficie;
-
-  searchSuperficie = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(term => (term.length < 2 ? [] : this.superficieService.query({ 'superficie.contains': term }))),
-      map((res: HttpResponse<ISuperficie[]>) => res.body || [])
     );
 
   formatterAnalista = (x: { nombreCompleto: string }) => x.nombreCompleto;
@@ -204,5 +200,25 @@ export class PruebaMicroUpdateComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term, 'relacionId.equals': '2' }))),
       map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
+
+  formatterSuperficie = (x: { superficie: string }) => x.superficie;
+
+  searchSuperficie = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.superficieService.query({ 'superficie.contains': term }))),
+      map((res: HttpResponse<ISuperficie[]>) => res.body || [])
+    );
+
+  formatterProducto = (x: { producto: string }) => x.producto;
+
+  searchProducto = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.productoService.query({ 'producto.contains': term }))),
+      map((res: HttpResponse<IProducto[]>) => res.body || [])
     );
 }

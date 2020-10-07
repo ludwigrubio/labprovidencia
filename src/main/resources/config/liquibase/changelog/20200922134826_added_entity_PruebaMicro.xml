@@ -19,9 +19,6 @@
             <column name="tipode_muestra" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="id_catalogo" type="varchar(10)">
-                <constraints nullable="false" />
-            </column>
             <column name="lote" type="varchar(45)">
                 <constraints nullable="true" />
             </column>
@@ -47,6 +44,9 @@
                 <constraints nullable="true" />
             </column>
             <column name="superficie_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="producto_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="analista_id" type="bigint">
@@ -95,7 +95,6 @@
                   tableName="prueba_micro">
             <column name="id" type="numeric"/>
             <column name="tipode_muestra" type="numeric"/>
-            <column name="id_catalogo" type="string"/>
             <column name="lote" type="string"/>
             <column name="inicio" type="datetime"/>
             <column name="fin" type="datetime"/>

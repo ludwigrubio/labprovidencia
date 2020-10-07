@@ -88,9 +88,6 @@ public class PruebaMicroQueryService extends QueryService<PruebaMicro> {
             if (criteria.getTipodeMuestra() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getTipodeMuestra(), PruebaMicro_.tipodeMuestra));
             }
-            if (criteria.getIdCatalogo() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getIdCatalogo(), PruebaMicro_.idCatalogo));
-            }
             if (criteria.getLote() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLote(), PruebaMicro_.lote));
             }
@@ -120,6 +117,10 @@ public class PruebaMicroQueryService extends QueryService<PruebaMicro> {
             if (criteria.getSuperficieId() != null) {
                 specification = specification.and(buildSpecification(criteria.getSuperficieId(),
                     root -> root.join(PruebaMicro_.superficie, JoinType.LEFT).get(Superficie_.id)));
+            }
+            if (criteria.getProductoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProductoId(),
+                    root -> root.join(PruebaMicro_.producto, JoinType.LEFT).get(Producto_.id)));
             }
             if (criteria.getAnalistaId() != null) {
                 specification = specification.and(buildSpecification(criteria.getAnalistaId(),

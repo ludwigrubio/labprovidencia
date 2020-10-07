@@ -28,7 +28,6 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
-import * as moment from 'moment'; // add this 1 of 4
 @Component({
   selector: 'jhi-prueba-micro',
   templateUrl: './prueba-micro.component.html',
@@ -71,20 +70,6 @@ export class PruebaMicroComponent implements OnInit, OnDestroy {
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
-    const isValidDateI = moment(this.filters.fechaInicio, 'YYYY-MM-DD', true).isValid();
-    const isValidDateF = moment(this.filters.fechaFin, 'YYYY-MM-DD', true).isValid();
-
-    if (this.filters.fechaInicio !== '' && isValidDateI) {
-      this.dateTop = new Date(this.filters.fechaInicio + ' 00:00:00').toISOString();
-    } else {
-      this.dateTop = '';
-    }
-
-    if (this.filters.fechaFin !== '' && isValidDateF) {
-      this.dateButton = new Date(this.filters.fechaFin + ' 23:59:59').toISOString();
-    } else {
-      this.dateButton = '';
-    }
 
     this.pruebaMicroService
       .query({

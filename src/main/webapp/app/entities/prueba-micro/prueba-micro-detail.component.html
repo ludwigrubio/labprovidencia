@@ -12,10 +12,6 @@
                 <dd>
                     <span>{{ pruebaMicro.tipodeMuestra }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.idCatalogo">Id Catalogo</span></dt>
-                <dd>
-                    <span>{{ pruebaMicro.idCatalogo }}</span>
-                </dd>
                 <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.lote">Lote</span></dt>
                 <dd>
                     <span>{{ pruebaMicro.lote }}</span>
@@ -56,6 +52,12 @@
                 <dd>
                     <div *ngIf="pruebaMicro.superficie">
                         <a [routerLink]="['/superficie', pruebaMicro.superficie?.id, 'view']">{{ pruebaMicro.superficie?.superficie }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.producto">
+                        <a [routerLink]="['/producto', pruebaMicro.producto?.id, 'view']">{{ pruebaMicro.producto?.producto }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.analista">Analista</span></dt>

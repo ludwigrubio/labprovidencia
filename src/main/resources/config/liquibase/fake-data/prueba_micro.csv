@@ -1,11 +1,11 @@
-id;tipode_muestra;id_catalogo;lote;inicio;fin;resultado;unidades;observaciones;area_id;analista_id;proveedor_id
-1;26620;collaborat;circuit Practical Fresh Car;2020-09-21T18:40:39;2020-09-22T13:15:21;72750;29442;Music;1;1;1
-2;46758;mobile zer;Fish Fantastic Fresh Shirt;2020-09-22T09:30:28;2020-09-22T05:12:03;27567;42115;Auto Loan Account dot-com;2;2;2
-3;32443;Mill Savin;engineer paradigm withdrawal;2020-09-22T03:57:50;2020-09-22T13:18:51;78851;78162;parsing;3;3;3
-4;12220;Assistant ;Nauru Computers Versatile;2020-09-21T22:56:32;2020-09-21T16:45:44;64020;98536;Spur Corporate Ohio;4;4;4
-5;35649;Home Ergon;Program;2020-09-22T06:58:46;2020-09-22T05:37:20;50493;87972;Metal salmon Wooden;4;4;4
-6;87409;pixel Chec;Paradigm Salad Configuration;2020-09-21T19:42:35;2020-09-22T00:07:58;98668;66663;green Plastic ivory;4;4;4
-7;15333;deposit Ad;synthesizing Fiji Dollar;2020-09-21T14:24:47;2020-09-22T08:50:52;10835;74083;Handmade Wooden Soap Persistent;4;4;4
-8;23396;Paradigm R;indexing monetize;2020-09-22T04:11:20;2020-09-22T11:32:43;14322;29533;Jewelery Forward synthesizing;4;4;4
-9;74159;Glen;Uganda Shilling compress Progressive;2020-09-21T19:44:00;2020-09-22T03:16:08;87863;29604;azure Soft;4;4;4
-10;42284;auxiliary ;Investor protocol RAM;2020-09-22T05:57:14;2020-09-22T02:00:42;85792;27803;Connecticut human-resource bypassing;4;4;4
+id;tipode_muestra;lote;inicio;fin;resultado;unidades;observaciones;area_id;analista_id;proveedor_id
+1;1;collaboration;2020-09-22T00:18:58;2020-09-21T20:25:06;90904;6579;bypassing auxiliary;1;1;5
+2;2;Small;2020-09-22T11:23:41;2020-09-22T02:35:06;74288;80907;zero tolerance Borders Savings Account;2;2;6
+3;1;next-generation;2020-09-22T04:28:54;2020-09-22T09:30:28;35858;27567;maximize copying;3;3;7
+4;1;Kenya;2020-09-22T01:50:37;2020-09-21T23:26:32;17383;85306;virtual alarm;4;4;8
+5;1;Jewelery primary;2020-09-21T18:11:19;2020-09-21T13:49:57;12220;92573;auxiliary strategize magenta;5;4;8
+6;1;Computers Versatile;2020-09-21T22:56:32;2020-09-21T16:45:44;64020;98536;Spur Corporate Ohio;6;4;9
+7;2;Home Ergonomic Metal Chair AGP;2020-09-22T12:30:16;2020-09-21T14:54:26;5253;28447;Cambridgeshire panel;7;4;6
+8;2;Connecticut;2020-09-22T10:06:01;2020-09-21T16:49:44;71584;71514;Checking Account Investor;8;4;5
+9;2;capacity Principal USB;2020-09-22T00:07:58;2020-09-21T14:07:36;66663;89618;Rustic Plastic Bike;9;4;5
+10;2;North Carolina;2020-09-22T11:05:39;2020-09-21T14:11:21;43050;62927;wireless Virtual yellow;10;4;9

@@ -5,6 +5,7 @@ import com.provi.lab.domain.PruebaMicro;
 import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Cultivo;
 import com.provi.lab.domain.Superficie;
+import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
 import com.provi.lab.repository.PruebaMicroRepository;
@@ -42,9 +43,6 @@ public class PruebaMicroResourceIT {
     private static final Integer DEFAULT_TIPODE_MUESTRA = 1;
     private static final Integer UPDATED_TIPODE_MUESTRA = 2;
     private static final Integer SMALLER_TIPODE_MUESTRA = 1 - 1;
-
-    private static final String DEFAULT_ID_CATALOGO = "AAAAAAAAAA";
-    private static final String UPDATED_ID_CATALOGO = "BBBBBBBBBB";
 
     private static final String DEFAULT_LOTE = "AAAAAAAAAA";
     private static final String UPDATED_LOTE = "BBBBBBBBBB";
@@ -92,7 +90,6 @@ public class PruebaMicroResourceIT {
     public static PruebaMicro createEntity(EntityManager em) {
         PruebaMicro pruebaMicro = new PruebaMicro()
             .tipodeMuestra(DEFAULT_TIPODE_MUESTRA)
-            .idCatalogo(DEFAULT_ID_CATALOGO)
             .lote(DEFAULT_LOTE)
             .inicio(DEFAULT_INICIO)
             .fin(DEFAULT_FIN)
@@ -140,7 +137,6 @@ public class PruebaMicroResourceIT {
     public static PruebaMicro createUpdatedEntity(EntityManager em) {
         PruebaMicro pruebaMicro = new PruebaMicro()
             .tipodeMuestra(UPDATED_TIPODE_MUESTRA)
-            .idCatalogo(UPDATED_ID_CATALOGO)
             .lote(UPDATED_LOTE)
             .inicio(UPDATED_INICIO)
             .fin(UPDATED_FIN)
@@ -200,7 +196,6 @@ public class PruebaMicroResourceIT {
         assertThat(pruebaMicroList).hasSize(databaseSizeBeforeCreate + 1);
         PruebaMicro testPruebaMicro = pruebaMicroList.get(pruebaMicroList.size() - 1);
         assertThat(testPruebaMicro.getTipodeMuestra()).isEqualTo(DEFAULT_TIPODE_MUESTRA);
-        assertThat(testPruebaMicro.getIdCatalogo()).isEqualTo(DEFAULT_ID_CATALOGO);
         assertThat(testPruebaMicro.getLote()).isEqualTo(DEFAULT_LOTE);
         assertThat(testPruebaMicro.getInicio()).isEqualTo(DEFAULT_INICIO);
         assertThat(testPruebaMicro.getFin()).isEqualTo(DEFAULT_FIN);
@@ -250,25 +245,6 @@ public class PruebaMicroResourceIT {
 
     @Test
     @Transactional
-    public void checkIdCatalogoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = pruebaMicroRepository.findAll().size();
-        // set the field null
-        pruebaMicro.setIdCatalogo(null);
-
-        // Create the PruebaMicro, which fails.
-
-
-        restPruebaMicroMockMvc.perform(post("/api/prueba-micros")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(pruebaMicro)))
-            .andExpect(status().isBadRequest());
-
-        List<PruebaMicro> pruebaMicroList = pruebaMicroRepository.findAll();
-        assertThat(pruebaMicroList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkInicioIsRequired() throws Exception {
         int databaseSizeBeforeTest = pruebaMicroRepository.findAll().size();
         // set the field null
@@ -298,7 +274,6 @@ public class PruebaMicroResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pruebaMicro.getId().intValue())))
             .andExpect(jsonPath("$.[*].tipodeMuestra").value(hasItem(DEFAULT_TIPODE_MUESTRA)))
-            .andExpect(jsonPath("$.[*].idCatalogo").value(hasItem(DEFAULT_ID_CATALOGO)))
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].inicio").value(hasItem(DEFAULT_INICIO.toString())))
             .andExpect(jsonPath("$.[*].fin").value(hasItem(DEFAULT_FIN.toString())))
@@ -319,7 +294,6 @@ public class PruebaMicroResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(pruebaMicro.getId().intValue()))
             .andExpect(jsonPath("$.tipodeMuestra").value(DEFAULT_TIPODE_MUESTRA))
-            .andExpect(jsonPath("$.idCatalogo").value(DEFAULT_ID_CATALOGO))
             .andExpect(jsonPath("$.lote").value(DEFAULT_LOTE))
             .andExpect(jsonPath("$.inicio").value(DEFAULT_INICIO.toString()))
             .andExpect(jsonPath("$.fin").value(DEFAULT_FIN.toString()))
@@ -450,84 +424,6 @@ public class PruebaMicroResourceIT {
 
         // Get all the pruebaMicroList where tipodeMuestra is greater than SMALLER_TIPODE_MUESTRA
         defaultPruebaMicroShouldBeFound("tipodeMuestra.greaterThan=" + SMALLER_TIPODE_MUESTRA);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoIsEqualToSomething() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo equals to DEFAULT_ID_CATALOGO
-        defaultPruebaMicroShouldBeFound("idCatalogo.equals=" + DEFAULT_ID_CATALOGO);
-
-        // Get all the pruebaMicroList where idCatalogo equals to UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.equals=" + UPDATED_ID_CATALOGO);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoIsNotEqualToSomething() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo not equals to DEFAULT_ID_CATALOGO
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.notEquals=" + DEFAULT_ID_CATALOGO);
-
-        // Get all the pruebaMicroList where idCatalogo not equals to UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldBeFound("idCatalogo.notEquals=" + UPDATED_ID_CATALOGO);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoIsInShouldWork() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo in DEFAULT_ID_CATALOGO or UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldBeFound("idCatalogo.in=" + DEFAULT_ID_CATALOGO + "," + UPDATED_ID_CATALOGO);
-
-        // Get all the pruebaMicroList where idCatalogo equals to UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.in=" + UPDATED_ID_CATALOGO);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo is not null
-        defaultPruebaMicroShouldBeFound("idCatalogo.specified=true");
-
-        // Get all the pruebaMicroList where idCatalogo is null
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.specified=false");
-    }
-                @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoContainsSomething() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo contains DEFAULT_ID_CATALOGO
-        defaultPruebaMicroShouldBeFound("idCatalogo.contains=" + DEFAULT_ID_CATALOGO);
-
-        // Get all the pruebaMicroList where idCatalogo contains UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.contains=" + UPDATED_ID_CATALOGO);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPruebaMicrosByIdCatalogoNotContainsSomething() throws Exception {
-        // Initialize the database
-        pruebaMicroRepository.saveAndFlush(pruebaMicro);
-
-        // Get all the pruebaMicroList where idCatalogo does not contain DEFAULT_ID_CATALOGO
-        defaultPruebaMicroShouldNotBeFound("idCatalogo.doesNotContain=" + DEFAULT_ID_CATALOGO);
-
-        // Get all the pruebaMicroList where idCatalogo does not contain UPDATED_ID_CATALOGO
-        defaultPruebaMicroShouldBeFound("idCatalogo.doesNotContain=" + UPDATED_ID_CATALOGO);
     }
 
 
@@ -1059,6 +955,26 @@ public class PruebaMicroResourceIT {
 
     @Test
     @Transactional
+    public void getAllPruebaMicrosByProductoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        pruebaMicroRepository.saveAndFlush(pruebaMicro);
+        Producto producto = ProductoResourceIT.createEntity(em);
+        em.persist(producto);
+        em.flush();
+        pruebaMicro.setProducto(producto);
+        pruebaMicroRepository.saveAndFlush(pruebaMicro);
+        Long productoId = producto.getId();
+
+        // Get all the pruebaMicroList where producto equals to productoId
+        defaultPruebaMicroShouldBeFound("productoId.equals=" + productoId);
+
+        // Get all the pruebaMicroList where producto equals to productoId + 1
+        defaultPruebaMicroShouldNotBeFound("productoId.equals=" + (productoId + 1));
+    }
+
+
+    @Test
+    @Transactional
     public void getAllPruebaMicrosByAnalistaIsEqualToSomething() throws Exception {
         // Get already existing entity
         UserExtra analista = pruebaMicro.getAnalista();
@@ -1097,7 +1013,6 @@ public class PruebaMicroResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pruebaMicro.getId().intValue())))
             .andExpect(jsonPath("$.[*].tipodeMuestra").value(hasItem(DEFAULT_TIPODE_MUESTRA)))
-            .andExpect(jsonPath("$.[*].idCatalogo").value(hasItem(DEFAULT_ID_CATALOGO)))
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].inicio").value(hasItem(DEFAULT_INICIO.toString())))
             .andExpect(jsonPath("$.[*].fin").value(hasItem(DEFAULT_FIN.toString())))
@@ -1151,7 +1066,6 @@ public class PruebaMicroResourceIT {
         em.detach(updatedPruebaMicro);
         updatedPruebaMicro
             .tipodeMuestra(UPDATED_TIPODE_MUESTRA)
-            .idCatalogo(UPDATED_ID_CATALOGO)
             .lote(UPDATED_LOTE)
             .inicio(UPDATED_INICIO)
             .fin(UPDATED_FIN)
@@ -1169,7 +1083,6 @@ public class PruebaMicroResourceIT {
         assertThat(pruebaMicroList).hasSize(databaseSizeBeforeUpdate);
         PruebaMicro testPruebaMicro = pruebaMicroList.get(pruebaMicroList.size() - 1);
         assertThat(testPruebaMicro.getTipodeMuestra()).isEqualTo(UPDATED_TIPODE_MUESTRA);
-        assertThat(testPruebaMicro.getIdCatalogo()).isEqualTo(UPDATED_ID_CATALOGO);
         assertThat(testPruebaMicro.getLote()).isEqualTo(UPDATED_LOTE);
         assertThat(testPruebaMicro.getInicio()).isEqualTo(UPDATED_INICIO);
         assertThat(testPruebaMicro.getFin()).isEqualTo(UPDATED_FIN);

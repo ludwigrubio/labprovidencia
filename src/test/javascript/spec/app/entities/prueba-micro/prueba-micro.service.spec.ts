@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new PruebaMicro(0, 0, 'AAAAAAA', 'AAAAAAA', currentDate, currentDate, 0, 0, 'AAAAAAA');
+      elemDefault = new PruebaMicro(0, 0, 'AAAAAAA', currentDate, currentDate, 0, 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -73,7 +73,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             tipodeMuestra: 1,
-            idCatalogo: 'BBBBBB',
             lote: 'BBBBBB',
             inicio: currentDate.format(DATE_TIME_FORMAT),
             fin: currentDate.format(DATE_TIME_FORMAT),
@@ -103,7 +102,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             tipodeMuestra: 1,
-            idCatalogo: 'BBBBBB',
             lote: 'BBBBBB',
             inicio: currentDate.format(DATE_TIME_FORMAT),
             fin: currentDate.format(DATE_TIME_FORMAT),

@@ -3,13 +3,13 @@
     "pruebaMicro": {
       "home": {
         "title": "Prueba Micros",
-        "createLabel": "Crear nuevo Prueba Micro",
+        "createLabel": "Crear nueva Prueba Micro",
         "createOrEditLabel": "Crear o editar Prueba Micro",
         "notFound": "No se encontró ningúna Prueba Micro"
       },
-      "created": "Un nuevo Prueba Micro ha sido creado con el identificador {{ param }}",
-      "updated": "Un Prueba Micro ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Prueba Micro ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Prueba Micro ha sido creada con el identificador {{ param }}",
+      "updated": "Una Prueba Micro ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Prueba Micro ha sido eliminada con el identificador {{ param }}",
       "delete": {
         "question": "¿Seguro que quiere eliminar Prueba Micro {{ id }}?"
       },
@@ -17,7 +17,7 @@
         "title": "Prueba Micro"
       },
       "tipodeMuestra": "Tipo de Muestra",
-      "idCatalogo": "ID Catalogo",
+      "producto": "Producto",
       "lote": "Lote",
       "inicio": "Inicio",
       "fin": "Fin",

@@ -7,7 +7,7 @@
         Added the constraints for entity PruebaMicro.
     -->
     <changeSet id="20200922134826-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="area_id"
                                  baseTableName="prueba_micro"
                                  constraintName="fk_prueba_micro_area_id"
@@ -25,6 +25,12 @@
                                  constraintName="fk_prueba_micro_superficie_id"
                                  referencedColumnNames="id"
                                  referencedTableName="superficie"/>
+
+        <addForeignKeyConstraint baseColumnNames="producto_id"
+                                 baseTableName="prueba_micro"
+                                 constraintName="fk_prueba_micro_producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producto"/>
 
         <addForeignKeyConstraint baseColumnNames="analista_id"
                                  baseTableName="prueba_micro"

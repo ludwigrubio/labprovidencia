@@ -9,15 +9,6 @@
             ]
         },
         {
-            "fieldName": "idCatalogo",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "maxlength",
-                "required"
-            ],
-            "fieldValidateRulesMaxlength": "10"
-        },
-        {
             "fieldName": "lote",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -75,6 +66,13 @@
             "otherEntityRelationshipName": "pruebaMicro",
             "relationshipName": "superficie",
             "otherEntityField": "superficie"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "pruebaMicro",
+            "relationshipName": "producto",
+            "otherEntityField": "producto"
         },
         {
             "relationshipType": "many-to-one",

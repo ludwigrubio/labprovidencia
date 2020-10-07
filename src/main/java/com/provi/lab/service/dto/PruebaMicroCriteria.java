@@ -29,8 +29,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
 
     private IntegerFilter tipodeMuestra;
 
-    private StringFilter idCatalogo;
-
     private StringFilter lote;
 
     private InstantFilter inicio;
@@ -49,6 +47,8 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
 
     private LongFilter superficieId;
 
+    private LongFilter productoId;
+
     private LongFilter analistaId;
 
     private LongFilter proveedorId;
@@ -59,7 +59,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
     public PruebaMicroCriteria(PruebaMicroCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.tipodeMuestra = other.tipodeMuestra == null ? null : other.tipodeMuestra.copy();
-        this.idCatalogo = other.idCatalogo == null ? null : other.idCatalogo.copy();
         this.lote = other.lote == null ? null : other.lote.copy();
         this.inicio = other.inicio == null ? null : other.inicio.copy();
         this.fin = other.fin == null ? null : other.fin.copy();
@@ -69,6 +68,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         this.areaId = other.areaId == null ? null : other.areaId.copy();
         this.cultivoId = other.cultivoId == null ? null : other.cultivoId.copy();
         this.superficieId = other.superficieId == null ? null : other.superficieId.copy();
+        this.productoId = other.productoId == null ? null : other.productoId.copy();
         this.analistaId = other.analistaId == null ? null : other.analistaId.copy();
         this.proveedorId = other.proveedorId == null ? null : other.proveedorId.copy();
     }
@@ -92,14 +92,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
 
     public void setTipodeMuestra(IntegerFilter tipodeMuestra) {
         this.tipodeMuestra = tipodeMuestra;
-    }
-
-    public StringFilter getIdCatalogo() {
-        return idCatalogo;
-    }
-
-    public void setIdCatalogo(StringFilter idCatalogo) {
-        this.idCatalogo = idCatalogo;
     }
 
     public StringFilter getLote() {
@@ -174,6 +166,14 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         this.superficieId = superficieId;
     }
 
+    public LongFilter getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(LongFilter productoId) {
+        this.productoId = productoId;
+    }
+
     public LongFilter getAnalistaId() {
         return analistaId;
     }
@@ -203,7 +203,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(tipodeMuestra, that.tipodeMuestra) &&
-            Objects.equals(idCatalogo, that.idCatalogo) &&
             Objects.equals(lote, that.lote) &&
             Objects.equals(inicio, that.inicio) &&
             Objects.equals(fin, that.fin) &&
@@ -213,6 +212,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
             Objects.equals(areaId, that.areaId) &&
             Objects.equals(cultivoId, that.cultivoId) &&
             Objects.equals(superficieId, that.superficieId) &&
+            Objects.equals(productoId, that.productoId) &&
             Objects.equals(analistaId, that.analistaId) &&
             Objects.equals(proveedorId, that.proveedorId);
     }
@@ -222,7 +222,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         return Objects.hash(
         id,
         tipodeMuestra,
-        idCatalogo,
         lote,
         inicio,
         fin,
@@ -232,6 +231,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         areaId,
         cultivoId,
         superficieId,
+        productoId,
         analistaId,
         proveedorId
         );
@@ -243,7 +243,6 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         return "PruebaMicroCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (tipodeMuestra != null ? "tipodeMuestra=" + tipodeMuestra + ", " : "") +
-                (idCatalogo != null ? "idCatalogo=" + idCatalogo + ", " : "") +
                 (lote != null ? "lote=" + lote + ", " : "") +
                 (inicio != null ? "inicio=" + inicio + ", " : "") +
                 (fin != null ? "fin=" + fin + ", " : "") +
@@ -253,6 +252,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
                 (areaId != null ? "areaId=" + areaId + ", " : "") +
                 (cultivoId != null ? "cultivoId=" + cultivoId + ", " : "") +
                 (superficieId != null ? "superficieId=" + superficieId + ", " : "") +
+                (productoId != null ? "productoId=" + productoId + ", " : "") +
                 (analistaId != null ? "analistaId=" + analistaId + ", " : "") +
                 (proveedorId != null ? "proveedorId=" + proveedorId + ", " : "") +
             "}";

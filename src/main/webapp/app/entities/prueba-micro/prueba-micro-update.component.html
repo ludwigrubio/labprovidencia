@@ -13,8 +13,14 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.tipodeMuestra" for="field_tipodeMuestra">Tipode Muestra</label>
-                    <input type="number" class="form-control" name="tipodeMuestra" id="field_tipodeMuestra"
-                           formControlName="tipodeMuestra"/>
+                    <select class="form-control" id="field_tipodeMuestra"
+                            name="tipodeMuestra"
+                            formControlName="tipodeMuestra"
+                    >
+                        <option value="" selected disabled>Seleccione tipo de muestra</option>
+                        <option value="1">Producto</option>
+                        <option value="2">Superficie</option>
+                    </select>
                     <div *ngIf="editForm.get('tipodeMuestra')!.invalid && (editForm.get('tipodeMuestra')!.dirty || editForm.get('tipodeMuestra')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('tipodeMuestra')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -27,19 +33,33 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.idCatalogo" for="field_idCatalogo">Id Catalogo</label>
-                    <input type="text" class="form-control" name="idCatalogo" id="field_idCatalogo"
-                           formControlName="idCatalogo"/>
-                    <div *ngIf="editForm.get('idCatalogo')!.invalid && (editForm.get('idCatalogo')!.dirty || editForm.get('idCatalogo')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('idCatalogo')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('idCatalogo')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
-                        This field cannot be longer than 10 characters.
-                        </small>
+                <div class="form-group" *ngIf="editForm.get('tipodeMuestra')!.value == 1">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.producto" for="field_producto">Producto</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-producto"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_producto" formControlName="producto"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchProducto"
+                               [inputFormatter]="formatterProducto"
+                               [resultFormatter]="formatterProducto"
+                               [editable]='false' />
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="editForm.get('tipodeMuestra')!.value == 2">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.superficie" for="field_superficie">Superficie</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-superficie"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_superficie" formControlName="superficie"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchSuperficie"
+                               [inputFormatter]="formatterSuperficie"
+                               [resultFormatter]="formatterSuperficie"
+                               [editable]='false' />
                     </div>
                 </div>
 
@@ -104,6 +124,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo" for="field_cultivo">Cultivo</label>
+                    <select class="form-control" id="field_cultivo" name="cultivo" formControlName="cultivo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cultivoOption.id === editForm.get('cultivo')!.value?.id ? editForm.get('cultivo')!.value : cultivoOption" *ngFor="let cultivoOption of cultivos; trackBy: trackById">{{ cultivoOption.cultivo }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.area" for="field_area">Area</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -122,36 +150,6 @@
                            *ngIf="editForm.get('area')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                     </small>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo" for="field_cultivo">Cultivo</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-cultivo"><fa-icon icon="list"></fa-icon></span>
-                        </div>
-                        <input type="text" class="form-control" id="field_cultivo" formControlName="cultivo"
-                               placeholder="Buscar"
-                               [ngbTypeahead]="searchCultivo"
-                               [inputFormatter]="formatterCultivo"
-                               [resultFormatter]="formatterCultivo"
-                               [editable]='false' />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.superficie" for="field_superficie">Superficie</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-superficie"><fa-icon icon="list"></fa-icon></span>
-                        </div>
-                        <input type="text" class="form-control" id="field_superficie" formControlName="superficie"
-                               placeholder="Buscar"
-                               [ngbTypeahead]="searchSuperficie"
-                               [inputFormatter]="formatterSuperficie"
-                               [resultFormatter]="formatterSuperficie"
-                               [editable]='false' />
-                    </div>
                 </div>
 
                 <div class="form-group">

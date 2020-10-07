@@ -15,13 +15,17 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 mb-2">
-                    <input type="text"
-                           id="filter_tipodeMuestra"
-                           [(ngModel)]="filters.tipodeMuestra"
-                           (ngModelChange)="loadPage()"
-                           class="form-control"
-                           [ngModelOptions]="{standalone: true}"
-                           placeholder="Filtrar por {{'labprovidenciaApp.pruebaMicro.tipodeMuestra'| translate}}" />
+                    <select class="form-control" id="filter_tipodeMuestra"
+                            name="tipdeMuestra"
+                            [(ngModel)]="filters.tipodeMuestra"
+                            (ngModelChange)="loadPage()"
+                            [ngModelOptions]="{standalone: true}"
+                         >
+                        <option value="" selected>Todos los tipos de Muestra</option>
+                        <option value="1">Producto</option>
+                        <option value="2">Superficie</option>
+                    </select>
+
                 </div>
 
                 <div class="col-md-4 mb-2">
@@ -53,15 +57,15 @@
                 <div class="col-md-6 mb-2">
                     <div class="form-group mb-0 row">
                         <label for="field_fecha_inicio" class="col-lg-3 col-md-4 col-form-label"> Fecha inicio </label>
-                         <div class="col-lg-9 col-md-8">
-                             <input id="field_fecha_inicio"
-                               type="date"
-                               [(ngModel)]="filters.fechaInicio"
-                               (ngModelChange)="loadPage()"
-                               class="form-control"
-                               [ngModelOptions]="{standalone: true}"
-                               placeholder="YYYY-MM-DD"/>
-                         </div>
+                        <div class="col-lg-9 col-md-8">
+                            <input id="field_fecha_inicio"
+                                   type="date"
+                                   [(ngModel)]="filters.fechaInicio"
+                                   (ngModelChange)="loadPage()"
+                                   class="form-control"
+                                   [ngModelOptions]="{standalone: true}"
+                                   placeholder="YYYY-MM-DD"/>
+                        </div>
                     </div>
                 </div>
 
@@ -157,7 +161,8 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="tipodeMuestra"><span jhiTranslate="labprovidenciaApp.pruebaMicro.tipodeMuestra">Tipode Muestra</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="idCatalogo"><span jhiTranslate="labprovidenciaApp.pruebaMicro.idCatalogo">Id Catalogo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="superficie.superficie"><span jhiTranslate="labprovidenciaApp.pruebaMicro.superficie">Superficie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="producto.producto"><span jhiTranslate="labprovidenciaApp.pruebaMicro.producto">Producto</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="lote"><span jhiTranslate="labprovidenciaApp.pruebaMicro.lote">Lote</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="inicio"><span jhiTranslate="labprovidenciaApp.pruebaMicro.inicio">Inicio</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="fin"><span jhiTranslate="labprovidenciaApp.pruebaMicro.fin">Fin</span> <fa-icon icon="sort"></fa-icon></th>
@@ -166,7 +171,6 @@
                     <th scope="col"  jhiSortBy="observaciones"><span jhiTranslate="labprovidenciaApp.pruebaMicro.observaciones">Observaciones</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="area.area"><span jhiTranslate="labprovidenciaApp.pruebaMicro.area">Area</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cultivo.cultivo"><span jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo">Cultivo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="superficie.superficie"><span jhiTranslate="labprovidenciaApp.pruebaMicro.superficie">Superficie</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.pruebaMicro.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.pruebaMicro.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -175,8 +179,18 @@
             <tbody>
                 <tr *ngFor="let pruebaMicro of pruebaMicros ;trackBy: trackId">
                     <td><a [routerLink]="['/prueba-micro', pruebaMicro.id, 'view']">{{ pruebaMicro.id }}</a></td>
-                    <td>{{ pruebaMicro.tipodeMuestra }}</td>
-                    <td>{{ pruebaMicro.idCatalogo }}</td>
+                    <td *ngIf="pruebaMicro.tipodeMuestra == 1">Producto</td>
+                    <td *ngIf="pruebaMicro.tipodeMuestra == 2">Superficie</td>
+                    <td>
+                        <div *ngIf="pruebaMicro.superficie">
+                            <a [routerLink]="['/superficie', pruebaMicro.superficie?.id, 'view']" >{{ pruebaMicro.superficie?.superficie }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.producto">
+                            <a [routerLink]="['/producto', pruebaMicro.producto?.id, 'view']" >{{ pruebaMicro.producto?.producto }}</a>
+                        </div>
+                    </td>
                     <td>{{ pruebaMicro.lote }}</td>
                     <td>{{ pruebaMicro.inicio | date:'medium' }}</td>
                     <td>{{ pruebaMicro.fin | date:'medium' }}</td>
@@ -191,11 +205,6 @@
                     <td>
                         <div *ngIf="pruebaMicro.cultivo">
                             <a [routerLink]="['/cultivo', pruebaMicro.cultivo?.id, 'view']" >{{ pruebaMicro.cultivo?.cultivo }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="pruebaMicro.superficie">
-                            <a [routerLink]="['/superficie', pruebaMicro.superficie?.id, 'view']" >{{ pruebaMicro.superficie?.superficie }}</a>
                         </div>
                     </td>
                     <td>

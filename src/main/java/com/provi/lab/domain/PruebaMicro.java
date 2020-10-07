@@ -28,11 +28,6 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
     @Column(name = "tipode_muestra", nullable = false)
     private Integer tipodeMuestra;
 
-    @NotNull
-    @Size(max = 10)
-    @Column(name = "id_catalogo", length = 10, nullable = false)
-    private String idCatalogo;
-
     @Size(max = 45)
     @Column(name = "lote", length = 45)
     private String lote;
@@ -67,6 +62,10 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
     @JsonIgnoreProperties(value = "pruebaMicros", allowSetters = true)
     private Superficie superficie;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = "pruebaMicros", allowSetters = true)
+    private Producto producto;
+
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(value = "pruebaMicros", allowSetters = true)
@@ -97,19 +96,6 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
 
     public void setTipodeMuestra(Integer tipodeMuestra) {
         this.tipodeMuestra = tipodeMuestra;
-    }
-
-    public String getIdCatalogo() {
-        return idCatalogo;
-    }
-
-    public PruebaMicro idCatalogo(String idCatalogo) {
-        this.idCatalogo = idCatalogo;
-        return this;
-    }
-
-    public void setIdCatalogo(String idCatalogo) {
-        this.idCatalogo = idCatalogo;
     }
 
     public String getLote() {
@@ -229,6 +215,19 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
         this.superficie = superficie;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public PruebaMicro producto(Producto producto) {
+        this.producto = producto;
+        return this;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     public UserExtra getAnalista() {
         return analista;
     }
@@ -278,7 +277,6 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
         return "PruebaMicro{" +
             "id=" + getId() +
             ", tipodeMuestra=" + getTipodeMuestra() +
-            ", idCatalogo='" + getIdCatalogo() + "'" +
             ", lote='" + getLote() + "'" +
             ", inicio='" + getInicio() + "'" +
             ", fin='" + getFin() + "'" +
