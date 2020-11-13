@@ -24,6 +24,30 @@
                 <dd>
                     <span>{{ fQCrema.grasa }}</span>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.ph">PH</span></dt>
+                <dd>
+                    <span>{{ fQCrema.ph }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy1">Dummy1</span></dt>
+                <dd>
+                    <span>{{ fQCrema.dummy1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy2">Dummy2</span></dt>
+                <dd>
+                    <span>{{ fQCrema.dummy2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy3">Dummy3</span></dt>
+                <dd>
+                    <span>{{ fQCrema.dummy3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy4">Dummy4</span></dt>
+                <dd>
+                    <span>{{ fQCrema.dummy4 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy5">Dummy5</span></dt>
+                <dd>
+                    <span>{{ fQCrema.dummy5 }}</span>
+                </dd>
                 <dt><span jhiTranslate="labprovidenciaApp.fQCrema.observaciones">Observaciones</span></dt>
                 <dd>
                     <span>{{ fQCrema.observaciones }}</span>
@@ -50,6 +74,12 @@
                 <dd>
                     <div *ngIf="fQCrema.proveedor">
                         <a [routerLink]="['/personal', fQCrema.proveedor?.id, 'view']">{{ fQCrema.proveedor?.nombre }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.contenedor">Contenedor</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.contenedor">
+                        <a [routerLink]="['/contenedor', fQCrema.contenedor?.id, 'view']">{{ fQCrema.contenedor?.contenedor }}</a>
                     </div>
                 </dd>
             </dl>

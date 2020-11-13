@@ -20,6 +20,8 @@ import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
+import { IContenedor } from 'app/shared/model/contenedor.model';
+import { ContenedorService } from 'app/entities/contenedor/contenedor.service';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -52,7 +54,8 @@ export class FQCremaComponent implements OnInit, OnDestroy {
     protected areaService: AreaService,
     protected userExtraService: UserExtraService,
     protected productoService: ProductoService,
-    protected personalService: PersonalService
+    protected personalService: PersonalService,
+    protected contenedorService: ContenedorService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -191,5 +194,15 @@ export class FQCremaComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.productoService.query({ 'producto.contains': term }))),
       map((res: HttpResponse<IProducto[]>) => res.body || [])
+    );
+
+  formatterContenedor = (x: { contenedor: string }) => x.contenedor;
+
+  searchContenedor = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.contenedorService.query({ 'contenedor.contains': term }))),
+      map((res: HttpResponse<IContenedor[]>) => res.body || [])
     );
 }

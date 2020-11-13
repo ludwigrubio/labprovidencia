@@ -23,6 +23,7 @@
         "fqMantequilla": "FQ Mantequilla",
         "fqQueso": "FQ Queso",
         "fqSuero": "FQ Suero",
+        "contenedor": "Contenedor",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

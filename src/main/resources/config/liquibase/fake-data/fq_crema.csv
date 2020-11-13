@@ -1,11 +1,11 @@
-id;fecha;lote;acidez;grasa;observaciones;area_id;producto_id;analista_id;proveedor_id
-1;2020-09-21T21:40:17;International;73312;90003;eyeballs Accountability;1;1;1;1
-2;2020-09-21T15:58:07;pink;70405;68212;Dynamic Division;2;2;2;2
-3;2020-09-22T11:00:23;Customer repurpose Shoes;5347;19488;circuit 1080p;3;3;3;3
-4;2020-09-21T18:51:50;Cambridgeshire lavender Ohio;55207;59174;Integration Outdoors Granite;4;4;4;4
-5;2020-09-22T08:19:24;Handmade Soft Computer programming;20505;68754;Team-oriented Investment Account;5;5;4;4
-6;2020-09-22T07:32:00;leverage;88320;33442;Alaska withdrawal Fully-configurable;6;6;4;4
-7;2020-09-22T02:58:24;driver best-of-breed;97111;78554;program Generic Integration;7;7;4;4
-8;2020-09-21T22:32:50;Platinum Tactics Agent;84659;20490;Egypt paradigms Credit Card Account;8;8;4;4
-9;2020-09-22T02:43:23;Greece Tasty;1681;13158;Estates connect payment;9;9;4;4
-10;2020-09-21T21:11:57;pricing structure;44105;50395;Enhanced;10;10;4;4
+id;fecha;lote;acidez;grasa;ph;dummy_1;dummy_2;dummy_3;dummy_4;dummy_5;observaciones;area_id;producto_id;analista_id;proveedor_id
+1;2020-09-21T21:40:17;International;73312;90003;33.698;41453;20700;93056;89064;91410;pink;1;1;1;1
+2;2020-09-21T21:00:35;Tunnel Sausages infrastructures;78911;91356;56257;39321;70062;17774;46925;5347;payment;2;2;2;2
+3;2020-09-21T15:59:51;transmit connect SSL;95163;56586;69.186;55207;59174;80052;95408;22668;RAM;3;3;3;3
+4;2020-09-22T01:45:54;Armenia;76275;76837;8556;83336;91071;20505;68754;60930;HDD;4;4;4;4
+5;2020-09-22T03:44:29;Incredible;58331;88320;33442;77887;58564;2768;66115;31169;hub;5;5;4;4
+6;2020-09-22T03:23:50;Garden redefine optical;73607;23892;10081;62034;95531;24126;63998;80655;Usability rich Internal;6;6;4;4
+7;2020-09-22T08:59:21;Egypt paradigms Credit Card Account;46599;35939;54488;33216;8231;95942;1681;13158;Estates connect payment;7;7;4;4
+8;2020-09-21T21:11:57;pricing structure;44105;50395;8692;22430;22255;51681;34649;81097;red Progressive Louisiana;8;8;4;4
+9;2020-09-21T23:35:56;Investor monetize SAS;63025;19243;54417;53311;71471;93756;33715;50747;Berkshire success Soft;9;9;4;4
+10;2020-09-21T15:24:33;Intranet Specialist;89677;96014;28702;18442;94302;55728;67557;48023;Implementation Electronics Wooden;10;10;4;4

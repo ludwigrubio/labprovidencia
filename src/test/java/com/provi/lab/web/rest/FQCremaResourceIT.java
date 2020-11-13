@@ -6,6 +6,7 @@ import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
+import com.provi.lab.domain.Contenedor;
 import com.provi.lab.repository.FQCremaRepository;
 import com.provi.lab.service.FQCremaService;
 import com.provi.lab.service.dto.FQCremaCriteria;
@@ -52,6 +53,30 @@ public class FQCremaResourceIT {
     private static final Double UPDATED_GRASA = 2D;
     private static final Double SMALLER_GRASA = 1D - 1D;
 
+    private static final Double DEFAULT_PH = 1D;
+    private static final Double UPDATED_PH = 2D;
+    private static final Double SMALLER_PH = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_1 = 1D;
+    private static final Double UPDATED_DUMMY_1 = 2D;
+    private static final Double SMALLER_DUMMY_1 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_2 = 1D;
+    private static final Double UPDATED_DUMMY_2 = 2D;
+    private static final Double SMALLER_DUMMY_2 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_3 = 1D;
+    private static final Double UPDATED_DUMMY_3 = 2D;
+    private static final Double SMALLER_DUMMY_3 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_4 = 1D;
+    private static final Double UPDATED_DUMMY_4 = 2D;
+    private static final Double SMALLER_DUMMY_4 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_5 = 1D;
+    private static final Double UPDATED_DUMMY_5 = 2D;
+    private static final Double SMALLER_DUMMY_5 = 1D - 1D;
+
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
@@ -84,6 +109,12 @@ public class FQCremaResourceIT {
             .lote(DEFAULT_LOTE)
             .acidez(DEFAULT_ACIDEZ)
             .grasa(DEFAULT_GRASA)
+            .ph(DEFAULT_PH)
+            .dummy1(DEFAULT_DUMMY_1)
+            .dummy2(DEFAULT_DUMMY_2)
+            .dummy3(DEFAULT_DUMMY_3)
+            .dummy4(DEFAULT_DUMMY_4)
+            .dummy5(DEFAULT_DUMMY_5)
             .observaciones(DEFAULT_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -139,6 +170,12 @@ public class FQCremaResourceIT {
             .lote(UPDATED_LOTE)
             .acidez(UPDATED_ACIDEZ)
             .grasa(UPDATED_GRASA)
+            .ph(UPDATED_PH)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -206,6 +243,12 @@ public class FQCremaResourceIT {
         assertThat(testFQCrema.getLote()).isEqualTo(DEFAULT_LOTE);
         assertThat(testFQCrema.getAcidez()).isEqualTo(DEFAULT_ACIDEZ);
         assertThat(testFQCrema.getGrasa()).isEqualTo(DEFAULT_GRASA);
+        assertThat(testFQCrema.getPh()).isEqualTo(DEFAULT_PH);
+        assertThat(testFQCrema.getDummy1()).isEqualTo(DEFAULT_DUMMY_1);
+        assertThat(testFQCrema.getDummy2()).isEqualTo(DEFAULT_DUMMY_2);
+        assertThat(testFQCrema.getDummy3()).isEqualTo(DEFAULT_DUMMY_3);
+        assertThat(testFQCrema.getDummy4()).isEqualTo(DEFAULT_DUMMY_4);
+        assertThat(testFQCrema.getDummy5()).isEqualTo(DEFAULT_DUMMY_5);
         assertThat(testFQCrema.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
     }
 
@@ -282,6 +325,12 @@ public class FQCremaResourceIT {
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].acidez").value(hasItem(DEFAULT_ACIDEZ.doubleValue())))
             .andExpect(jsonPath("$.[*].grasa").value(hasItem(DEFAULT_GRASA.doubleValue())))
+            .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
     }
     
@@ -300,6 +349,12 @@ public class FQCremaResourceIT {
             .andExpect(jsonPath("$.lote").value(DEFAULT_LOTE))
             .andExpect(jsonPath("$.acidez").value(DEFAULT_ACIDEZ.doubleValue()))
             .andExpect(jsonPath("$.grasa").value(DEFAULT_GRASA.doubleValue()))
+            .andExpect(jsonPath("$.ph").value(DEFAULT_PH.doubleValue()))
+            .andExpect(jsonPath("$.dummy1").value(DEFAULT_DUMMY_1.doubleValue()))
+            .andExpect(jsonPath("$.dummy2").value(DEFAULT_DUMMY_2.doubleValue()))
+            .andExpect(jsonPath("$.dummy3").value(DEFAULT_DUMMY_3.doubleValue()))
+            .andExpect(jsonPath("$.dummy4").value(DEFAULT_DUMMY_4.doubleValue()))
+            .andExpect(jsonPath("$.dummy5").value(DEFAULT_DUMMY_5.doubleValue()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES));
     }
 
@@ -665,6 +720,636 @@ public class FQCremaResourceIT {
 
     @Test
     @Transactional
+    public void getAllFQCremasByPhIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph equals to DEFAULT_PH
+        defaultFQCremaShouldBeFound("ph.equals=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph equals to UPDATED_PH
+        defaultFQCremaShouldNotBeFound("ph.equals=" + UPDATED_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph not equals to DEFAULT_PH
+        defaultFQCremaShouldNotBeFound("ph.notEquals=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph not equals to UPDATED_PH
+        defaultFQCremaShouldBeFound("ph.notEquals=" + UPDATED_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph in DEFAULT_PH or UPDATED_PH
+        defaultFQCremaShouldBeFound("ph.in=" + DEFAULT_PH + "," + UPDATED_PH);
+
+        // Get all the fQCremaList where ph equals to UPDATED_PH
+        defaultFQCremaShouldNotBeFound("ph.in=" + UPDATED_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph is not null
+        defaultFQCremaShouldBeFound("ph.specified=true");
+
+        // Get all the fQCremaList where ph is null
+        defaultFQCremaShouldNotBeFound("ph.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph is greater than or equal to DEFAULT_PH
+        defaultFQCremaShouldBeFound("ph.greaterThanOrEqual=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph is greater than or equal to UPDATED_PH
+        defaultFQCremaShouldNotBeFound("ph.greaterThanOrEqual=" + UPDATED_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph is less than or equal to DEFAULT_PH
+        defaultFQCremaShouldBeFound("ph.lessThanOrEqual=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph is less than or equal to SMALLER_PH
+        defaultFQCremaShouldNotBeFound("ph.lessThanOrEqual=" + SMALLER_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph is less than DEFAULT_PH
+        defaultFQCremaShouldNotBeFound("ph.lessThan=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph is less than UPDATED_PH
+        defaultFQCremaShouldBeFound("ph.lessThan=" + UPDATED_PH);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByPhIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where ph is greater than DEFAULT_PH
+        defaultFQCremaShouldNotBeFound("ph.greaterThan=" + DEFAULT_PH);
+
+        // Get all the fQCremaList where ph is greater than SMALLER_PH
+        defaultFQCremaShouldBeFound("ph.greaterThan=" + SMALLER_PH);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 equals to DEFAULT_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.equals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.equals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 not equals to DEFAULT_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.notEquals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 not equals to UPDATED_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.notEquals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 in DEFAULT_DUMMY_1 or UPDATED_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.in=" + DEFAULT_DUMMY_1 + "," + UPDATED_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.in=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 is not null
+        defaultFQCremaShouldBeFound("dummy1.specified=true");
+
+        // Get all the fQCremaList where dummy1 is null
+        defaultFQCremaShouldNotBeFound("dummy1.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 is greater than or equal to DEFAULT_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.greaterThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 is greater than or equal to UPDATED_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.greaterThanOrEqual=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 is less than or equal to DEFAULT_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.lessThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 is less than or equal to SMALLER_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.lessThanOrEqual=" + SMALLER_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 is less than DEFAULT_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.lessThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 is less than UPDATED_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.lessThan=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy1IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy1 is greater than DEFAULT_DUMMY_1
+        defaultFQCremaShouldNotBeFound("dummy1.greaterThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQCremaList where dummy1 is greater than SMALLER_DUMMY_1
+        defaultFQCremaShouldBeFound("dummy1.greaterThan=" + SMALLER_DUMMY_1);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 equals to DEFAULT_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.equals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.equals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 not equals to DEFAULT_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.notEquals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 not equals to UPDATED_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.notEquals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 in DEFAULT_DUMMY_2 or UPDATED_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.in=" + DEFAULT_DUMMY_2 + "," + UPDATED_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.in=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 is not null
+        defaultFQCremaShouldBeFound("dummy2.specified=true");
+
+        // Get all the fQCremaList where dummy2 is null
+        defaultFQCremaShouldNotBeFound("dummy2.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 is greater than or equal to DEFAULT_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.greaterThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 is greater than or equal to UPDATED_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.greaterThanOrEqual=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 is less than or equal to DEFAULT_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.lessThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 is less than or equal to SMALLER_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.lessThanOrEqual=" + SMALLER_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 is less than DEFAULT_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.lessThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 is less than UPDATED_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.lessThan=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy2IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy2 is greater than DEFAULT_DUMMY_2
+        defaultFQCremaShouldNotBeFound("dummy2.greaterThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQCremaList where dummy2 is greater than SMALLER_DUMMY_2
+        defaultFQCremaShouldBeFound("dummy2.greaterThan=" + SMALLER_DUMMY_2);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 equals to DEFAULT_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.equals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.equals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 not equals to DEFAULT_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.notEquals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 not equals to UPDATED_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.notEquals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 in DEFAULT_DUMMY_3 or UPDATED_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.in=" + DEFAULT_DUMMY_3 + "," + UPDATED_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.in=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 is not null
+        defaultFQCremaShouldBeFound("dummy3.specified=true");
+
+        // Get all the fQCremaList where dummy3 is null
+        defaultFQCremaShouldNotBeFound("dummy3.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 is greater than or equal to DEFAULT_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.greaterThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 is greater than or equal to UPDATED_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.greaterThanOrEqual=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 is less than or equal to DEFAULT_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.lessThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 is less than or equal to SMALLER_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.lessThanOrEqual=" + SMALLER_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 is less than DEFAULT_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.lessThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 is less than UPDATED_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.lessThan=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy3IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy3 is greater than DEFAULT_DUMMY_3
+        defaultFQCremaShouldNotBeFound("dummy3.greaterThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQCremaList where dummy3 is greater than SMALLER_DUMMY_3
+        defaultFQCremaShouldBeFound("dummy3.greaterThan=" + SMALLER_DUMMY_3);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 equals to DEFAULT_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.equals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.equals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 not equals to DEFAULT_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.notEquals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 not equals to UPDATED_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.notEquals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 in DEFAULT_DUMMY_4 or UPDATED_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.in=" + DEFAULT_DUMMY_4 + "," + UPDATED_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.in=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 is not null
+        defaultFQCremaShouldBeFound("dummy4.specified=true");
+
+        // Get all the fQCremaList where dummy4 is null
+        defaultFQCremaShouldNotBeFound("dummy4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 is greater than or equal to DEFAULT_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.greaterThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 is greater than or equal to UPDATED_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.greaterThanOrEqual=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 is less than or equal to DEFAULT_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.lessThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 is less than or equal to SMALLER_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.lessThanOrEqual=" + SMALLER_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 is less than DEFAULT_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.lessThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 is less than UPDATED_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.lessThan=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy4IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy4 is greater than DEFAULT_DUMMY_4
+        defaultFQCremaShouldNotBeFound("dummy4.greaterThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQCremaList where dummy4 is greater than SMALLER_DUMMY_4
+        defaultFQCremaShouldBeFound("dummy4.greaterThan=" + SMALLER_DUMMY_4);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 equals to DEFAULT_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.equals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.equals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 not equals to DEFAULT_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.notEquals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 not equals to UPDATED_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.notEquals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 in DEFAULT_DUMMY_5 or UPDATED_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.in=" + DEFAULT_DUMMY_5 + "," + UPDATED_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.in=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 is not null
+        defaultFQCremaShouldBeFound("dummy5.specified=true");
+
+        // Get all the fQCremaList where dummy5 is null
+        defaultFQCremaShouldNotBeFound("dummy5.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 is greater than or equal to DEFAULT_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.greaterThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 is greater than or equal to UPDATED_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.greaterThanOrEqual=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 is less than or equal to DEFAULT_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.lessThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 is less than or equal to SMALLER_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.lessThanOrEqual=" + SMALLER_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 is less than DEFAULT_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.lessThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 is less than UPDATED_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.lessThan=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByDummy5IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+
+        // Get all the fQCremaList where dummy5 is greater than DEFAULT_DUMMY_5
+        defaultFQCremaShouldNotBeFound("dummy5.greaterThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQCremaList where dummy5 is greater than SMALLER_DUMMY_5
+        defaultFQCremaShouldBeFound("dummy5.greaterThan=" + SMALLER_DUMMY_5);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllFQCremasByObservacionesIsEqualToSomething() throws Exception {
         // Initialize the database
         fQCremaRepository.saveAndFlush(fQCrema);
@@ -804,6 +1489,26 @@ public class FQCremaResourceIT {
         defaultFQCremaShouldNotBeFound("proveedorId.equals=" + (proveedorId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByContenedorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+        Contenedor contenedor = ContenedorResourceIT.createEntity(em);
+        em.persist(contenedor);
+        em.flush();
+        fQCrema.setContenedor(contenedor);
+        fQCremaRepository.saveAndFlush(fQCrema);
+        Long contenedorId = contenedor.getId();
+
+        // Get all the fQCremaList where contenedor equals to contenedorId
+        defaultFQCremaShouldBeFound("contenedorId.equals=" + contenedorId);
+
+        // Get all the fQCremaList where contenedor equals to contenedorId + 1
+        defaultFQCremaShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -816,6 +1521,12 @@ public class FQCremaResourceIT {
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].acidez").value(hasItem(DEFAULT_ACIDEZ.doubleValue())))
             .andExpect(jsonPath("$.[*].grasa").value(hasItem(DEFAULT_GRASA.doubleValue())))
+            .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
 
         // Check, that the count call also returns 1
@@ -867,6 +1578,12 @@ public class FQCremaResourceIT {
             .lote(UPDATED_LOTE)
             .acidez(UPDATED_ACIDEZ)
             .grasa(UPDATED_GRASA)
+            .ph(UPDATED_PH)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
 
         restFQCremaMockMvc.perform(put("/api/fq-cremas")
@@ -882,6 +1599,12 @@ public class FQCremaResourceIT {
         assertThat(testFQCrema.getLote()).isEqualTo(UPDATED_LOTE);
         assertThat(testFQCrema.getAcidez()).isEqualTo(UPDATED_ACIDEZ);
         assertThat(testFQCrema.getGrasa()).isEqualTo(UPDATED_GRASA);
+        assertThat(testFQCrema.getPh()).isEqualTo(UPDATED_PH);
+        assertThat(testFQCrema.getDummy1()).isEqualTo(UPDATED_DUMMY_1);
+        assertThat(testFQCrema.getDummy2()).isEqualTo(UPDATED_DUMMY_2);
+        assertThat(testFQCrema.getDummy3()).isEqualTo(UPDATED_DUMMY_3);
+        assertThat(testFQCrema.getDummy4()).isEqualTo(UPDATED_DUMMY_4);
+        assertThat(testFQCrema.getDummy5()).isEqualTo(UPDATED_DUMMY_5);
         assertThat(testFQCrema.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
     }
 

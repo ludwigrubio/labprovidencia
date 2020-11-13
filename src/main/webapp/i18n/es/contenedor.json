@@ -1,0 +1,22 @@
+{
+  "labprovidenciaApp": {
+    "contenedor": {
+      "home": {
+        "title": "Contenedores",
+        "createLabel": "Crear nuevo Contenedor",
+        "createOrEditLabel": "Crear o editar Contenedor",
+        "notFound": "Ningún Contenedor encontrado"
+      },
+      "created": "Un nuevo Contenedor ha sido creado con el identificador {{ param }}",
+      "updated": "Un Contenedor ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Contenedor ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contenedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Contenedor"
+      },
+      "contenedor": "Contenedor"
+    }
+  }
+}

@@ -17,6 +17,8 @@ import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
+import { IContenedor } from 'app/shared/model/contenedor.model';
+import { ContenedorService } from 'app/entities/contenedor/contenedor.service';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { debounceTime } from 'rxjs/operators';
@@ -39,11 +41,13 @@ export class FQCremaUpdateComponent implements OnInit {
     lote: [null, [Validators.required, Validators.maxLength(45)]],
     acidez: [],
     grasa: [],
+    ph: [],
     observaciones: [null, [Validators.maxLength(100)]],
     area: [null, Validators.required],
     producto: [null, Validators.required],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
+    contenedor: [null],
   });
 
   constructor(
@@ -52,6 +56,7 @@ export class FQCremaUpdateComponent implements OnInit {
     protected productoService: ProductoService,
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
+    protected contenedorService: ContenedorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected accountService: AccountService
@@ -83,11 +88,13 @@ export class FQCremaUpdateComponent implements OnInit {
       lote: fQCrema.lote,
       acidez: fQCrema.acidez,
       grasa: fQCrema.grasa,
+      ph: fQCrema.ph,
       observaciones: fQCrema.observaciones,
       area: fQCrema.area,
       producto: fQCrema.producto,
       analista: fQCrema.analista,
       proveedor: fQCrema.proveedor,
+      contenedor: fQCrema.contenedor,
     });
   }
 
@@ -113,11 +120,13 @@ export class FQCremaUpdateComponent implements OnInit {
       lote: this.editForm.get(['lote'])!.value,
       acidez: this.editForm.get(['acidez'])!.value,
       grasa: this.editForm.get(['grasa'])!.value,
+      ph: this.editForm.get(['ph'])!.value,
       observaciones: this.editForm.get(['observaciones'])!.value,
       area: this.editForm.get(['area'])!.value,
       producto: this.editForm.get(['producto'])!.value,
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
+      contenedor: this.editForm.get(['contenedor'])!.value,
     };
   }
 
@@ -179,5 +188,15 @@ export class FQCremaUpdateComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term, 'relacionId.equals': '2' }))),
       map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
+
+  formatterContenedor = (x: { contenedor: string }) => x.contenedor;
+
+  searchContenedor = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.contenedorService.query({ 'contenedor.contains': term }))),
+      map((res: HttpResponse<IContenedor[]>) => res.body || [])
     );
 }

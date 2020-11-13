@@ -97,6 +97,24 @@ public class FQCremaQueryService extends QueryService<FQCrema> {
             if (criteria.getGrasa() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getGrasa(), FQCrema_.grasa));
             }
+            if (criteria.getPh() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getPh(), FQCrema_.ph));
+            }
+            if (criteria.getDummy1() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy1(), FQCrema_.dummy1));
+            }
+            if (criteria.getDummy2() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy2(), FQCrema_.dummy2));
+            }
+            if (criteria.getDummy3() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy3(), FQCrema_.dummy3));
+            }
+            if (criteria.getDummy4() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy4(), FQCrema_.dummy4));
+            }
+            if (criteria.getDummy5() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy5(), FQCrema_.dummy5));
+            }
             if (criteria.getObservaciones() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getObservaciones(), FQCrema_.observaciones));
             }
@@ -115,6 +133,10 @@ public class FQCremaQueryService extends QueryService<FQCrema> {
             if (criteria.getProveedorId() != null) {
                 specification = specification.and(buildSpecification(criteria.getProveedorId(),
                     root -> root.join(FQCrema_.proveedor, JoinType.LEFT).get(Personal_.id)));
+            }
+            if (criteria.getContenedorId() != null) {
+                specification = specification.and(buildSpecification(criteria.getContenedorId(),
+                    root -> root.join(FQCrema_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
         }
         return specification;

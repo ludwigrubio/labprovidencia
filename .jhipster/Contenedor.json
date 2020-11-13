@@ -1,0 +1,26 @@
+{
+    "name": "Contenedor",
+    "fields": [
+        {
+            "fieldName": "contenedor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "45"
+        }
+    ],
+    "changelogDate": "20201112134626",
+    "entityTableName": "contenedor",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "enableEntityAudit": true
+}

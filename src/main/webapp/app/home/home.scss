@@ -23,6 +23,16 @@ h6.sub-title {
 .hipster {
   max-height: 300px !important;
 }
+
+.btn {
+  margin-bottom: 5px;
+}
+.catalogos {
+  .col-md-4,
+  .col-md-6 {
+    text-align: center;
+  }
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),

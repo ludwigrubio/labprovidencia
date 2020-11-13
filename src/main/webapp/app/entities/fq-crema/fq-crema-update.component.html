@@ -57,6 +57,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.ph" for="field_ph">PH</label>
+                    <input type="number" class="form-control" name="ph" id="field_ph"
+                           formControlName="ph"/>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.observaciones" for="field_observaciones">Observaciones</label>
                     <input type="text" class="form-control" name="observaciones" id="field_observaciones"
                            formControlName="observaciones"/>
@@ -150,6 +156,21 @@
                            *ngIf="editForm.get('proveedor')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                     </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.contenedor" for="field_contenedor">Contenedor</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-contenedor"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_contenedor" formControlName="contenedor"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchContenedor"
+                               [inputFormatter]="formatterContenedor"
+                               [resultFormatter]="formatterContenedor"
+                               [editable]='false' />
+                    </div>
                 </div>
             </div>
 

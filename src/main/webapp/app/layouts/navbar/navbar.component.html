@@ -51,6 +51,12 @@
                             <span jhiTranslate="global.menu.entities.superficie">Superficie</span>
                         </a>
                     </li>
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']">
+                        <a class="dropdown-item" routerLink="contenedor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.contenedor">Contenedor</span>
+                        </a>
+                    </li>
                     <div *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']" class="dropdown-divider"></div>
                     <li>
                         <a class="dropdown-item" routerLink="prueba-micro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">

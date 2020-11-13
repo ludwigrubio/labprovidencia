@@ -68,6 +68,10 @@ import { RouterModule } from '@angular/router';
         path: 'fq-suero',
         loadChildren: () => import('./fq-suero/fq-suero.module').then(m => m.LabprovidenciaFQSueroModule),
       },
+      {
+        path: 'contenedor',
+        loadChildren: () => import('./contenedor/contenedor.module').then(m => m.LabprovidenciaContenedorModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
