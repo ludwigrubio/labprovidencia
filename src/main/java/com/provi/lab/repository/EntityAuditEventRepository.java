@@ -1,12 +1,14 @@
 package com.provi.lab.repository;
 
 import com.provi.lab.domain.EntityAuditEvent;
+import com.provi.lab.domain.PersistentAuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -29,4 +31,7 @@ public interface EntityAuditEventRepository extends JpaRepository<EntityAuditEve
         "a.entityId = :entityId and a.commitVersion < :commitVersion)")
     EntityAuditEvent findOneByEntityTypeAndEntityIdAndCommitVersion(@Param("type") String type, @Param("entityId")
     Long entityId, @Param("commitVersion") Integer commitVersion);
+
+    List<EntityAuditEvent> findByModifiedDateBefore(Instant before);
+
 }

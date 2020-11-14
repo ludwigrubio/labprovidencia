@@ -3,6 +3,7 @@ package com.provi.lab.service;
 import io.github.jhipster.config.JHipsterProperties;
 import com.provi.lab.config.audit.AuditEventConverter;
 import com.provi.lab.repository.PersistenceAuditEventRepository;
+import com.provi.lab.repository.EntityAuditEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -31,13 +32,18 @@ public class AuditEventService {
 
     private final PersistenceAuditEventRepository persistenceAuditEventRepository;
 
+    private final EntityAuditEventRepository entityAuditEventRepository;
+
     private final AuditEventConverter auditEventConverter;
 
     public AuditEventService(
         PersistenceAuditEventRepository persistenceAuditEventRepository,
-        AuditEventConverter auditEventConverter, JHipsterProperties jhipsterProperties) {
+        AuditEventConverter auditEventConverter,
+        EntityAuditEventRepository entityAuditEventRepository,
+        JHipsterProperties jhipsterProperties) {
 
         this.persistenceAuditEventRepository = persistenceAuditEventRepository;
+        this.entityAuditEventRepository = entityAuditEventRepository;
         this.auditEventConverter = auditEventConverter;
         this.jHipsterProperties = jhipsterProperties;
     }
@@ -54,6 +60,22 @@ public class AuditEventService {
             .forEach(auditEvent -> {
                 log.debug("Deleting audit data {}", auditEvent);
                 persistenceAuditEventRepository.delete(auditEvent);
+            });
+    }
+
+    /**
+     * Old entity audit events should be automatically deleted after 6 months.
+     *
+     * This is scheduled to get fired at 12:00 (am).
+     */
+    @Scheduled(cron = "0 0 12 * * ?")
+    public void removeOldEntityAuditEvents() {
+        log.debug("Deleting Audit Entity less than {}",Instant.now().minus(183, ChronoUnit.DAYS).toString());
+        entityAuditEventRepository
+            .findByModifiedDateBefore(Instant.now().minus(183, ChronoUnit.DAYS))
+            .forEach(entityAuditEvent -> {
+                log.debug("Deleting entity audit data {}", entityAuditEvent);
+                entityAuditEventRepository.delete(entityAuditEvent);
             });
     }
 
