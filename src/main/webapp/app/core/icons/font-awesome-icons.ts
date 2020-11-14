@@ -39,6 +39,7 @@ import {
   faMicroscope,
   faFileUpload,
   faDownload,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
@@ -82,4 +83,5 @@ export const fontAwesomeIcons = [
   faMicroscope,
   faFileUpload,
   faDownload,
+  faPlay,
 ];

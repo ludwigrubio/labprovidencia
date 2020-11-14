@@ -75,8 +75,9 @@ export class FQSueroUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ fQSuero }) => {
       if (!fQSuero.id) {
-        const today = moment().startOf('day');
+        const today = moment();
         fQSuero.fecha = today;
+        fQSuero.lote = today.year().toString() + today.dayOfYear().toString();
       }
 
       this.updateForm(fQSuero);

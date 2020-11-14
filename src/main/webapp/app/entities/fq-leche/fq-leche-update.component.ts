@@ -85,6 +85,7 @@ export class FQLecheUpdateComponent implements OnInit {
       if (!fQLeche.id) {
         const today = moment().startOf('day');
         fQLeche.fecha = today;
+        fQLeche.lote = today.year().toString() + today.dayOfYear().toString();
       }
 
       this.updateForm(fQLeche);

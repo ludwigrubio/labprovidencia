@@ -69,8 +69,9 @@ export class FQMantequillaUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ fQMantequilla }) => {
       if (!fQMantequilla.id) {
-        const today = moment().startOf('day');
+        const today = moment();
         fQMantequilla.fecha = today;
+        fQMantequilla.lote = today.year().toString() + today.dayOfYear().toString();
       }
 
       this.updateForm(fQMantequilla);

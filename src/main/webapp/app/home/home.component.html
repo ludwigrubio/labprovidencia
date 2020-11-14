@@ -152,6 +152,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row" *ngSwitchCase="true">
                 <div class="{{sizeCol}}" *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']">
                     <div class="card">
@@ -217,6 +218,58 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row" *ngSwitchCase="true">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <fa-icon icon="play"></fa-icon>
+                            Área de pruebas</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div><h6 class="sub-title"> Recepción:</h6></div>
+                                    <button type="button" class="btn btn-primary" [routerLink]="['/recepcion/new']">
+                                        <fa-icon icon="plus"></fa-icon>
+                                        <span>Crear nueva</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dark" [routerLink]="['/recepcion']">
+                                        <fa-icon icon="list"></fa-icon>
+                                        <span>Listar</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div><h6 class="sub-title"> &nbsp;Tina Programada:</h6></div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-control-label" for="field_tipo_tina">Tipo de tina</label>
+                                            <select class="form-control" id="field_tipo_tina">
+                                                <option>Leche</option>
+                                                <option>Queso</option>
+                                                <option>Suero</option>
+                                                <option>Crema</option>
+                                                <option>Mantequilla</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="form-control-label" for="field_tipo_tina">Cantidad</label>
+                                            <input type="number" step="1"  class="form-control" id="field_cantidad_tina" formControlName="tina_cantidad"/>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="form-control-label">&nbsp;</label>
+                                            <button type="button" class="form-control btn btn-dark" [routerLink]="['/recepcion']">
+                                                <fa-icon icon="play"></fa-icon>
+                                                <span>Crear</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

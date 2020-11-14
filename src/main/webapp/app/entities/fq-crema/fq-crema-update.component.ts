@@ -70,8 +70,9 @@ export class FQCremaUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ fQCrema }) => {
       if (!fQCrema.id) {
-        const today = moment().startOf('day');
+        const today = moment();
         fQCrema.fecha = today;
+        fQCrema.lote = today.year().toString() + today.dayOfYear().toString();
       }
 
       this.updateForm(fQCrema);
