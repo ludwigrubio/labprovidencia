@@ -22,7 +22,7 @@
       "temperatura": "Temperatura",
       "agua": "Agua",
       "crioscopia": "Crioscopia",
-      "antibiotico": "Antibiótico",
+      "antibiotico": "Antibiotico",
       "delvo": "Delvo",
       "grasa": "Grasa",
       "solidos": "Solidos",
@@ -34,11 +34,17 @@
       "reductasa": "Reductasa",
       "fosfatasa": "Fosfatasa",
       "ph": "PH",
+      "dummy1": "Dummy 1",
+      "dummy2": "Dummy 2",
+      "dummy3": "Dummy 3",
+      "dummy4": "Dummy 4",
+      "dummy5": "Dummy 5",
       "observaciones": "Observaciones",
       "area": "Área",
       "recepcion": "Recepción",
       "analista": "Analista",
-      "proveedor": "Proveedor"
+      "proveedor": "Proveedor",
+      "contenedor": "Contenedor"
     }
   }
 }

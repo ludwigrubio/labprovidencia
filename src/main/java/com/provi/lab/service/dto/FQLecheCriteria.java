@@ -63,6 +63,16 @@ public class FQLecheCriteria implements Serializable, Criteria {
 
     private DoubleFilter ph;
 
+    private DoubleFilter dummy1;
+
+    private DoubleFilter dummy2;
+
+    private DoubleFilter dummy3;
+
+    private DoubleFilter dummy4;
+
+    private DoubleFilter dummy5;
+
     private StringFilter observaciones;
 
     private LongFilter areaId;
@@ -72,6 +82,8 @@ public class FQLecheCriteria implements Serializable, Criteria {
     private LongFilter analistaId;
 
     private LongFilter proveedorId;
+
+    private LongFilter contenedorId;
 
     public FQLecheCriteria() {
     }
@@ -96,11 +108,17 @@ public class FQLecheCriteria implements Serializable, Criteria {
         this.reductasa = other.reductasa == null ? null : other.reductasa.copy();
         this.fosfatasa = other.fosfatasa == null ? null : other.fosfatasa.copy();
         this.ph = other.ph == null ? null : other.ph.copy();
+        this.dummy1 = other.dummy1 == null ? null : other.dummy1.copy();
+        this.dummy2 = other.dummy2 == null ? null : other.dummy2.copy();
+        this.dummy3 = other.dummy3 == null ? null : other.dummy3.copy();
+        this.dummy4 = other.dummy4 == null ? null : other.dummy4.copy();
+        this.dummy5 = other.dummy5 == null ? null : other.dummy5.copy();
         this.observaciones = other.observaciones == null ? null : other.observaciones.copy();
         this.areaId = other.areaId == null ? null : other.areaId.copy();
         this.recepcionId = other.recepcionId == null ? null : other.recepcionId.copy();
         this.analistaId = other.analistaId == null ? null : other.analistaId.copy();
         this.proveedorId = other.proveedorId == null ? null : other.proveedorId.copy();
+        this.contenedorId = other.contenedorId == null ? null : other.contenedorId.copy();
     }
 
     @Override
@@ -260,6 +278,46 @@ public class FQLecheCriteria implements Serializable, Criteria {
         this.ph = ph;
     }
 
+    public DoubleFilter getDummy1() {
+        return dummy1;
+    }
+
+    public void setDummy1(DoubleFilter dummy1) {
+        this.dummy1 = dummy1;
+    }
+
+    public DoubleFilter getDummy2() {
+        return dummy2;
+    }
+
+    public void setDummy2(DoubleFilter dummy2) {
+        this.dummy2 = dummy2;
+    }
+
+    public DoubleFilter getDummy3() {
+        return dummy3;
+    }
+
+    public void setDummy3(DoubleFilter dummy3) {
+        this.dummy3 = dummy3;
+    }
+
+    public DoubleFilter getDummy4() {
+        return dummy4;
+    }
+
+    public void setDummy4(DoubleFilter dummy4) {
+        this.dummy4 = dummy4;
+    }
+
+    public DoubleFilter getDummy5() {
+        return dummy5;
+    }
+
+    public void setDummy5(DoubleFilter dummy5) {
+        this.dummy5 = dummy5;
+    }
+
     public StringFilter getObservaciones() {
         return observaciones;
     }
@@ -300,6 +358,14 @@ public class FQLecheCriteria implements Serializable, Criteria {
         this.proveedorId = proveedorId;
     }
 
+    public LongFilter getContenedorId() {
+        return contenedorId;
+    }
+
+    public void setContenedorId(LongFilter contenedorId) {
+        this.contenedorId = contenedorId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -330,11 +396,17 @@ public class FQLecheCriteria implements Serializable, Criteria {
             Objects.equals(reductasa, that.reductasa) &&
             Objects.equals(fosfatasa, that.fosfatasa) &&
             Objects.equals(ph, that.ph) &&
+            Objects.equals(dummy1, that.dummy1) &&
+            Objects.equals(dummy2, that.dummy2) &&
+            Objects.equals(dummy3, that.dummy3) &&
+            Objects.equals(dummy4, that.dummy4) &&
+            Objects.equals(dummy5, that.dummy5) &&
             Objects.equals(observaciones, that.observaciones) &&
             Objects.equals(areaId, that.areaId) &&
             Objects.equals(recepcionId, that.recepcionId) &&
             Objects.equals(analistaId, that.analistaId) &&
-            Objects.equals(proveedorId, that.proveedorId);
+            Objects.equals(proveedorId, that.proveedorId) &&
+            Objects.equals(contenedorId, that.contenedorId);
     }
 
     @Override
@@ -359,11 +431,17 @@ public class FQLecheCriteria implements Serializable, Criteria {
         reductasa,
         fosfatasa,
         ph,
+        dummy1,
+        dummy2,
+        dummy3,
+        dummy4,
+        dummy5,
         observaciones,
         areaId,
         recepcionId,
         analistaId,
-        proveedorId
+        proveedorId,
+        contenedorId
         );
     }
 
@@ -390,11 +468,17 @@ public class FQLecheCriteria implements Serializable, Criteria {
                 (reductasa != null ? "reductasa=" + reductasa + ", " : "") +
                 (fosfatasa != null ? "fosfatasa=" + fosfatasa + ", " : "") +
                 (ph != null ? "ph=" + ph + ", " : "") +
+                (dummy1 != null ? "dummy1=" + dummy1 + ", " : "") +
+                (dummy2 != null ? "dummy2=" + dummy2 + ", " : "") +
+                (dummy3 != null ? "dummy3=" + dummy3 + ", " : "") +
+                (dummy4 != null ? "dummy4=" + dummy4 + ", " : "") +
+                (dummy5 != null ? "dummy5=" + dummy5 + ", " : "") +
                 (observaciones != null ? "observaciones=" + observaciones + ", " : "") +
                 (areaId != null ? "areaId=" + areaId + ", " : "") +
                 (recepcionId != null ? "recepcionId=" + recepcionId + ", " : "") +
                 (analistaId != null ? "analistaId=" + analistaId + ", " : "") +
                 (proveedorId != null ? "proveedorId=" + proveedorId + ", " : "") +
+                (contenedorId != null ? "contenedorId=" + contenedorId + ", " : "") +
             "}";
     }
 

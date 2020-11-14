@@ -17,6 +17,8 @@ import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
+import { IContenedor } from 'app/shared/model/contenedor.model';
+import { ContenedorService } from 'app/entities/contenedor/contenedor.service';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { debounceTime } from 'rxjs/operators';
@@ -39,11 +41,17 @@ export class FQMantequillaUpdateComponent implements OnInit {
     lote: [null, [Validators.required, Validators.maxLength(45)]],
     ph: [],
     humedad: [],
+    dummy1: [],
+    dummy2: [],
+    dummy3: [],
+    dummy4: [],
+    dummy5: [],
     observaciones: [null, [Validators.maxLength(100)]],
     area: [null, Validators.required],
     producto: [null, Validators.required],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
+    contenedor: [null],
   });
 
   constructor(
@@ -52,6 +60,7 @@ export class FQMantequillaUpdateComponent implements OnInit {
     protected productoService: ProductoService,
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
+    protected contenedorService: ContenedorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected accountService: AccountService
@@ -82,12 +91,18 @@ export class FQMantequillaUpdateComponent implements OnInit {
       fecha: fQMantequilla.fecha ? fQMantequilla.fecha.format(DATE_TIME_FORMAT) : null,
       lote: fQMantequilla.lote,
       ph: fQMantequilla.ph,
+      dummy1: fQMantequilla.dummy1,
+      dummy2: fQMantequilla.dummy2,
+      dummy3: fQMantequilla.dummy3,
+      dummy4: fQMantequilla.dummy4,
+      dummy5: fQMantequilla.dummy5,
       humedad: fQMantequilla.humedad,
       observaciones: fQMantequilla.observaciones,
       area: fQMantequilla.area,
       producto: fQMantequilla.producto,
       analista: fQMantequilla.analista,
       proveedor: fQMantequilla.proveedor,
+      contenedor: fQMantequilla.contenedor,
     });
   }
 
@@ -113,11 +128,17 @@ export class FQMantequillaUpdateComponent implements OnInit {
       lote: this.editForm.get(['lote'])!.value,
       ph: this.editForm.get(['ph'])!.value,
       humedad: this.editForm.get(['humedad'])!.value,
+      dummy1: this.editForm.get(['dummy1'])!.value,
+      dummy2: this.editForm.get(['dummy2'])!.value,
+      dummy3: this.editForm.get(['dummy3'])!.value,
+      dummy4: this.editForm.get(['dummy4'])!.value,
+      dummy5: this.editForm.get(['dummy5'])!.value,
       observaciones: this.editForm.get(['observaciones'])!.value,
       area: this.editForm.get(['area'])!.value,
       producto: this.editForm.get(['producto'])!.value,
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
+      contenedor: this.editForm.get(['contenedor'])!.value,
     };
   }
 
@@ -179,5 +200,15 @@ export class FQMantequillaUpdateComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term, 'relacionId.equals': '2' }))),
       map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
+
+  formatterContenedor = (x: { contenedor: string }) => x.contenedor;
+
+  searchContenedor = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.contenedorService.query({ 'contenedor.contains': term }))),
+      map((res: HttpResponse<IContenedor[]>) => res.body || [])
     );
 }

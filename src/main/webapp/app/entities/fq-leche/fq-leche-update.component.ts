@@ -17,6 +17,8 @@ import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
+import { IContenedor } from 'app/shared/model/contenedor.model';
+import { ContenedorService } from 'app/entities/contenedor/contenedor.service';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { debounceTime } from 'rxjs/operators';
@@ -53,11 +55,17 @@ export class FQLecheUpdateComponent implements OnInit {
     reductasa: [],
     fosfatasa: [],
     ph: [],
+    dummy1: [],
+    dummy2: [],
+    dummy3: [],
+    dummy4: [],
+    dummy5: [],
     observaciones: [null, [Validators.maxLength(100)]],
     area: [null, Validators.required],
     recepcion: [null, Validators.required],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
+    contenedor: [null],
   });
 
   constructor(
@@ -66,6 +74,7 @@ export class FQLecheUpdateComponent implements OnInit {
     protected recepcionService: RecepcionService,
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
+    protected contenedorService: ContenedorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected accountService: AccountService
@@ -111,11 +120,17 @@ export class FQLecheUpdateComponent implements OnInit {
       reductasa: fQLeche.reductasa,
       fosfatasa: fQLeche.fosfatasa,
       ph: fQLeche.ph,
+      dummy1: fQLeche.dummy1,
+      dummy2: fQLeche.dummy2,
+      dummy3: fQLeche.dummy3,
+      dummy4: fQLeche.dummy4,
+      dummy5: fQLeche.dummy5,
       observaciones: fQLeche.observaciones,
       area: fQLeche.area,
       recepcion: fQLeche.recepcion,
       analista: fQLeche.analista,
       proveedor: fQLeche.proveedor,
+      contenedor: fQLeche.contenedor,
     });
   }
 
@@ -155,11 +170,17 @@ export class FQLecheUpdateComponent implements OnInit {
       reductasa: this.editForm.get(['reductasa'])!.value,
       fosfatasa: this.editForm.get(['fosfatasa'])!.value,
       ph: this.editForm.get(['ph'])!.value,
+      dummy1: this.editForm.get(['dummy1'])!.value,
+      dummy2: this.editForm.get(['dummy2'])!.value,
+      dummy3: this.editForm.get(['dummy3'])!.value,
+      dummy4: this.editForm.get(['dummy4'])!.value,
+      dummy5: this.editForm.get(['dummy5'])!.value,
       observaciones: this.editForm.get(['observaciones'])!.value,
       area: this.editForm.get(['area'])!.value,
       recepcion: this.editForm.get(['recepcion'])!.value,
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
+      contenedor: this.editForm.get(['contenedor'])!.value,
     };
   }
 
@@ -221,5 +242,15 @@ export class FQLecheUpdateComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => (term.length < 2 ? [] : this.personalService.query({ 'nombre.contains': term, 'relacionId.equals': '2' }))),
       map((res: HttpResponse<IPersonal[]>) => res.body || [])
+    );
+
+  formatterContenedor = (x: { contenedor: string }) => x.contenedor;
+
+  searchContenedor = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => (term.length < 2 ? [] : this.contenedorService.query({ 'contenedor.contains': term }))),
+      map((res: HttpResponse<IContenedor[]>) => res.body || [])
     );
 }

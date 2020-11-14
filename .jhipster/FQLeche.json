@@ -85,6 +85,26 @@
             "fieldType": "Double"
         },
         {
+            "fieldName": "dummy1",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dummy2",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dummy3",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dummy4",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dummy5",
+            "fieldType": "Double"
+        },
+        {
             "fieldName": "observaciones",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -125,6 +145,13 @@
             "relationshipValidateRules": "required",
             "relationshipName": "proveedor",
             "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "contenedor",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipName": "contenedor",
+            "otherEntityField": "contenedor"
         }
     ],
     "changelogDate": "20200922135126",

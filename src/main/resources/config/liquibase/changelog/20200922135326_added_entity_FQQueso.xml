@@ -55,6 +55,21 @@
             <column name="hilado" type="integer">
                 <constraints nullable="true" />
             </column>
+            <column name="dummy_1" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="dummy_2" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="dummy_3" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="dummy_4" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="dummy_5" type="double">
+                <constraints nullable="true" />
+            </column>
             <column name="observaciones" type="varchar(100)">
                 <constraints nullable="true" />
             </column>
@@ -69,6 +84,9 @@
             </column>
             <column name="proveedor_id" type="bigint">
                 <constraints nullable="false" />
+            </column>
+            <column name="contenedor_id" type="bigint">
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -122,6 +140,11 @@
             <column name="olor" type="numeric"/>
             <column name="textura" type="numeric"/>
             <column name="hilado" type="numeric"/>
+            <column name="dummy_1" type="numeric"/>
+            <column name="dummy_2" type="numeric"/>
+            <column name="dummy_3" type="numeric"/>
+            <column name="dummy_4" type="numeric"/>
+            <column name="dummy_5" type="numeric"/>
             <column name="observaciones" type="string"/>
             <column name="area_id" type="numeric"/>
             <column name="producto_id" type="numeric"/>

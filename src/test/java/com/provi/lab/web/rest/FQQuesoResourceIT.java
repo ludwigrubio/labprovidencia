@@ -6,6 +6,7 @@ import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
+import com.provi.lab.domain.Contenedor;
 import com.provi.lab.repository.FQQuesoRepository;
 import com.provi.lab.service.FQQuesoService;
 import com.provi.lab.service.dto.FQQuesoCriteria;
@@ -87,6 +88,26 @@ public class FQQuesoResourceIT {
     private static final Integer UPDATED_HILADO = 2;
     private static final Integer SMALLER_HILADO = 1 - 1;
 
+    private static final Double DEFAULT_DUMMY_1 = 1D;
+    private static final Double UPDATED_DUMMY_1 = 2D;
+    private static final Double SMALLER_DUMMY_1 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_2 = 1D;
+    private static final Double UPDATED_DUMMY_2 = 2D;
+    private static final Double SMALLER_DUMMY_2 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_3 = 1D;
+    private static final Double UPDATED_DUMMY_3 = 2D;
+    private static final Double SMALLER_DUMMY_3 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_4 = 1D;
+    private static final Double UPDATED_DUMMY_4 = 2D;
+    private static final Double SMALLER_DUMMY_4 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_5 = 1D;
+    private static final Double UPDATED_DUMMY_5 = 2D;
+    private static final Double SMALLER_DUMMY_5 = 1D - 1D;
+
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
@@ -128,6 +149,11 @@ public class FQQuesoResourceIT {
             .olor(DEFAULT_OLOR)
             .textura(DEFAULT_TEXTURA)
             .hilado(DEFAULT_HILADO)
+            .dummy1(DEFAULT_DUMMY_1)
+            .dummy2(DEFAULT_DUMMY_2)
+            .dummy3(DEFAULT_DUMMY_3)
+            .dummy4(DEFAULT_DUMMY_4)
+            .dummy5(DEFAULT_DUMMY_5)
             .observaciones(DEFAULT_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -192,6 +218,11 @@ public class FQQuesoResourceIT {
             .olor(UPDATED_OLOR)
             .textura(UPDATED_TEXTURA)
             .hilado(UPDATED_HILADO)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -268,6 +299,11 @@ public class FQQuesoResourceIT {
         assertThat(testFQQueso.getOlor()).isEqualTo(DEFAULT_OLOR);
         assertThat(testFQQueso.getTextura()).isEqualTo(DEFAULT_TEXTURA);
         assertThat(testFQQueso.getHilado()).isEqualTo(DEFAULT_HILADO);
+        assertThat(testFQQueso.getDummy1()).isEqualTo(DEFAULT_DUMMY_1);
+        assertThat(testFQQueso.getDummy2()).isEqualTo(DEFAULT_DUMMY_2);
+        assertThat(testFQQueso.getDummy3()).isEqualTo(DEFAULT_DUMMY_3);
+        assertThat(testFQQueso.getDummy4()).isEqualTo(DEFAULT_DUMMY_4);
+        assertThat(testFQQueso.getDummy5()).isEqualTo(DEFAULT_DUMMY_5);
         assertThat(testFQQueso.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
     }
 
@@ -353,6 +389,11 @@ public class FQQuesoResourceIT {
             .andExpect(jsonPath("$.[*].olor").value(hasItem(DEFAULT_OLOR)))
             .andExpect(jsonPath("$.[*].textura").value(hasItem(DEFAULT_TEXTURA)))
             .andExpect(jsonPath("$.[*].hilado").value(hasItem(DEFAULT_HILADO)))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
     }
     
@@ -380,6 +421,11 @@ public class FQQuesoResourceIT {
             .andExpect(jsonPath("$.olor").value(DEFAULT_OLOR))
             .andExpect(jsonPath("$.textura").value(DEFAULT_TEXTURA))
             .andExpect(jsonPath("$.hilado").value(DEFAULT_HILADO))
+            .andExpect(jsonPath("$.dummy1").value(DEFAULT_DUMMY_1.doubleValue()))
+            .andExpect(jsonPath("$.dummy2").value(DEFAULT_DUMMY_2.doubleValue()))
+            .andExpect(jsonPath("$.dummy3").value(DEFAULT_DUMMY_3.doubleValue()))
+            .andExpect(jsonPath("$.dummy4").value(DEFAULT_DUMMY_4.doubleValue()))
+            .andExpect(jsonPath("$.dummy5").value(DEFAULT_DUMMY_5.doubleValue()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES));
     }
 
@@ -1637,6 +1683,531 @@ public class FQQuesoResourceIT {
 
     @Test
     @Transactional
+    public void getAllFQQuesosByDummy1IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 equals to DEFAULT_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.equals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.equals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 not equals to DEFAULT_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.notEquals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 not equals to UPDATED_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.notEquals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 in DEFAULT_DUMMY_1 or UPDATED_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.in=" + DEFAULT_DUMMY_1 + "," + UPDATED_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.in=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 is not null
+        defaultFQQuesoShouldBeFound("dummy1.specified=true");
+
+        // Get all the fQQuesoList where dummy1 is null
+        defaultFQQuesoShouldNotBeFound("dummy1.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 is greater than or equal to DEFAULT_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.greaterThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 is greater than or equal to UPDATED_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.greaterThanOrEqual=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 is less than or equal to DEFAULT_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.lessThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 is less than or equal to SMALLER_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.lessThanOrEqual=" + SMALLER_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 is less than DEFAULT_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.lessThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 is less than UPDATED_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.lessThan=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy1IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy1 is greater than DEFAULT_DUMMY_1
+        defaultFQQuesoShouldNotBeFound("dummy1.greaterThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQQuesoList where dummy1 is greater than SMALLER_DUMMY_1
+        defaultFQQuesoShouldBeFound("dummy1.greaterThan=" + SMALLER_DUMMY_1);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 equals to DEFAULT_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.equals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.equals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 not equals to DEFAULT_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.notEquals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 not equals to UPDATED_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.notEquals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 in DEFAULT_DUMMY_2 or UPDATED_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.in=" + DEFAULT_DUMMY_2 + "," + UPDATED_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.in=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 is not null
+        defaultFQQuesoShouldBeFound("dummy2.specified=true");
+
+        // Get all the fQQuesoList where dummy2 is null
+        defaultFQQuesoShouldNotBeFound("dummy2.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 is greater than or equal to DEFAULT_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.greaterThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 is greater than or equal to UPDATED_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.greaterThanOrEqual=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 is less than or equal to DEFAULT_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.lessThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 is less than or equal to SMALLER_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.lessThanOrEqual=" + SMALLER_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 is less than DEFAULT_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.lessThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 is less than UPDATED_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.lessThan=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy2IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy2 is greater than DEFAULT_DUMMY_2
+        defaultFQQuesoShouldNotBeFound("dummy2.greaterThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQQuesoList where dummy2 is greater than SMALLER_DUMMY_2
+        defaultFQQuesoShouldBeFound("dummy2.greaterThan=" + SMALLER_DUMMY_2);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 equals to DEFAULT_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.equals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.equals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 not equals to DEFAULT_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.notEquals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 not equals to UPDATED_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.notEquals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 in DEFAULT_DUMMY_3 or UPDATED_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.in=" + DEFAULT_DUMMY_3 + "," + UPDATED_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.in=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 is not null
+        defaultFQQuesoShouldBeFound("dummy3.specified=true");
+
+        // Get all the fQQuesoList where dummy3 is null
+        defaultFQQuesoShouldNotBeFound("dummy3.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 is greater than or equal to DEFAULT_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.greaterThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 is greater than or equal to UPDATED_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.greaterThanOrEqual=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 is less than or equal to DEFAULT_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.lessThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 is less than or equal to SMALLER_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.lessThanOrEqual=" + SMALLER_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 is less than DEFAULT_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.lessThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 is less than UPDATED_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.lessThan=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy3IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy3 is greater than DEFAULT_DUMMY_3
+        defaultFQQuesoShouldNotBeFound("dummy3.greaterThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQQuesoList where dummy3 is greater than SMALLER_DUMMY_3
+        defaultFQQuesoShouldBeFound("dummy3.greaterThan=" + SMALLER_DUMMY_3);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 equals to DEFAULT_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.equals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.equals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 not equals to DEFAULT_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.notEquals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 not equals to UPDATED_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.notEquals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 in DEFAULT_DUMMY_4 or UPDATED_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.in=" + DEFAULT_DUMMY_4 + "," + UPDATED_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.in=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 is not null
+        defaultFQQuesoShouldBeFound("dummy4.specified=true");
+
+        // Get all the fQQuesoList where dummy4 is null
+        defaultFQQuesoShouldNotBeFound("dummy4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 is greater than or equal to DEFAULT_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.greaterThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 is greater than or equal to UPDATED_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.greaterThanOrEqual=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 is less than or equal to DEFAULT_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.lessThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 is less than or equal to SMALLER_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.lessThanOrEqual=" + SMALLER_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 is less than DEFAULT_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.lessThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 is less than UPDATED_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.lessThan=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy4IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy4 is greater than DEFAULT_DUMMY_4
+        defaultFQQuesoShouldNotBeFound("dummy4.greaterThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQQuesoList where dummy4 is greater than SMALLER_DUMMY_4
+        defaultFQQuesoShouldBeFound("dummy4.greaterThan=" + SMALLER_DUMMY_4);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 equals to DEFAULT_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.equals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.equals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 not equals to DEFAULT_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.notEquals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 not equals to UPDATED_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.notEquals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 in DEFAULT_DUMMY_5 or UPDATED_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.in=" + DEFAULT_DUMMY_5 + "," + UPDATED_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.in=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 is not null
+        defaultFQQuesoShouldBeFound("dummy5.specified=true");
+
+        // Get all the fQQuesoList where dummy5 is null
+        defaultFQQuesoShouldNotBeFound("dummy5.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 is greater than or equal to DEFAULT_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.greaterThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 is greater than or equal to UPDATED_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.greaterThanOrEqual=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 is less than or equal to DEFAULT_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.lessThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 is less than or equal to SMALLER_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.lessThanOrEqual=" + SMALLER_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 is less than DEFAULT_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.lessThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 is less than UPDATED_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.lessThan=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByDummy5IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+
+        // Get all the fQQuesoList where dummy5 is greater than DEFAULT_DUMMY_5
+        defaultFQQuesoShouldNotBeFound("dummy5.greaterThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQQuesoList where dummy5 is greater than SMALLER_DUMMY_5
+        defaultFQQuesoShouldBeFound("dummy5.greaterThan=" + SMALLER_DUMMY_5);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllFQQuesosByObservacionesIsEqualToSomething() throws Exception {
         // Initialize the database
         fQQuesoRepository.saveAndFlush(fQQueso);
@@ -1776,6 +2347,26 @@ public class FQQuesoResourceIT {
         defaultFQQuesoShouldNotBeFound("proveedorId.equals=" + (proveedorId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllFQQuesosByContenedorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQQuesoRepository.saveAndFlush(fQQueso);
+        Contenedor contenedor = ContenedorResourceIT.createEntity(em);
+        em.persist(contenedor);
+        em.flush();
+        fQQueso.setContenedor(contenedor);
+        fQQuesoRepository.saveAndFlush(fQQueso);
+        Long contenedorId = contenedor.getId();
+
+        // Get all the fQQuesoList where contenedor equals to contenedorId
+        defaultFQQuesoShouldBeFound("contenedorId.equals=" + contenedorId);
+
+        // Get all the fQQuesoList where contenedor equals to contenedorId + 1
+        defaultFQQuesoShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -1797,6 +2388,11 @@ public class FQQuesoResourceIT {
             .andExpect(jsonPath("$.[*].olor").value(hasItem(DEFAULT_OLOR)))
             .andExpect(jsonPath("$.[*].textura").value(hasItem(DEFAULT_TEXTURA)))
             .andExpect(jsonPath("$.[*].hilado").value(hasItem(DEFAULT_HILADO)))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
 
         // Check, that the count call also returns 1
@@ -1857,6 +2453,11 @@ public class FQQuesoResourceIT {
             .olor(UPDATED_OLOR)
             .textura(UPDATED_TEXTURA)
             .hilado(UPDATED_HILADO)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
 
         restFQQuesoMockMvc.perform(put("/api/fq-quesos")
@@ -1881,6 +2482,11 @@ public class FQQuesoResourceIT {
         assertThat(testFQQueso.getOlor()).isEqualTo(UPDATED_OLOR);
         assertThat(testFQQueso.getTextura()).isEqualTo(UPDATED_TEXTURA);
         assertThat(testFQQueso.getHilado()).isEqualTo(UPDATED_HILADO);
+        assertThat(testFQQueso.getDummy1()).isEqualTo(UPDATED_DUMMY_1);
+        assertThat(testFQQueso.getDummy2()).isEqualTo(UPDATED_DUMMY_2);
+        assertThat(testFQQueso.getDummy3()).isEqualTo(UPDATED_DUMMY_3);
+        assertThat(testFQQueso.getDummy4()).isEqualTo(UPDATED_DUMMY_4);
+        assertThat(testFQQueso.getDummy5()).isEqualTo(UPDATED_DUMMY_5);
         assertThat(testFQQueso.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
     }
 

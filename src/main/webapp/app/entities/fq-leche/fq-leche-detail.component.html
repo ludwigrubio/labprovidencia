@@ -80,6 +80,26 @@
                 <dd>
                     <span>{{ fQLeche.ph }}</span>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.dummy1">Dummy 1</span></dt>
+                <dd>
+                    <span>{{ fQLeche.dummy1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.dummy2">Dummy 2</span></dt>
+                <dd>
+                    <span>{{ fQLeche.dummy2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.dummy3">Dummy 3</span></dt>
+                <dd>
+                    <span>{{ fQLeche.dummy3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.dummy4">Dummy 4</span></dt>
+                <dd>
+                    <span>{{ fQLeche.dummy4 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.dummy5">Dummy 5</span></dt>
+                <dd>
+                    <span>{{ fQLeche.dummy5 }}</span>
+                </dd>
                 <dt><span jhiTranslate="labprovidenciaApp.fQLeche.observaciones">Observaciones</span></dt>
                 <dd>
                     <span>{{ fQLeche.observaciones }}</span>
@@ -108,6 +128,12 @@
                         <a [routerLink]="['/personal', fQLeche.proveedor?.id, 'view']">{{ fQLeche.proveedor?.nombre }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQLeche.contenedor">Contenedor</span></dt>
+                <dd>
+                    <div *ngIf="fQLeche.contenedor">
+                        <a [routerLink]="['/contenedor', fQLeche.contenedor?.id, 'view']">{{ fQLeche.contenedor?.contenedor }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
@@ -116,7 +142,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']" type="button"
+            <button type="button"
                     [routerLink]="['/fq-leche', fQLeche.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>

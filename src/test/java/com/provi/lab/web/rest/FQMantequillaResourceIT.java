@@ -6,6 +6,7 @@ import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
+import com.provi.lab.domain.Contenedor;
 import com.provi.lab.repository.FQMantequillaRepository;
 import com.provi.lab.service.FQMantequillaService;
 import com.provi.lab.service.dto.FQMantequillaCriteria;
@@ -52,6 +53,26 @@ public class FQMantequillaResourceIT {
     private static final Double UPDATED_HUMEDAD = 2D;
     private static final Double SMALLER_HUMEDAD = 1D - 1D;
 
+    private static final Double DEFAULT_DUMMY_1 = 1D;
+    private static final Double UPDATED_DUMMY_1 = 2D;
+    private static final Double SMALLER_DUMMY_1 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_2 = 1D;
+    private static final Double UPDATED_DUMMY_2 = 2D;
+    private static final Double SMALLER_DUMMY_2 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_3 = 1D;
+    private static final Double UPDATED_DUMMY_3 = 2D;
+    private static final Double SMALLER_DUMMY_3 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_4 = 1D;
+    private static final Double UPDATED_DUMMY_4 = 2D;
+    private static final Double SMALLER_DUMMY_4 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_5 = 1D;
+    private static final Double UPDATED_DUMMY_5 = 2D;
+    private static final Double SMALLER_DUMMY_5 = 1D - 1D;
+
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
@@ -84,6 +105,11 @@ public class FQMantequillaResourceIT {
             .lote(DEFAULT_LOTE)
             .ph(DEFAULT_PH)
             .humedad(DEFAULT_HUMEDAD)
+            .dummy1(DEFAULT_DUMMY_1)
+            .dummy2(DEFAULT_DUMMY_2)
+            .dummy3(DEFAULT_DUMMY_3)
+            .dummy4(DEFAULT_DUMMY_4)
+            .dummy5(DEFAULT_DUMMY_5)
             .observaciones(DEFAULT_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -139,6 +165,11 @@ public class FQMantequillaResourceIT {
             .lote(UPDATED_LOTE)
             .ph(UPDATED_PH)
             .humedad(UPDATED_HUMEDAD)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -206,6 +237,11 @@ public class FQMantequillaResourceIT {
         assertThat(testFQMantequilla.getLote()).isEqualTo(DEFAULT_LOTE);
         assertThat(testFQMantequilla.getPh()).isEqualTo(DEFAULT_PH);
         assertThat(testFQMantequilla.getHumedad()).isEqualTo(DEFAULT_HUMEDAD);
+        assertThat(testFQMantequilla.getDummy1()).isEqualTo(DEFAULT_DUMMY_1);
+        assertThat(testFQMantequilla.getDummy2()).isEqualTo(DEFAULT_DUMMY_2);
+        assertThat(testFQMantequilla.getDummy3()).isEqualTo(DEFAULT_DUMMY_3);
+        assertThat(testFQMantequilla.getDummy4()).isEqualTo(DEFAULT_DUMMY_4);
+        assertThat(testFQMantequilla.getDummy5()).isEqualTo(DEFAULT_DUMMY_5);
         assertThat(testFQMantequilla.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
     }
 
@@ -263,6 +299,11 @@ public class FQMantequillaResourceIT {
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
             .andExpect(jsonPath("$.[*].humedad").value(hasItem(DEFAULT_HUMEDAD.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
     }
     
@@ -281,6 +322,11 @@ public class FQMantequillaResourceIT {
             .andExpect(jsonPath("$.lote").value(DEFAULT_LOTE))
             .andExpect(jsonPath("$.ph").value(DEFAULT_PH.doubleValue()))
             .andExpect(jsonPath("$.humedad").value(DEFAULT_HUMEDAD.doubleValue()))
+            .andExpect(jsonPath("$.dummy1").value(DEFAULT_DUMMY_1.doubleValue()))
+            .andExpect(jsonPath("$.dummy2").value(DEFAULT_DUMMY_2.doubleValue()))
+            .andExpect(jsonPath("$.dummy3").value(DEFAULT_DUMMY_3.doubleValue()))
+            .andExpect(jsonPath("$.dummy4").value(DEFAULT_DUMMY_4.doubleValue()))
+            .andExpect(jsonPath("$.dummy5").value(DEFAULT_DUMMY_5.doubleValue()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES));
     }
 
@@ -646,6 +692,531 @@ public class FQMantequillaResourceIT {
 
     @Test
     @Transactional
+    public void getAllFQMantequillasByDummy1IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 equals to DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.equals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.equals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 not equals to DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.notEquals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 not equals to UPDATED_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.notEquals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 in DEFAULT_DUMMY_1 or UPDATED_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.in=" + DEFAULT_DUMMY_1 + "," + UPDATED_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.in=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 is not null
+        defaultFQMantequillaShouldBeFound("dummy1.specified=true");
+
+        // Get all the fQMantequillaList where dummy1 is null
+        defaultFQMantequillaShouldNotBeFound("dummy1.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 is greater than or equal to DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.greaterThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 is greater than or equal to UPDATED_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.greaterThanOrEqual=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 is less than or equal to DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.lessThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 is less than or equal to SMALLER_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.lessThanOrEqual=" + SMALLER_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 is less than DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.lessThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 is less than UPDATED_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.lessThan=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy1IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy1 is greater than DEFAULT_DUMMY_1
+        defaultFQMantequillaShouldNotBeFound("dummy1.greaterThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQMantequillaList where dummy1 is greater than SMALLER_DUMMY_1
+        defaultFQMantequillaShouldBeFound("dummy1.greaterThan=" + SMALLER_DUMMY_1);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 equals to DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.equals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.equals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 not equals to DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.notEquals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 not equals to UPDATED_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.notEquals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 in DEFAULT_DUMMY_2 or UPDATED_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.in=" + DEFAULT_DUMMY_2 + "," + UPDATED_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.in=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 is not null
+        defaultFQMantequillaShouldBeFound("dummy2.specified=true");
+
+        // Get all the fQMantequillaList where dummy2 is null
+        defaultFQMantequillaShouldNotBeFound("dummy2.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 is greater than or equal to DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.greaterThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 is greater than or equal to UPDATED_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.greaterThanOrEqual=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 is less than or equal to DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.lessThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 is less than or equal to SMALLER_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.lessThanOrEqual=" + SMALLER_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 is less than DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.lessThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 is less than UPDATED_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.lessThan=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy2IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy2 is greater than DEFAULT_DUMMY_2
+        defaultFQMantequillaShouldNotBeFound("dummy2.greaterThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQMantequillaList where dummy2 is greater than SMALLER_DUMMY_2
+        defaultFQMantequillaShouldBeFound("dummy2.greaterThan=" + SMALLER_DUMMY_2);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 equals to DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.equals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.equals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 not equals to DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.notEquals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 not equals to UPDATED_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.notEquals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 in DEFAULT_DUMMY_3 or UPDATED_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.in=" + DEFAULT_DUMMY_3 + "," + UPDATED_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.in=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 is not null
+        defaultFQMantequillaShouldBeFound("dummy3.specified=true");
+
+        // Get all the fQMantequillaList where dummy3 is null
+        defaultFQMantequillaShouldNotBeFound("dummy3.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 is greater than or equal to DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.greaterThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 is greater than or equal to UPDATED_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.greaterThanOrEqual=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 is less than or equal to DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.lessThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 is less than or equal to SMALLER_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.lessThanOrEqual=" + SMALLER_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 is less than DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.lessThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 is less than UPDATED_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.lessThan=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy3IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy3 is greater than DEFAULT_DUMMY_3
+        defaultFQMantequillaShouldNotBeFound("dummy3.greaterThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQMantequillaList where dummy3 is greater than SMALLER_DUMMY_3
+        defaultFQMantequillaShouldBeFound("dummy3.greaterThan=" + SMALLER_DUMMY_3);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 equals to DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.equals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.equals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 not equals to DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.notEquals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 not equals to UPDATED_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.notEquals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 in DEFAULT_DUMMY_4 or UPDATED_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.in=" + DEFAULT_DUMMY_4 + "," + UPDATED_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.in=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 is not null
+        defaultFQMantequillaShouldBeFound("dummy4.specified=true");
+
+        // Get all the fQMantequillaList where dummy4 is null
+        defaultFQMantequillaShouldNotBeFound("dummy4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 is greater than or equal to DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.greaterThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 is greater than or equal to UPDATED_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.greaterThanOrEqual=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 is less than or equal to DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.lessThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 is less than or equal to SMALLER_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.lessThanOrEqual=" + SMALLER_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 is less than DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.lessThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 is less than UPDATED_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.lessThan=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy4IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy4 is greater than DEFAULT_DUMMY_4
+        defaultFQMantequillaShouldNotBeFound("dummy4.greaterThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQMantequillaList where dummy4 is greater than SMALLER_DUMMY_4
+        defaultFQMantequillaShouldBeFound("dummy4.greaterThan=" + SMALLER_DUMMY_4);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 equals to DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.equals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.equals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 not equals to DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.notEquals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 not equals to UPDATED_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.notEquals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 in DEFAULT_DUMMY_5 or UPDATED_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.in=" + DEFAULT_DUMMY_5 + "," + UPDATED_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.in=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 is not null
+        defaultFQMantequillaShouldBeFound("dummy5.specified=true");
+
+        // Get all the fQMantequillaList where dummy5 is null
+        defaultFQMantequillaShouldNotBeFound("dummy5.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 is greater than or equal to DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.greaterThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 is greater than or equal to UPDATED_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.greaterThanOrEqual=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 is less than or equal to DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.lessThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 is less than or equal to SMALLER_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.lessThanOrEqual=" + SMALLER_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 is less than DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.lessThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 is less than UPDATED_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.lessThan=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByDummy5IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+
+        // Get all the fQMantequillaList where dummy5 is greater than DEFAULT_DUMMY_5
+        defaultFQMantequillaShouldNotBeFound("dummy5.greaterThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQMantequillaList where dummy5 is greater than SMALLER_DUMMY_5
+        defaultFQMantequillaShouldBeFound("dummy5.greaterThan=" + SMALLER_DUMMY_5);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllFQMantequillasByObservacionesIsEqualToSomething() throws Exception {
         // Initialize the database
         fQMantequillaRepository.saveAndFlush(fQMantequilla);
@@ -785,6 +1356,26 @@ public class FQMantequillaResourceIT {
         defaultFQMantequillaShouldNotBeFound("proveedorId.equals=" + (proveedorId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByContenedorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+        Contenedor contenedor = ContenedorResourceIT.createEntity(em);
+        em.persist(contenedor);
+        em.flush();
+        fQMantequilla.setContenedor(contenedor);
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+        Long contenedorId = contenedor.getId();
+
+        // Get all the fQMantequillaList where contenedor equals to contenedorId
+        defaultFQMantequillaShouldBeFound("contenedorId.equals=" + contenedorId);
+
+        // Get all the fQMantequillaList where contenedor equals to contenedorId + 1
+        defaultFQMantequillaShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -797,6 +1388,11 @@ public class FQMantequillaResourceIT {
             .andExpect(jsonPath("$.[*].lote").value(hasItem(DEFAULT_LOTE)))
             .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
             .andExpect(jsonPath("$.[*].humedad").value(hasItem(DEFAULT_HUMEDAD.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
 
         // Check, that the count call also returns 1
@@ -848,6 +1444,11 @@ public class FQMantequillaResourceIT {
             .lote(UPDATED_LOTE)
             .ph(UPDATED_PH)
             .humedad(UPDATED_HUMEDAD)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
 
         restFQMantequillaMockMvc.perform(put("/api/fq-mantequillas")
@@ -863,6 +1464,11 @@ public class FQMantequillaResourceIT {
         assertThat(testFQMantequilla.getLote()).isEqualTo(UPDATED_LOTE);
         assertThat(testFQMantequilla.getPh()).isEqualTo(UPDATED_PH);
         assertThat(testFQMantequilla.getHumedad()).isEqualTo(UPDATED_HUMEDAD);
+        assertThat(testFQMantequilla.getDummy1()).isEqualTo(UPDATED_DUMMY_1);
+        assertThat(testFQMantequilla.getDummy2()).isEqualTo(UPDATED_DUMMY_2);
+        assertThat(testFQMantequilla.getDummy3()).isEqualTo(UPDATED_DUMMY_3);
+        assertThat(testFQMantequilla.getDummy4()).isEqualTo(UPDATED_DUMMY_4);
+        assertThat(testFQMantequilla.getDummy5()).isEqualTo(UPDATED_DUMMY_5);
         assertThat(testFQMantequilla.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
     }
 

@@ -57,6 +57,21 @@ public class FQSuero extends AbstractAuditingEntity implements Serializable {
     @Column(name = "almidon")
     private Double almidon;
 
+    @Column(name = "dummy_1")
+    private Double dummy1;
+
+    @Column(name = "dummy_2")
+    private Double dummy2;
+
+    @Column(name = "dummy_3")
+    private Double dummy3;
+
+    @Column(name = "dummy_4")
+    private Double dummy4;
+
+    @Column(name = "dummy_5")
+    private Double dummy5;
+
     @Size(max = 100)
     @Column(name = "observaciones", length = 100)
     private String observaciones;
@@ -80,6 +95,10 @@ public class FQSuero extends AbstractAuditingEntity implements Serializable {
     @NotNull
     @JsonIgnoreProperties(value = "fQSueros", allowSetters = true)
     private Personal proveedor;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "fQSueros", allowSetters = true)
+    private Contenedor contenedor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -220,6 +239,71 @@ public class FQSuero extends AbstractAuditingEntity implements Serializable {
         this.almidon = almidon;
     }
 
+    public Double getDummy1() {
+        return dummy1;
+    }
+
+    public FQSuero dummy1(Double dummy1) {
+        this.dummy1 = dummy1;
+        return this;
+    }
+
+    public void setDummy1(Double dummy1) {
+        this.dummy1 = dummy1;
+    }
+
+    public Double getDummy2() {
+        return dummy2;
+    }
+
+    public FQSuero dummy2(Double dummy2) {
+        this.dummy2 = dummy2;
+        return this;
+    }
+
+    public void setDummy2(Double dummy2) {
+        this.dummy2 = dummy2;
+    }
+
+    public Double getDummy3() {
+        return dummy3;
+    }
+
+    public FQSuero dummy3(Double dummy3) {
+        this.dummy3 = dummy3;
+        return this;
+    }
+
+    public void setDummy3(Double dummy3) {
+        this.dummy3 = dummy3;
+    }
+
+    public Double getDummy4() {
+        return dummy4;
+    }
+
+    public FQSuero dummy4(Double dummy4) {
+        this.dummy4 = dummy4;
+        return this;
+    }
+
+    public void setDummy4(Double dummy4) {
+        this.dummy4 = dummy4;
+    }
+
+    public Double getDummy5() {
+        return dummy5;
+    }
+
+    public FQSuero dummy5(Double dummy5) {
+        this.dummy5 = dummy5;
+        return this;
+    }
+
+    public void setDummy5(Double dummy5) {
+        this.dummy5 = dummy5;
+    }
+
     public String getObservaciones() {
         return observaciones;
     }
@@ -284,6 +368,19 @@ public class FQSuero extends AbstractAuditingEntity implements Serializable {
     public void setProveedor(Personal personal) {
         this.proveedor = personal;
     }
+
+    public Contenedor getContenedor() {
+        return contenedor;
+    }
+
+    public FQSuero contenedor(Contenedor contenedor) {
+        this.contenedor = contenedor;
+        return this;
+    }
+
+    public void setContenedor(Contenedor contenedor) {
+        this.contenedor = contenedor;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -317,6 +414,11 @@ public class FQSuero extends AbstractAuditingEntity implements Serializable {
             ", ph=" + getPh() +
             ", cloro=" + getCloro() +
             ", almidon=" + getAlmidon() +
+            ", dummy1=" + getDummy1() +
+            ", dummy2=" + getDummy2() +
+            ", dummy3=" + getDummy3() +
+            ", dummy4=" + getDummy4() +
+            ", dummy5=" + getDummy5() +
             ", observaciones='" + getObservaciones() + "'" +
             "}";
     }

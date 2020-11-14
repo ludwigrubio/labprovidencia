@@ -3,6 +3,7 @@ import { IArea } from 'app/shared/model/area.model';
 import { IRecepcion } from 'app/shared/model/recepcion.model';
 import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { IPersonal } from 'app/shared/model/personal.model';
+import { IContenedor } from 'app/shared/model/contenedor.model';
 
 export interface IFQLeche {
   id?: number;
@@ -24,11 +25,17 @@ export interface IFQLeche {
   reductasa?: number;
   fosfatasa?: number;
   ph?: number;
+  dummy1?: number;
+  dummy2?: number;
+  dummy3?: number;
+  dummy4?: number;
+  dummy5?: number;
   observaciones?: string;
   area?: IArea;
   recepcion?: IRecepcion;
   analista?: IUserExtra;
   proveedor?: IPersonal;
+  contenedor?: IContenedor;
 }
 
 export class FQLeche implements IFQLeche {
@@ -52,10 +59,16 @@ export class FQLeche implements IFQLeche {
     public reductasa?: number,
     public fosfatasa?: number,
     public ph?: number,
+    public dummy1?: number,
+    public dummy2?: number,
+    public dummy3?: number,
+    public dummy4?: number,
+    public dummy5?: number,
     public observaciones?: string,
     public area?: IArea,
     public recepcion?: IRecepcion,
     public analista?: IUserExtra,
-    public proveedor?: IPersonal
+    public proveedor?: IPersonal,
+    public contenedor?: IContenedor
   ) {}
 }

@@ -143,6 +143,36 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.dummy1" for="field_dummy1">Dummy1</label>
+                    <input type="number" class="form-control" name="ph" id="field_dummy1"
+                           formControlName="dummy1"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.dummy2" for="field_dummy2">Dummy2</label>
+                    <input type="number" class="form-control" name="ph" id="field_dummy2"
+                           formControlName="dummy2"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.dummy3" for="field_dummy3">Dummy3</label>
+                    <input type="number" class="form-control" name="ph" id="field_dummy3"
+                           formControlName="dummy3"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.dummy4" for="field_dummy4">Dummy4</label>
+                    <input type="number" class="form-control" name="ph" id="field_dummy4"
+                           formControlName="dummy4"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.dummy5" for="field_dummy5">Dummy5</label>
+                    <input type="number" class="form-control" name="ph" id="field_dummy5"
+                           formControlName="dummy5"/>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.observaciones" for="field_observaciones">Observaciones</label>
                     <input type="text" class="form-control" name="observaciones" id="field_observaciones"
                            formControlName="observaciones"/>
@@ -236,6 +266,21 @@
                            *ngIf="editForm.get('proveedor')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                     </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQLeche.contenedor" for="field_contenedor">Contenedor</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-contenedor"><fa-icon icon="list"></fa-icon></span>
+                        </div>
+                        <input type="text" class="form-control" id="field_contenedor" formControlName="contenedor"
+                               placeholder="Buscar"
+                               [ngbTypeahead]="searchContenedor"
+                               [inputFormatter]="formatterContenedor"
+                               [resultFormatter]="formatterContenedor"
+                               [editable]='false' />
+                    </div>
                 </div>
             </div>
 

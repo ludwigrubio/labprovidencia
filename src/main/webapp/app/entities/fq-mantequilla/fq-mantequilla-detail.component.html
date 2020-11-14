@@ -24,6 +24,26 @@
                 <dd>
                     <span>{{ fQMantequilla.humedad }}</span>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.dummy1">Dummy 1</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.dummy1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.dummy2">Dummy 2</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.dummy2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.dummy3">Dummy 3</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.dummy3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.dummy4">Dummy 4</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.dummy4 }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.dummy5">Dummy 5</span></dt>
+                <dd>
+                    <span>{{ fQMantequilla.dummy5 }}</span>
+                </dd>
                 <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.observaciones">Observaciones</span></dt>
                 <dd>
                     <span>{{ fQMantequilla.observaciones }}</span>
@@ -52,6 +72,12 @@
                         <a [routerLink]="['/personal', fQMantequilla.proveedor?.id, 'view']">{{ fQMantequilla.proveedor?.nombre }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.contenedor">Contenedor</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.contenedor">
+                        <a [routerLink]="['/contenedor', fQMantequilla.contenedor?.id, 'view']">{{ fQMantequilla.contenedor?.contenedor }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
@@ -60,7 +86,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']" type="button"
+            <button type="button"
                     [routerLink]="['/fq-mantequilla', fQMantequilla.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>

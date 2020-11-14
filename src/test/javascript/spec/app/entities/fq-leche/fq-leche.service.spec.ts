@@ -24,7 +24,33 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new FQLeche(0, currentDate, 'AAAAAAA', 0, 0, 0, 0, 0, 0, 0, 'AAAAAAA', 0, 0, 0, 0, 0, 0, 0, 0, 'AAAAAAA');
+      elemDefault = new FQLeche(
+        0,
+        currentDate,
+        'AAAAAAA',
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        'AAAAAAA',
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        'AAAAAAA'
+      );
     });
 
     describe('Service methods', () => {
@@ -87,6 +113,11 @@ describe('Service Tests', () => {
             reductasa: 1,
             fosfatasa: 1,
             ph: 1,
+            dummy1: 1,
+            dummy2: 1,
+            dummy3: 1,
+            dummy4: 1,
+            dummy5: 1,
             observaciones: 'BBBBBB',
           },
           elemDefault
@@ -127,6 +158,11 @@ describe('Service Tests', () => {
             reductasa: 1,
             fosfatasa: 1,
             ph: 1,
+            dummy1: 1,
+            dummy2: 1,
+            dummy3: 1,
+            dummy4: 1,
+            dummy5: 1,
             observaciones: 'BBBBBB',
           },
           elemDefault

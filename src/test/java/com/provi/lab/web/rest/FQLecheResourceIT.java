@@ -6,6 +6,7 @@ import com.provi.lab.domain.Area;
 import com.provi.lab.domain.Recepcion;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
+import com.provi.lab.domain.Contenedor;
 import com.provi.lab.repository.FQLecheRepository;
 import com.provi.lab.service.FQLecheService;
 import com.provi.lab.service.dto.FQLecheCriteria;
@@ -107,6 +108,26 @@ public class FQLecheResourceIT {
     private static final Double UPDATED_PH = 2D;
     private static final Double SMALLER_PH = 1D - 1D;
 
+    private static final Double DEFAULT_DUMMY_1 = 1D;
+    private static final Double UPDATED_DUMMY_1 = 2D;
+    private static final Double SMALLER_DUMMY_1 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_2 = 1D;
+    private static final Double UPDATED_DUMMY_2 = 2D;
+    private static final Double SMALLER_DUMMY_2 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_3 = 1D;
+    private static final Double UPDATED_DUMMY_3 = 2D;
+    private static final Double SMALLER_DUMMY_3 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_4 = 1D;
+    private static final Double UPDATED_DUMMY_4 = 2D;
+    private static final Double SMALLER_DUMMY_4 = 1D - 1D;
+
+    private static final Double DEFAULT_DUMMY_5 = 1D;
+    private static final Double UPDATED_DUMMY_5 = 2D;
+    private static final Double SMALLER_DUMMY_5 = 1D - 1D;
+
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
@@ -153,6 +174,11 @@ public class FQLecheResourceIT {
             .reductasa(DEFAULT_REDUCTASA)
             .fosfatasa(DEFAULT_FOSFATASA)
             .ph(DEFAULT_PH)
+            .dummy1(DEFAULT_DUMMY_1)
+            .dummy2(DEFAULT_DUMMY_2)
+            .dummy3(DEFAULT_DUMMY_3)
+            .dummy4(DEFAULT_DUMMY_4)
+            .dummy5(DEFAULT_DUMMY_5)
             .observaciones(DEFAULT_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -222,6 +248,11 @@ public class FQLecheResourceIT {
             .reductasa(UPDATED_REDUCTASA)
             .fosfatasa(UPDATED_FOSFATASA)
             .ph(UPDATED_PH)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
         // Add required entity
         Area area;
@@ -303,6 +334,11 @@ public class FQLecheResourceIT {
         assertThat(testFQLeche.getReductasa()).isEqualTo(DEFAULT_REDUCTASA);
         assertThat(testFQLeche.getFosfatasa()).isEqualTo(DEFAULT_FOSFATASA);
         assertThat(testFQLeche.getPh()).isEqualTo(DEFAULT_PH);
+        assertThat(testFQLeche.getDummy1()).isEqualTo(DEFAULT_DUMMY_1);
+        assertThat(testFQLeche.getDummy2()).isEqualTo(DEFAULT_DUMMY_2);
+        assertThat(testFQLeche.getDummy3()).isEqualTo(DEFAULT_DUMMY_3);
+        assertThat(testFQLeche.getDummy4()).isEqualTo(DEFAULT_DUMMY_4);
+        assertThat(testFQLeche.getDummy5()).isEqualTo(DEFAULT_DUMMY_5);
         assertThat(testFQLeche.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
     }
 
@@ -374,6 +410,11 @@ public class FQLecheResourceIT {
             .andExpect(jsonPath("$.[*].reductasa").value(hasItem(DEFAULT_REDUCTASA.doubleValue())))
             .andExpect(jsonPath("$.[*].fosfatasa").value(hasItem(DEFAULT_FOSFATASA.doubleValue())))
             .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
     }
     
@@ -406,6 +447,11 @@ public class FQLecheResourceIT {
             .andExpect(jsonPath("$.reductasa").value(DEFAULT_REDUCTASA.doubleValue()))
             .andExpect(jsonPath("$.fosfatasa").value(DEFAULT_FOSFATASA.doubleValue()))
             .andExpect(jsonPath("$.ph").value(DEFAULT_PH.doubleValue()))
+            .andExpect(jsonPath("$.dummy1").value(DEFAULT_DUMMY_1.doubleValue()))
+            .andExpect(jsonPath("$.dummy2").value(DEFAULT_DUMMY_2.doubleValue()))
+            .andExpect(jsonPath("$.dummy3").value(DEFAULT_DUMMY_3.doubleValue()))
+            .andExpect(jsonPath("$.dummy4").value(DEFAULT_DUMMY_4.doubleValue()))
+            .andExpect(jsonPath("$.dummy5").value(DEFAULT_DUMMY_5.doubleValue()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES));
     }
 
@@ -2214,6 +2260,531 @@ public class FQLecheResourceIT {
 
     @Test
     @Transactional
+    public void getAllFQLechesByDummy1IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 equals to DEFAULT_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.equals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.equals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 not equals to DEFAULT_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.notEquals=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 not equals to UPDATED_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.notEquals=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 in DEFAULT_DUMMY_1 or UPDATED_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.in=" + DEFAULT_DUMMY_1 + "," + UPDATED_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 equals to UPDATED_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.in=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 is not null
+        defaultFQLecheShouldBeFound("dummy1.specified=true");
+
+        // Get all the fQLecheList where dummy1 is null
+        defaultFQLecheShouldNotBeFound("dummy1.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 is greater than or equal to DEFAULT_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.greaterThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 is greater than or equal to UPDATED_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.greaterThanOrEqual=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 is less than or equal to DEFAULT_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.lessThanOrEqual=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 is less than or equal to SMALLER_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.lessThanOrEqual=" + SMALLER_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 is less than DEFAULT_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.lessThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 is less than UPDATED_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.lessThan=" + UPDATED_DUMMY_1);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy1IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy1 is greater than DEFAULT_DUMMY_1
+        defaultFQLecheShouldNotBeFound("dummy1.greaterThan=" + DEFAULT_DUMMY_1);
+
+        // Get all the fQLecheList where dummy1 is greater than SMALLER_DUMMY_1
+        defaultFQLecheShouldBeFound("dummy1.greaterThan=" + SMALLER_DUMMY_1);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 equals to DEFAULT_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.equals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.equals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 not equals to DEFAULT_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.notEquals=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 not equals to UPDATED_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.notEquals=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 in DEFAULT_DUMMY_2 or UPDATED_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.in=" + DEFAULT_DUMMY_2 + "," + UPDATED_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 equals to UPDATED_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.in=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 is not null
+        defaultFQLecheShouldBeFound("dummy2.specified=true");
+
+        // Get all the fQLecheList where dummy2 is null
+        defaultFQLecheShouldNotBeFound("dummy2.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 is greater than or equal to DEFAULT_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.greaterThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 is greater than or equal to UPDATED_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.greaterThanOrEqual=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 is less than or equal to DEFAULT_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.lessThanOrEqual=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 is less than or equal to SMALLER_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.lessThanOrEqual=" + SMALLER_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 is less than DEFAULT_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.lessThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 is less than UPDATED_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.lessThan=" + UPDATED_DUMMY_2);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy2IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy2 is greater than DEFAULT_DUMMY_2
+        defaultFQLecheShouldNotBeFound("dummy2.greaterThan=" + DEFAULT_DUMMY_2);
+
+        // Get all the fQLecheList where dummy2 is greater than SMALLER_DUMMY_2
+        defaultFQLecheShouldBeFound("dummy2.greaterThan=" + SMALLER_DUMMY_2);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 equals to DEFAULT_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.equals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.equals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 not equals to DEFAULT_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.notEquals=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 not equals to UPDATED_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.notEquals=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 in DEFAULT_DUMMY_3 or UPDATED_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.in=" + DEFAULT_DUMMY_3 + "," + UPDATED_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 equals to UPDATED_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.in=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 is not null
+        defaultFQLecheShouldBeFound("dummy3.specified=true");
+
+        // Get all the fQLecheList where dummy3 is null
+        defaultFQLecheShouldNotBeFound("dummy3.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 is greater than or equal to DEFAULT_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.greaterThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 is greater than or equal to UPDATED_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.greaterThanOrEqual=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 is less than or equal to DEFAULT_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.lessThanOrEqual=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 is less than or equal to SMALLER_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.lessThanOrEqual=" + SMALLER_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 is less than DEFAULT_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.lessThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 is less than UPDATED_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.lessThan=" + UPDATED_DUMMY_3);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy3IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy3 is greater than DEFAULT_DUMMY_3
+        defaultFQLecheShouldNotBeFound("dummy3.greaterThan=" + DEFAULT_DUMMY_3);
+
+        // Get all the fQLecheList where dummy3 is greater than SMALLER_DUMMY_3
+        defaultFQLecheShouldBeFound("dummy3.greaterThan=" + SMALLER_DUMMY_3);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 equals to DEFAULT_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.equals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.equals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 not equals to DEFAULT_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.notEquals=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 not equals to UPDATED_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.notEquals=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 in DEFAULT_DUMMY_4 or UPDATED_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.in=" + DEFAULT_DUMMY_4 + "," + UPDATED_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 equals to UPDATED_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.in=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 is not null
+        defaultFQLecheShouldBeFound("dummy4.specified=true");
+
+        // Get all the fQLecheList where dummy4 is null
+        defaultFQLecheShouldNotBeFound("dummy4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 is greater than or equal to DEFAULT_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.greaterThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 is greater than or equal to UPDATED_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.greaterThanOrEqual=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 is less than or equal to DEFAULT_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.lessThanOrEqual=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 is less than or equal to SMALLER_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.lessThanOrEqual=" + SMALLER_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 is less than DEFAULT_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.lessThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 is less than UPDATED_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.lessThan=" + UPDATED_DUMMY_4);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy4IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy4 is greater than DEFAULT_DUMMY_4
+        defaultFQLecheShouldNotBeFound("dummy4.greaterThan=" + DEFAULT_DUMMY_4);
+
+        // Get all the fQLecheList where dummy4 is greater than SMALLER_DUMMY_4
+        defaultFQLecheShouldBeFound("dummy4.greaterThan=" + SMALLER_DUMMY_4);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 equals to DEFAULT_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.equals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.equals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 not equals to DEFAULT_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.notEquals=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 not equals to UPDATED_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.notEquals=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsInShouldWork() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 in DEFAULT_DUMMY_5 or UPDATED_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.in=" + DEFAULT_DUMMY_5 + "," + UPDATED_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 equals to UPDATED_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.in=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 is not null
+        defaultFQLecheShouldBeFound("dummy5.specified=true");
+
+        // Get all the fQLecheList where dummy5 is null
+        defaultFQLecheShouldNotBeFound("dummy5.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 is greater than or equal to DEFAULT_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.greaterThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 is greater than or equal to UPDATED_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.greaterThanOrEqual=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 is less than or equal to DEFAULT_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.lessThanOrEqual=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 is less than or equal to SMALLER_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.lessThanOrEqual=" + SMALLER_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsLessThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 is less than DEFAULT_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.lessThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 is less than UPDATED_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.lessThan=" + UPDATED_DUMMY_5);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByDummy5IsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+
+        // Get all the fQLecheList where dummy5 is greater than DEFAULT_DUMMY_5
+        defaultFQLecheShouldNotBeFound("dummy5.greaterThan=" + DEFAULT_DUMMY_5);
+
+        // Get all the fQLecheList where dummy5 is greater than SMALLER_DUMMY_5
+        defaultFQLecheShouldBeFound("dummy5.greaterThan=" + SMALLER_DUMMY_5);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllFQLechesByObservacionesIsEqualToSomething() throws Exception {
         // Initialize the database
         fQLecheRepository.saveAndFlush(fQLeche);
@@ -2353,6 +2924,26 @@ public class FQLecheResourceIT {
         defaultFQLecheShouldNotBeFound("proveedorId.equals=" + (proveedorId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByContenedorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+        Contenedor contenedor = ContenedorResourceIT.createEntity(em);
+        em.persist(contenedor);
+        em.flush();
+        fQLeche.setContenedor(contenedor);
+        fQLecheRepository.saveAndFlush(fQLeche);
+        Long contenedorId = contenedor.getId();
+
+        // Get all the fQLecheList where contenedor equals to contenedorId
+        defaultFQLecheShouldBeFound("contenedorId.equals=" + contenedorId);
+
+        // Get all the fQLecheList where contenedor equals to contenedorId + 1
+        defaultFQLecheShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -2379,6 +2970,11 @@ public class FQLecheResourceIT {
             .andExpect(jsonPath("$.[*].reductasa").value(hasItem(DEFAULT_REDUCTASA.doubleValue())))
             .andExpect(jsonPath("$.[*].fosfatasa").value(hasItem(DEFAULT_FOSFATASA.doubleValue())))
             .andExpect(jsonPath("$.[*].ph").value(hasItem(DEFAULT_PH.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy1").value(hasItem(DEFAULT_DUMMY_1.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy2").value(hasItem(DEFAULT_DUMMY_2.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy3").value(hasItem(DEFAULT_DUMMY_3.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy4").value(hasItem(DEFAULT_DUMMY_4.doubleValue())))
+            .andExpect(jsonPath("$.[*].dummy5").value(hasItem(DEFAULT_DUMMY_5.doubleValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)));
 
         // Check, that the count call also returns 1
@@ -2444,6 +3040,11 @@ public class FQLecheResourceIT {
             .reductasa(UPDATED_REDUCTASA)
             .fosfatasa(UPDATED_FOSFATASA)
             .ph(UPDATED_PH)
+            .dummy1(UPDATED_DUMMY_1)
+            .dummy2(UPDATED_DUMMY_2)
+            .dummy3(UPDATED_DUMMY_3)
+            .dummy4(UPDATED_DUMMY_4)
+            .dummy5(UPDATED_DUMMY_5)
             .observaciones(UPDATED_OBSERVACIONES);
 
         restFQLecheMockMvc.perform(put("/api/fq-leches")
@@ -2473,6 +3074,11 @@ public class FQLecheResourceIT {
         assertThat(testFQLeche.getReductasa()).isEqualTo(UPDATED_REDUCTASA);
         assertThat(testFQLeche.getFosfatasa()).isEqualTo(UPDATED_FOSFATASA);
         assertThat(testFQLeche.getPh()).isEqualTo(UPDATED_PH);
+        assertThat(testFQLeche.getDummy1()).isEqualTo(UPDATED_DUMMY_1);
+        assertThat(testFQLeche.getDummy2()).isEqualTo(UPDATED_DUMMY_2);
+        assertThat(testFQLeche.getDummy3()).isEqualTo(UPDATED_DUMMY_3);
+        assertThat(testFQLeche.getDummy4()).isEqualTo(UPDATED_DUMMY_4);
+        assertThat(testFQLeche.getDummy5()).isEqualTo(UPDATED_DUMMY_5);
         assertThat(testFQLeche.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
     }
 

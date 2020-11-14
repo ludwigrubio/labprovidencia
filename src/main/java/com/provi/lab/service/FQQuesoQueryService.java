@@ -124,6 +124,21 @@ public class FQQuesoQueryService extends QueryService<FQQueso> {
             if (criteria.getHilado() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getHilado(), FQQueso_.hilado));
             }
+            if (criteria.getDummy1() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy1(), FQQueso_.dummy1));
+            }
+            if (criteria.getDummy2() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy2(), FQQueso_.dummy2));
+            }
+            if (criteria.getDummy3() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy3(), FQQueso_.dummy3));
+            }
+            if (criteria.getDummy4() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy4(), FQQueso_.dummy4));
+            }
+            if (criteria.getDummy5() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDummy5(), FQQueso_.dummy5));
+            }
             if (criteria.getObservaciones() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getObservaciones(), FQQueso_.observaciones));
             }
@@ -142,6 +157,10 @@ public class FQQuesoQueryService extends QueryService<FQQueso> {
             if (criteria.getProveedorId() != null) {
                 specification = specification.and(buildSpecification(criteria.getProveedorId(),
                     root -> root.join(FQQueso_.proveedor, JoinType.LEFT).get(Personal_.id)));
+            }
+            if (criteria.getContenedorId() != null) {
+                specification = specification.and(buildSpecification(criteria.getContenedorId(),
+                    root -> root.join(FQQueso_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
         }
         return specification;

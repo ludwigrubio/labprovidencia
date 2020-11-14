@@ -32,5 +32,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="personal"/>
 
+        <addForeignKeyConstraint baseColumnNames="contenedor_id"
+                                 baseTableName="fq_mantequilla"
+                                 constraintName="fk_fq_mantequilla_contenedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contenedor"/>
+
     </changeSet>
 </databaseChangeLog>
