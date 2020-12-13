@@ -150,4 +150,6 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  lactoescan-toread: 'C:\Users\gerar\Desktop\LPFiles\Readed'
+  lactoescan-readed: 'C:\Users\gerar\Desktop\LPFiles\Readed'

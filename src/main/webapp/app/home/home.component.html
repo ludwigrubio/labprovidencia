@@ -42,13 +42,13 @@
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
-                                    <button type="button" class="btn btn-info" disabled="">
-                                        <fa-icon icon="file-upload"></fa-icon>
-                                        <span jhiTranslate="home.importEntity">Importar</span>
-                                    </button>
                                     <button type="button" class="btn btn-dark" [routerLink]="['/fq-leche']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" [routerLink]="['/log-lacto-escan']">
+                                        <fa-icon icon="file-upload"></fa-icon>
+                                        <span jhiTranslate="home.lactoEscan">LactoEscan Logs</span>
                                     </button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -57,10 +57,10 @@
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
-                                    <button type="button" class="btn btn-info" disabled="">
+                                    <!--<button type="button" class="btn btn-info" disabled="">
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
-                                    </button>
+                                    </button>-->
                                     <button type="button" class="btn btn-dark" [routerLink]="['/fq-queso']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
@@ -72,10 +72,10 @@
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
-                                    <button type="button" class="btn btn-info" disabled="">
+                                    <!--<button type="button" class="btn btn-info" disabled="">
                                         <fa-icon icon="file-upload"></fa-icon>
                                         <span jhiTranslate="home.importEntity">Importar</span>
-                                    </button>
+                                    </button>-->
                                     <button type="button" class="btn btn-dark" [routerLink]="['/fq-mantequilla']">
                                         <fa-icon icon="list"></fa-icon>
                                         <span jhiTranslate="home.listEntity">Listado</span>
@@ -87,189 +87,181 @@
                                         <fa-icon icon="plus"></fa-icon>
                                         <span jhiTranslate="home.createEntity">Crear</span>
                                     </button>
-                                    <button type="button" class="btn btn-info" disabled="">
-                                        <fa-icon icon="file-upload"></fa-icon>
-                                        <span jhiTranslate="home.importEntity">Importar</span>
-                                    </button>
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-suero']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntity">Listado</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div><h6 class="sub-title"> Crema:</h6></div>
-                                    <button type="button" class="btn btn-primary" [routerLink]="['/fq-crema/new']">
-                                        <fa-icon icon="plus"></fa-icon>
-                                        <span jhiTranslate="home.createEntity">Crear</span>
-                                    </button>
-                                    <button type="button" class="btn btn-info" disabled="">
-                                        <fa-icon icon="file-upload"></fa-icon>
-                                        <span jhiTranslate="home.importEntity">Importar</span>
-                                    </button>
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/fq-crema']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntity">Listado</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <h5 class="card-header">
-                            <fa-icon icon="microscope"></fa-icon>
-                            &nbsp;Análisis Microbiológicos</h5>
-                        <div class="card-body">
-                            <div><h6 class="sub-title"> Pruebas sensoriales:</h6></div>
-                            <button type="button" class="btn btn-primary" [routerLink]="['/prueba-micro/new']">
-                                <fa-icon icon="plus"></fa-icon>
-                                <span jhiTranslate="home.createEntity">Crear</span>
-                            </button>
-                            <button type="button" class="btn btn-info" disabled="">
-                                <fa-icon icon="file-upload"></fa-icon>
-                                <span jhiTranslate="home.importEntity">Importar</span>
-                            </button>
-                            <button type="button" class="btn btn-dark"  [routerLink]="['/prueba-micro']">
-                                <fa-icon icon="list"></fa-icon>
-                                <span jhiTranslate="home.listEntity">Listado</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <h5 class="card-header">
-                            <fa-icon icon="tasks"></fa-icon>
-                            &nbsp;Reportes</h5>
-                        <div class="card-body">
-                            <div><h6 class="sub-title"> Descargar reportes:</h6></div>
-                            <button type="button" class="btn btn-dark" disabled="">
-                                <fa-icon icon="download"></fa-icon>
-                                <span jhiTranslate="home.reportEntity">Descargar Reporte</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <!-- <button type="button" class="btn btn-info" disabled="">
+                                         <fa-icon icon="file-upload"></fa-icon>
+                                         <span jhiTranslate="home.importEntity">Importar</span>
+                                     </button>-->
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/fq-suero']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntity">Listado</span>
+                                     </button>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6">
+                                     <div><h6 class="sub-title"> Crema:</h6></div>
+                                     <button type="button" class="btn btn-primary" [routerLink]="['/fq-crema/new']">
+                                         <fa-icon icon="plus"></fa-icon>
+                                         <span jhiTranslate="home.createEntity">Crear</span>
+                                     </button>
+                                     <!--<button type="button" class="btn btn-info" disabled="">
+                                         <fa-icon icon="file-upload"></fa-icon>
+                                         <span jhiTranslate="home.importEntity">Importar</span>
+                                     </button>-->
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/fq-crema']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntity">Listado</span>
+                                     </button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6">
+                     <div class="card">
+                         <h5 class="card-header">
+                             <fa-icon icon="microscope"></fa-icon>
+                             &nbsp;Análisis Microbiológicos</h5>
+                         <div class="card-body">
+                             <div><h6 class="sub-title"> Pruebas sensoriales:</h6></div>
+                             <button type="button" class="btn btn-primary" [routerLink]="['/prueba-micro/new']">
+                                 <fa-icon icon="plus"></fa-icon>
+                                 <span jhiTranslate="home.createEntity">Crear</span>
+                             </button>
+                            <!-- <button type="button" class="btn btn-info" disabled="">
+                                 <fa-icon icon="file-upload"></fa-icon>
+                                 <span jhiTranslate="home.importEntity">Importar</span>
+                             </button>-->
+                             <button type="button" class="btn btn-dark"  [routerLink]="['/prueba-micro']">
+                                 <fa-icon icon="list"></fa-icon>
+                                 <span jhiTranslate="home.listEntity">Listado</span>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6">
+                     <div class="card">
+                         <h5 class="card-header">
+                             <fa-icon icon="tasks"></fa-icon>
+                             &nbsp;Reportes</h5>
+                         <div class="card-body">
+                             <div><h6 class="sub-title"> Descargar reportes:</h6></div>
+                             <button type="button" class="btn btn-dark" disabled="">
+                                 <fa-icon icon="download"></fa-icon>
+                                 <span jhiTranslate="home.reportEntity">Descargar Reporte</span>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-            <div class="row" *ngSwitchCase="true">
-                <div class="{{sizeCol}}" *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']">
-                    <div class="card">
-                        <h5 class="card-header">
-                            <fa-icon icon="list"></fa-icon>
-                            &nbsp;Catálogos</h5>
-                        <div class="card-body catalogos">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/area']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntityArea">Áreas</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/cultivo']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntityCul">Cultivos</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/relacion']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntityRel">Relación</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/superficie']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntitySup">Superficie</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/contenedor']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span jhiTranslate="home.listEntityCont">Contenedor</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             <div class="row" *ngSwitchCase="true">
+                 <div class="{{sizeCol}}" *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']">
+                     <div class="card">
+                         <h5 class="card-header">
+                             <fa-icon icon="list"></fa-icon>
+                             &nbsp;Catálogos</h5>
+                         <div class="card-body catalogos">
+                             <div class="row">
+                                 <div class="col-md-4">
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/area']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntityArea">Áreas</span>
+                                     </button>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/cultivo']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntityCul">Cultivos</span>
+                                     </button>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/relacion']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntityRel">Relación</span>
+                                     </button>
+                                 </div>
+                             </div>
+                             <div class="row mt-2">
+                                 <div class="col-md-6">
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/superficie']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntitySup">Superficie</span>
+                                     </button>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/contenedor']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span jhiTranslate="home.listEntityCont">Contenedor</span>
+                                     </button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
 
-                <div class="col-md-4" *jhiHasAnyAuthority="['ROLE_ADMIN']">
-                    <div class="card">
-                        <h5 class="card-header">
-                            <fa-icon icon="user"> </fa-icon>
-                            &nbsp;Usuarios</h5>
-                        <div class="card-body">
-                            <p>
-                                <button type="button" class="btn btn-primary" [routerLink]="['/account/register']">
-                                    <fa-icon icon="plus"></fa-icon>
-                                    <span jhiTranslate="home.createEntity">Crear</span>
-                                </button>
-                                <button type="button" class="btn btn-dark" [routerLink]="['/admin/user-management']">
-                                    <fa-icon icon="list"></fa-icon>
-                                    <span jhiTranslate="home.listEntity">Listado</span>
-                                </button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                 <div class="col-md-4" *jhiHasAnyAuthority="['ROLE_ADMIN']">
+                     <div class="card">
+                         <h5 class="card-header">
+                             <fa-icon icon="user"> </fa-icon>
+                             &nbsp;Usuarios</h5>
+                         <div class="card-body">
+                             <p>
+                                 <button type="button" class="btn btn-primary" [routerLink]="['/account/register']">
+                                     <fa-icon icon="plus"></fa-icon>
+                                     <span jhiTranslate="home.createEntity">Crear</span>
+                                 </button>
+                                 <button type="button" class="btn btn-dark" [routerLink]="['/admin/user-management']">
+                                     <fa-icon icon="list"></fa-icon>
+                                     <span jhiTranslate="home.listEntity">Listado</span>
+                                 </button>
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-            <div class="row" *ngSwitchCase="true">
-                <div class="col-md-12">
-                    <div class="card">
-                        <h5 class="card-header">
-                            <fa-icon icon="play"></fa-icon>
-                            Área de pruebas</h5>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div><h6 class="sub-title"> Recepción:</h6></div>
-                                    <button type="button" class="btn btn-primary" [routerLink]="['/recepcion/new']">
-                                        <fa-icon icon="plus"></fa-icon>
-                                        <span>Crear nueva</span>
-                                    </button>
-                                    <button type="button" class="btn btn-dark" [routerLink]="['/recepcion']">
-                                        <fa-icon icon="list"></fa-icon>
-                                        <span>Listar</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <div><h6 class="sub-title"> &nbsp;Tina Programada:</h6></div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label class="form-control-label" for="field_tipo_tina">Tipo de tina</label>
-                                            <select class="form-control" id="field_tipo_tina">
-                                                <option>Leche</option>
-                                                <option>Queso</option>
-                                                <option>Suero</option>
-                                                <option>Crema</option>
-                                                <option>Mantequilla</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label class="form-control-label" for="field_tipo_tina">Cantidad</label>
-                                            <input type="number" step="1"  class="form-control" id="field_cantidad_tina" formControlName="tina_cantidad"/>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label class="form-control-label">&nbsp;</label>
-                                            <button type="button" class="form-control btn btn-dark" [routerLink]="['/recepcion']">
-                                                <fa-icon icon="play"></fa-icon>
-                                                <span>Crear</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <div class="row" *ngSwitchCase="true">
+                 <div class="col-md-12">
+                     <div class="card">
+                         <h5 class="card-header">
+                             <fa-icon icon="play"></fa-icon>
+                             Área de pruebas</h5>
+                         <div class="card-body">
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <div><h6 class="sub-title"> Recepción:</h6></div>
+                                     <button type="button" class="btn btn-primary" [routerLink]="['/recepcion/new']">
+                                         <fa-icon icon="plus"></fa-icon>
+                                         <span>Crear nueva</span>
+                                     </button>
+                                     <button type="button" class="btn btn-dark" [routerLink]="['/recepcion']">
+                                         <fa-icon icon="list"></fa-icon>
+                                         <span>Listar</span>
+                                     </button>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <div><h6 class="sub-title"> &nbsp;Tina Programada:</h6></div>
+                                     <div class="row">
+                                         <div class="form-group col-md-6">
+                                             <input type="number" step="1"
+                                                    class="form-control"
+                                                    placeholder="Cantidad"
+                                                    id="field_cantidad_tina"
+                                                    [(ngModel)]="tinaCantidad" />
+                                         </div>
+                                         <div class="form-group col-md-3">
+                                             <button type="button" class="form-control btn btn-dark" (click)="createTina()">
+                                                 <fa-icon icon="play"></fa-icon>
+                                                 <span>Crear</span>
+                                             </button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-        </div>
-    </div>
-</div>
+         </div>
+     </div>
+ </div>

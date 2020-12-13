@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombreArchivo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "300"
+        },
+        {
+            "fieldName": "numeroFila",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "mensajeError",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "300"
+        }
+    ],
+    "changelogDate": "20201115020827",
+    "dto": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "entityTableName": "log_lacto_escan",
+    "databaseType": "sql",
+    "readOnly": false,
+    "pagination": "pagination",
+    "enableEntityAudit": false
+}

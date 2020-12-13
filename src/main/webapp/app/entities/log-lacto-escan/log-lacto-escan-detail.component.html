@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="logLactoEscan">
+            <h2><span jhiTranslate="labprovidenciaApp.logLactoEscan.detail.title">Log Lacto Escan</span> {{ logLactoEscan.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="labprovidenciaApp.logLactoEscan.tipo">Tipo</span></dt>
+                <dd>
+                    <span>{{ logLactoEscan.tipo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.logLactoEscan.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ logLactoEscan.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.logLactoEscan.nombreArchivo">Nombre Archivo</span></dt>
+                <dd>
+                    <span>{{ logLactoEscan.nombreArchivo }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.logLactoEscan.numeroFila">Numero Fila</span></dt>
+                <dd>
+                    <span>{{ logLactoEscan.numeroFila }}</span>
+                </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.logLactoEscan.mensajeError">Mensaje Error</span></dt>
+                <dd>
+                    <span>{{ logLactoEscan.mensajeError }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/log-lacto-escan', logLactoEscan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

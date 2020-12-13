@@ -1,0 +1,11 @@
+id;tipo;fecha;nombre_archivo;numero_fila;mensaje_error
+1;1;2020-11-14T06:08:35;ruta/nombre_archivo1.csv;;File malformed
+2;2;2020-11-14T22:02:08;ruta/nombre_archivo1.csv;2;Incomplete row
+3;2;2020-11-14T12:58:14;ruta/nombre_archivo1.csv;23;Incomplete row
+4;2;2020-11-14T13:45:18;ruta/nombre_archivo2.csv;7;Incomplete row
+5;2;2020-11-14T12:06:12;ruta/nombre_archivo3.csv;1;Incomplete row
+6;2;2020-11-14T03:49:41;ruta/nombre_archivo4.csv;9;Incomplete row
+7;2;2020-11-14T16:40:59;ruta/nombre_archivo5.csv;1;Incomplete row
+8;2;2020-11-14T06:45:06;ruta/nombre_archivo1.csv;1;Incomplete row
+9;1;2020-11-14T18:00:39;ruta/nombre_archivo2.csv;;File malformed
+10;2;2020-11-14T02:53:41;ruta/nombre_archivo1.csv;3;Incomplete row

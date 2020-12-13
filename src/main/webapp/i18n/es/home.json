@@ -13,6 +13,7 @@
     "listEntityCont": "Contenedor",
     "listEntityArea": " Áreas",
     "importEntity": "Importar CSV",
-    "reportEntity": "Generar nuevo"
+    "reportEntity": "Generar nuevo",
+    "lactoEscan": "Logs LactoEscan"
   }
 }

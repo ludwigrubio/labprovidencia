@@ -76,6 +76,7 @@ public class CacheConfiguration {
             createCache(cm, com.provi.lab.domain.FQQueso.class.getName());
             createCache(cm, com.provi.lab.domain.FQSuero.class.getName());
             createCache(cm, com.provi.lab.domain.Contenedor.class.getName());
+            createCache(cm, com.provi.lab.domain.LogLactoEscan.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

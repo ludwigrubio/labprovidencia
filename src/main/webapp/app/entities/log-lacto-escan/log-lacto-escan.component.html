@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="labprovidenciaApp.logLactoEscan.home.title">Log Lacto Escans</span>
+    </h2>
+
+    <div class="filters-form card mt-4 mb-4">
+        <div class="card-header">Filtros</div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-4 mb-2">
+                    <input id="field_fecha"
+                           type="date"
+                           [(ngModel)]="filters.fecha"
+                           (ngModelChange)="loadPage()"
+                           class="form-control"
+                           [ngModelOptions]="{standalone: true}"
+                           placeholder="YYYY-MM-DD"/>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <input type="text"
+                           id="filter_nombre_archivo"
+                           [(ngModel)]="filters.nombreArchivo"
+                           (ngModelChange)="loadPage()"
+                           class="form-control"
+                           [ngModelOptions]="{standalone: true}"
+                           placeholder="Filtrar por {{'labprovidenciaApp.logLactoEscan.nombreArchivo'| translate}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="logLactoEscans?.length === 0">
+        <span jhiTranslate="labprovidenciaApp.logLactoEscan.home.notFound">No logLactoEscans found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="logLactoEscans && logLactoEscans.length > 0">
+        <table class="table" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="tipo">
+                        <span jhiTranslate="labprovidenciaApp.logLactoEscan.tipo">Tipo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fecha"><span jhiTranslate="labprovidenciaApp.logLactoEscan.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombreArchivo"><span jhiTranslate="labprovidenciaApp.logLactoEscan.nombreArchivo">Nombre Archivo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroFila"><span jhiTranslate="labprovidenciaApp.logLactoEscan.numeroFila">Numero Fila</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mensajeError"><span jhiTranslate="labprovidenciaApp.logLactoEscan.mensajeError">Mensaje Error</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let logLactoEscan of logLactoEscans ;trackBy: trackId">
+                    <td class="color-{{logLactoEscan.tipo}}" *ngIf="logLactoEscan.tipo==1">Total</td>
+                    <td class="color-{{logLactoEscan.tipo}}" *ngIf="logLactoEscan.tipo==2">Parcial</td>
+                    <td class="color-{{logLactoEscan.tipo}}">{{ logLactoEscan.fecha | date:'medium' }}</td>
+                    <td class="color-{{logLactoEscan.tipo}}">{{ logLactoEscan.nombreArchivo }}</td>
+                    <td class="color-{{logLactoEscan.tipo}}">{{ logLactoEscan.numeroFila }}</td>
+                    <td class="color-{{logLactoEscan.tipo}}">{{ logLactoEscan.mensajeError }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="logLactoEscans && logLactoEscans.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "labprovidenciaApp": {
+    "logLactoEscan": {
+      "home": {
+        "title": "Log Lacto Escans",
+        "createLabel": "Crear nuevo Log Lacto Escan",
+        "createOrEditLabel": "Crear o editar Log Lacto Escan",
+        "notFound": "Ningún Log Lacto Escans encontrado"
+      },
+      "created": "Un nuevo Log Lacto Escan ha sido creado con el identificador {{ param }}",
+      "updated": "Un Log Lacto Escan ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Log Lacto Escan ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Log Lacto Escan {{ id }}?"
+      },
+      "detail": {
+        "title": "Log Lacto Escan"
+      },
+      "tipo": "Tipo",
+      "fecha": "Fecha",
+      "nombreArchivo": "Nombre Archivo",
+      "numeroFila": "Número de Fila",
+      "mensajeError": "Mensaje Error"
+    }
+  }
+}

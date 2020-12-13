@@ -140,4 +140,7 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  lactoescan-toread: 'C:\Users\gerar\Desktop\LPFiles'
+  lactoescan-readed: 'C:\Users\gerar\Desktop\LPFiles\Readed'
+#\\DESKTOP-AE2B7SV\Users\Fernanda Vazquez\Desktop\LPArchivos
