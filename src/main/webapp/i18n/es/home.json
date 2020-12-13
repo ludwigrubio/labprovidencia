@@ -12,6 +12,7 @@
     "listEntitySup": " Superficies",
     "listEntityCont": "Contenedor",
     "listEntityArea": " Áreas",
+    "listEntityProc": " Procesos",
     "importEntity": "Importar CSV",
     "reportEntity": "Generar nuevo",
     "lactoEscan": "Logs LactoEscan"

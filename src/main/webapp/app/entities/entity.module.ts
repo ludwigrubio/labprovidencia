@@ -76,6 +76,10 @@ import { RouterModule } from '@angular/router';
         path: 'log-lacto-escan',
         loadChildren: () => import('./log-lacto-escan/log-lacto-escan.module').then(m => m.LabprovidenciaLogLactoEscanModule),
       },
+      {
+        path: 'proceso',
+        loadChildren: () => import('./proceso/proceso.module').then(m => m.LabprovidenciaProcesoModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

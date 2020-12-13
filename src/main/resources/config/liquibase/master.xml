@@ -33,6 +33,7 @@
     <include file="config/liquibase/changelog/20200922135526_added_entity_FQSuero.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201112134626_added_entity_Contenedor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201115020827_added_entity_LogLactoEscan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201213002503_added_entity_Proceso.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200911232612_added_entity_constraints_Personal.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200916215654_added_entity_constraints_Dummy.xml" relativeToChangelogFile="false"/>

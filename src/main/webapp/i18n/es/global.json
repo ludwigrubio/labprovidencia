@@ -24,6 +24,7 @@
         "fqQueso": "FQ Queso",
         "fqSuero": "FQ Suero",
         "contenedor": "Contenedor",
+        "proceso": "Proceso",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

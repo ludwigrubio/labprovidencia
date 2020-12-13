@@ -39,7 +39,7 @@
     "nativeLanguage": "es",
     "languages": ["es"],
     "blueprints": [],
-    "lastLiquibaseTimestamp": 1605406107000
+    "lastLiquibaseTimestamp": 1607819103000
   },
   "generator-jhipster-entity-audit": {
     "auditFramework": "custom",
