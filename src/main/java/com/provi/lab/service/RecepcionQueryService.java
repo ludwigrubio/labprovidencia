@@ -85,9 +85,6 @@ public class RecepcionQueryService extends QueryService<Recepcion> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), Recepcion_.id));
             }
-            if (criteria.getIdProveedor() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getIdProveedor(), Recepcion_.idProveedor));
-            }
             if (criteria.getLitros() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getLitros(), Recepcion_.litros));
             }
@@ -102,6 +99,12 @@ public class RecepcionQueryService extends QueryService<Recepcion> {
             }
             if (criteria.getIncentivoT() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getIncentivoT(), Recepcion_.incentivoT));
+            }
+            if (criteria.getTipoLeche() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTipoLeche(), Recepcion_.tipoLeche));
+            }
+            if (criteria.getFlete() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFlete(), Recepcion_.flete));
             }
             if (criteria.getProveedorId() != null) {
                 specification = specification.and(buildSpecification(criteria.getProveedorId(),

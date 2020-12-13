@@ -1,0 +1,112 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="gerar (generated)" id="1607823184567-33">
+        <addColumn tableName="recepcion">
+            <column name="flete" type="varchar(80)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-34">
+        <addColumn tableName="recepcion">
+            <column name="tipo_leche" type="varchar(80)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-35">
+        <dropColumn columnName="id_proveedor" tableName="recepcion"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-1">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="area"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-2">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="contenedor"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-3">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="cultivo"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-4">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="fq_crema"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-5">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="fq_leche"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-6">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="fq_mantequilla"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-7">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="fq_queso"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-8">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="fq_suero"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-9">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="personal"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-10">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="producto"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-11">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="prueba_micro"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-12">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="recepcion"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-13">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="relacion"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-14">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="superficie"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-15">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="tipo_producto"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-16">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="created_by" tableName="user_extra"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-17">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="area"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-18">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="contenedor"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-19">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="cultivo"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-20">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="fq_crema"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-21">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="fq_leche"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-22">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="fq_mantequilla"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-23">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="fq_queso"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-24">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="fq_suero"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-25">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="personal"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-26">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="producto"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-27">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="prueba_micro"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-28">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="recepcion"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-29">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="relacion"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-30">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="superficie"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-31">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="tipo_producto"/>
+    </changeSet>
+    <changeSet author="gerar (generated)" id="1607823184567-32">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="created_date" tableName="user_extra"/>
+    </changeSet>
+</databaseChangeLog>

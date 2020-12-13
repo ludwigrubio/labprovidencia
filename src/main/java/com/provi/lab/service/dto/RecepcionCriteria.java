@@ -27,8 +27,6 @@ public class RecepcionCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private IntegerFilter idProveedor;
-
     private FloatFilter litros;
 
     private InstantFilter tiempo;
@@ -39,6 +37,10 @@ public class RecepcionCriteria implements Serializable, Criteria {
 
     private DoubleFilter incentivoT;
 
+    private StringFilter tipoLeche;
+
+    private StringFilter flete;
+
     private LongFilter proveedorId;
 
     public RecepcionCriteria() {
@@ -46,12 +48,13 @@ public class RecepcionCriteria implements Serializable, Criteria {
 
     public RecepcionCriteria(RecepcionCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.idProveedor = other.idProveedor == null ? null : other.idProveedor.copy();
         this.litros = other.litros == null ? null : other.litros.copy();
         this.tiempo = other.tiempo == null ? null : other.tiempo.copy();
         this.turno = other.turno == null ? null : other.turno.copy();
         this.incentivoLT = other.incentivoLT == null ? null : other.incentivoLT.copy();
         this.incentivoT = other.incentivoT == null ? null : other.incentivoT.copy();
+        this.tipoLeche = other.tipoLeche == null ? null : other.tipoLeche.copy();
+        this.flete = other.flete == null ? null : other.flete.copy();
         this.proveedorId = other.proveedorId == null ? null : other.proveedorId.copy();
     }
 
@@ -66,14 +69,6 @@ public class RecepcionCriteria implements Serializable, Criteria {
 
     public void setId(LongFilter id) {
         this.id = id;
-    }
-
-    public IntegerFilter getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(IntegerFilter idProveedor) {
-        this.idProveedor = idProveedor;
     }
 
     public FloatFilter getLitros() {
@@ -116,6 +111,22 @@ public class RecepcionCriteria implements Serializable, Criteria {
         this.incentivoT = incentivoT;
     }
 
+    public StringFilter getTipoLeche() {
+        return tipoLeche;
+    }
+
+    public void setTipoLeche(StringFilter tipoLeche) {
+        this.tipoLeche = tipoLeche;
+    }
+
+    public StringFilter getFlete() {
+        return flete;
+    }
+
+    public void setFlete(StringFilter flete) {
+        this.flete = flete;
+    }
+
     public LongFilter getProveedorId() {
         return proveedorId;
     }
@@ -136,12 +147,13 @@ public class RecepcionCriteria implements Serializable, Criteria {
         final RecepcionCriteria that = (RecepcionCriteria) o;
         return
             Objects.equals(id, that.id) &&
-            Objects.equals(idProveedor, that.idProveedor) &&
             Objects.equals(litros, that.litros) &&
             Objects.equals(tiempo, that.tiempo) &&
             Objects.equals(turno, that.turno) &&
             Objects.equals(incentivoLT, that.incentivoLT) &&
             Objects.equals(incentivoT, that.incentivoT) &&
+            Objects.equals(tipoLeche, that.tipoLeche) &&
+            Objects.equals(flete, that.flete) &&
             Objects.equals(proveedorId, that.proveedorId);
     }
 
@@ -149,12 +161,13 @@ public class RecepcionCriteria implements Serializable, Criteria {
     public int hashCode() {
         return Objects.hash(
         id,
-        idProveedor,
         litros,
         tiempo,
         turno,
         incentivoLT,
         incentivoT,
+        tipoLeche,
+        flete,
         proveedorId
         );
     }
@@ -164,12 +177,13 @@ public class RecepcionCriteria implements Serializable, Criteria {
     public String toString() {
         return "RecepcionCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
-                (idProveedor != null ? "idProveedor=" + idProveedor + ", " : "") +
                 (litros != null ? "litros=" + litros + ", " : "") +
                 (tiempo != null ? "tiempo=" + tiempo + ", " : "") +
                 (turno != null ? "turno=" + turno + ", " : "") +
                 (incentivoLT != null ? "incentivoLT=" + incentivoLT + ", " : "") +
                 (incentivoT != null ? "incentivoT=" + incentivoT + ", " : "") +
+                (tipoLeche != null ? "tipoLeche=" + tipoLeche + ", " : "") +
+                (flete != null ? "flete=" + flete + ", " : "") +
                 (proveedorId != null ? "proveedorId=" + proveedorId + ", " : "") +
             "}";
     }

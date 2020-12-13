@@ -25,10 +25,6 @@ public class Recepcion extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "id_proveedor", nullable = false)
-    private Integer idProveedor;
-
-    @NotNull
     @Column(name = "litros", nullable = false)
     private Float litros;
 
@@ -47,6 +43,14 @@ public class Recepcion extends AbstractAuditingEntity implements Serializable {
     @Column(name = "incentivo_t")
     private Double incentivoT;
 
+    @Size(max = 80)
+    @Column(name = "tipo_leche", length = 80)
+    private String tipoLeche;
+
+    @Size(max = 80)
+    @Column(name = "flete", length = 80)
+    private String flete;
+
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(value = "recepcions", allowSetters = true)
@@ -59,19 +63,6 @@ public class Recepcion extends AbstractAuditingEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getIdProveedor() {
-        return idProveedor;
-    }
-
-    public Recepcion idProveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
-        return this;
-    }
-
-    public void setIdProveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
     }
 
     public Float getLitros() {
@@ -139,6 +130,32 @@ public class Recepcion extends AbstractAuditingEntity implements Serializable {
         this.incentivoT = incentivoT;
     }
 
+    public String getTipoLeche() {
+        return tipoLeche;
+    }
+
+    public Recepcion tipoLeche(String tipoLeche) {
+        this.tipoLeche = tipoLeche;
+        return this;
+    }
+
+    public void setTipoLeche(String tipoLeche) {
+        this.tipoLeche = tipoLeche;
+    }
+
+    public String getFlete() {
+        return flete;
+    }
+
+    public Recepcion flete(String flete) {
+        this.flete = flete;
+        return this;
+    }
+
+    public void setFlete(String flete) {
+        this.flete = flete;
+    }
+
     public Personal getProveedor() {
         return proveedor;
     }
@@ -174,12 +191,13 @@ public class Recepcion extends AbstractAuditingEntity implements Serializable {
     public String toString() {
         return "Recepcion{" +
             "id=" + getId() +
-            ", idProveedor=" + getIdProveedor() +
             ", litros=" + getLitros() +
             ", tiempo='" + getTiempo() + "'" +
             ", turno='" + getTurno() + "'" +
             ", incentivoLT=" + getIncentivoLT() +
             ", incentivoT=" + getIncentivoT() +
+            ", tipoLeche='" + getTipoLeche() + "'" +
+            ", flete='" + getFlete() + "'" +
             "}";
     }
 }

@@ -12,22 +12,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.idProveedor" for="field_idProveedor">Id Proveedor</label>
-                    <input type="number" class="form-control" name="idProveedor" id="field_idProveedor"
-                           formControlName="idProveedor"/>
-                    <div *ngIf="editForm.get('idProveedor')!.invalid && (editForm.get('idProveedor')!.dirty || editForm.get('idProveedor')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('idProveedor')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('idProveedor')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.litros" for="field_litros">Litros</label>
                     <input type="number" class="form-control" name="litros" id="field_litros"
                            formControlName="litros"/>
@@ -62,8 +46,10 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.turno" for="field_turno">Turno</label>
-                    <input type="text" class="form-control" name="turno" id="field_turno"
-                           formControlName="turno"/>
+                    <select class="form-control" id="field_turno" name="turno" formControlName="turno">
+                        <option *ngIf="!editForm.get('turno')!.value" [ngValue]="null" selected></option>
+                        <option *ngFor="let turn of turnos;">{{ turn }}</option>
+                    </select>
                     <div *ngIf="editForm.get('turno')!.invalid && (editForm.get('turno')!.dirty || editForm.get('turno')!.touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('turno')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -86,6 +72,34 @@
                     <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.incentivoT" for="field_incentivoT">Incentivo T</label>
                     <input type="number" class="form-control" name="incentivoT" id="field_incentivoT"
                            formControlName="incentivoT"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.tipoLeche" for="field_tipoLeche">Tipo Leche</label>
+                    <select class="form-control" name="tipoLeche" id="field_tipoLeche" formControlName="tipoLeche">
+                    <option *ngIf="!editForm.get('tipoLeche')!.value" [ngValue]="null" selected></option>
+                    <option *ngFor="let tipoLeche of tipoLeches;">{{ tipoLeche }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('tipoLeche')!.invalid && (editForm.get('tipoLeche')!.dirty || editForm.get('tipoLeche')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tipoLeche')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.recepcion.flete" for="field_flete">Flete</label>
+                    <select class="form-control" name="flete" id="field_flete" formControlName="flete">
+                        <option *ngIf="!editForm.get('flete')!.value" [ngValue]="null" selected></option>
+                        <option *ngFor="let flete of fletes;">{{ flete }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('flete')!.invalid && (editForm.get('flete')!.dirty || editForm.get('flete')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('flete')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 80 }">
+                        This field cannot be longer than 80 characters.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">

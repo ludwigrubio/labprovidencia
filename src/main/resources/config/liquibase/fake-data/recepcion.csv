@@ -1,11 +1,11 @@
-id;id_proveedor;litros;tiempo;turno;incentivo_lt;incentivo_t;proveedor_id
-1;25110;87315;2020-09-22T10:07:34;m;20626;68839;1
-2;36220;14934;2020-09-22T09:50:08;b;8156;90098;2
-3;5080;4071;2020-09-22T08:23:21;v;71121;19449;3
-4;9892;18765;2020-09-21T16:47:30;n;49819;34667;4
-5;73602;95725;2020-09-22T07:21:31;w;75727;81855;5
-6;87918;42731;2020-09-21T23:37:02;A;7688;50204;6
-7;57189;41426;2020-09-21T17:30:02;M;84533;67581;7
-8;43794;46195;2020-09-21T19:14:37;i;52163;10665;8
-9;79569;72536;2020-09-22T06:52:13;U;66639;52964;9
-10;51268;51400;2020-09-22T11:39:01;c;95402;79013;10
+id;litros;tiempo;turno;incentivo_lt;incentivo_t;tipo_leche;flete;proveedor_id
+1;25110;2020-09-21T16:48:04;M;98682;85641;magenta intuitive;SAS;1
+2;61932;2020-09-21T17:43:48;w;8156;90098;Intelligent Wooden Pants;microchip Intelligent;2
+3;87356;2020-09-21T18:45:55;i;34667;73602;modular withdrawal transform;programming interfaces Granite;3
+4;5892;2020-09-22T11:54:42;M;3270;5396;Switchable;vortals reboot invoice;4
+5;24882;2020-09-22T06:42:13;G;72536;28693;Utah Forge Industrial;Luxembourg Avon;5
+6;8101;2020-09-22T05:53:04;D;99707;48700;Rustic Metal Towels New Hampshire Response;standardization Fully-configurable;6
+7;9478;2020-09-21T17:36:11;Y;61426;99331;SCSI Personal Loan Account;Balboa US Dollar Incredible;7
+8;22794;2020-09-21T16:39:37;T;53420;21396;back up leverage;calculating;8
+9;14235;2020-09-22T10:34:24;I;43799;25325;back up;process improvement Investment Account;9
+10;94602;2020-09-22T06:28:18;i;51739;16571;expedite SMS methodologies;24/7 Supervisor;10

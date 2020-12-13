@@ -19,15 +19,19 @@ import { PersonalService } from 'app/entities/personal/personal.service';
 export class RecepcionUpdateComponent implements OnInit {
   isSaving = false;
   personals: IPersonal[] = [];
+  turnos = ['D', 'M'];
+  tipoLeches = ['Frío', 'Caliente', 'Frío opertunidad', 'Caliente opertunidad'];
+  fletes = ['Interno', 'Externo'];
 
   editForm = this.fb.group({
     id: [],
-    idProveedor: [null, [Validators.required]],
     litros: [null, [Validators.required]],
     tiempo: [null, [Validators.required]],
     turno: [null, [Validators.required, Validators.maxLength(1)]],
     incentivoLT: [],
     incentivoT: [],
+    tipoLeche: [null, [Validators.maxLength(80)]],
+    flete: [null, [Validators.maxLength(80)]],
     proveedor: [null, Validators.required],
   });
 
@@ -47,19 +51,22 @@ export class RecepcionUpdateComponent implements OnInit {
 
       this.updateForm(recepcion);
 
-      this.personalService.query().subscribe((res: HttpResponse<IPersonal[]>) => (this.personals = res.body || []));
+      this.personalService
+        .query({ 'relacionId.equals': '2' })
+        .subscribe((res: HttpResponse<IPersonal[]>) => (this.personals = res.body || []));
     });
   }
 
   updateForm(recepcion: IRecepcion): void {
     this.editForm.patchValue({
       id: recepcion.id,
-      idProveedor: recepcion.idProveedor,
       litros: recepcion.litros,
       tiempo: recepcion.tiempo ? recepcion.tiempo.format(DATE_TIME_FORMAT) : null,
       turno: recepcion.turno,
       incentivoLT: recepcion.incentivoLT,
       incentivoT: recepcion.incentivoT,
+      tipoLeche: recepcion.tipoLeche,
+      flete: recepcion.flete,
       proveedor: recepcion.proveedor,
     });
   }
@@ -82,12 +89,13 @@ export class RecepcionUpdateComponent implements OnInit {
     return {
       ...new Recepcion(),
       id: this.editForm.get(['id'])!.value,
-      idProveedor: this.editForm.get(['idProveedor'])!.value,
       litros: this.editForm.get(['litros'])!.value,
       tiempo: this.editForm.get(['tiempo'])!.value ? moment(this.editForm.get(['tiempo'])!.value, DATE_TIME_FORMAT) : undefined,
       turno: this.editForm.get(['turno'])!.value,
       incentivoLT: this.editForm.get(['incentivoLT'])!.value,
       incentivoT: this.editForm.get(['incentivoT'])!.value,
+      tipoLeche: this.editForm.get(['tipoLeche'])!.value,
+      flete: this.editForm.get(['flete'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
     };
   }

@@ -35,10 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class RecepcionResourceIT {
 
-    private static final Integer DEFAULT_ID_PROVEEDOR = 1;
-    private static final Integer UPDATED_ID_PROVEEDOR = 2;
-    private static final Integer SMALLER_ID_PROVEEDOR = 1 - 1;
-
     private static final Float DEFAULT_LITROS = 1F;
     private static final Float UPDATED_LITROS = 2F;
     private static final Float SMALLER_LITROS = 1F - 1F;
@@ -56,6 +52,12 @@ public class RecepcionResourceIT {
     private static final Double DEFAULT_INCENTIVO_T = 1D;
     private static final Double UPDATED_INCENTIVO_T = 2D;
     private static final Double SMALLER_INCENTIVO_T = 1D - 1D;
+
+    private static final String DEFAULT_TIPO_LECHE = "AAAAAAAAAA";
+    private static final String UPDATED_TIPO_LECHE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FLETE = "AAAAAAAAAA";
+    private static final String UPDATED_FLETE = "BBBBBBBBBB";
 
     @Autowired
     private RecepcionRepository recepcionRepository;
@@ -82,12 +84,13 @@ public class RecepcionResourceIT {
      */
     public static Recepcion createEntity(EntityManager em) {
         Recepcion recepcion = new Recepcion()
-            .idProveedor(DEFAULT_ID_PROVEEDOR)
             .litros(DEFAULT_LITROS)
             .tiempo(DEFAULT_TIEMPO)
             .turno(DEFAULT_TURNO)
             .incentivoLT(DEFAULT_INCENTIVO_LT)
-            .incentivoT(DEFAULT_INCENTIVO_T);
+            .incentivoT(DEFAULT_INCENTIVO_T)
+            .tipoLeche(DEFAULT_TIPO_LECHE)
+            .flete(DEFAULT_FLETE);
         // Add required entity
         Personal personal;
         if (TestUtil.findAll(em, Personal.class).isEmpty()) {
@@ -108,12 +111,13 @@ public class RecepcionResourceIT {
      */
     public static Recepcion createUpdatedEntity(EntityManager em) {
         Recepcion recepcion = new Recepcion()
-            .idProveedor(UPDATED_ID_PROVEEDOR)
             .litros(UPDATED_LITROS)
             .tiempo(UPDATED_TIEMPO)
             .turno(UPDATED_TURNO)
             .incentivoLT(UPDATED_INCENTIVO_LT)
-            .incentivoT(UPDATED_INCENTIVO_T);
+            .incentivoT(UPDATED_INCENTIVO_T)
+            .tipoLeche(UPDATED_TIPO_LECHE)
+            .flete(UPDATED_FLETE);
         // Add required entity
         Personal personal;
         if (TestUtil.findAll(em, Personal.class).isEmpty()) {
@@ -146,12 +150,13 @@ public class RecepcionResourceIT {
         List<Recepcion> recepcionList = recepcionRepository.findAll();
         assertThat(recepcionList).hasSize(databaseSizeBeforeCreate + 1);
         Recepcion testRecepcion = recepcionList.get(recepcionList.size() - 1);
-        assertThat(testRecepcion.getIdProveedor()).isEqualTo(DEFAULT_ID_PROVEEDOR);
         assertThat(testRecepcion.getLitros()).isEqualTo(DEFAULT_LITROS);
         assertThat(testRecepcion.getTiempo()).isEqualTo(DEFAULT_TIEMPO);
         assertThat(testRecepcion.getTurno()).isEqualTo(DEFAULT_TURNO);
         assertThat(testRecepcion.getIncentivoLT()).isEqualTo(DEFAULT_INCENTIVO_LT);
         assertThat(testRecepcion.getIncentivoT()).isEqualTo(DEFAULT_INCENTIVO_T);
+        assertThat(testRecepcion.getTipoLeche()).isEqualTo(DEFAULT_TIPO_LECHE);
+        assertThat(testRecepcion.getFlete()).isEqualTo(DEFAULT_FLETE);
     }
 
     @Test
@@ -173,25 +178,6 @@ public class RecepcionResourceIT {
         assertThat(recepcionList).hasSize(databaseSizeBeforeCreate);
     }
 
-
-    @Test
-    @Transactional
-    public void checkIdProveedorIsRequired() throws Exception {
-        int databaseSizeBeforeTest = recepcionRepository.findAll().size();
-        // set the field null
-        recepcion.setIdProveedor(null);
-
-        // Create the Recepcion, which fails.
-
-
-        restRecepcionMockMvc.perform(post("/api/recepcions")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(recepcion)))
-            .andExpect(status().isBadRequest());
-
-        List<Recepcion> recepcionList = recepcionRepository.findAll();
-        assertThat(recepcionList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -261,12 +247,13 @@ public class RecepcionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(recepcion.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idProveedor").value(hasItem(DEFAULT_ID_PROVEEDOR)))
             .andExpect(jsonPath("$.[*].litros").value(hasItem(DEFAULT_LITROS.doubleValue())))
             .andExpect(jsonPath("$.[*].tiempo").value(hasItem(DEFAULT_TIEMPO.toString())))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO)))
             .andExpect(jsonPath("$.[*].incentivoLT").value(hasItem(DEFAULT_INCENTIVO_LT.doubleValue())))
-            .andExpect(jsonPath("$.[*].incentivoT").value(hasItem(DEFAULT_INCENTIVO_T.doubleValue())));
+            .andExpect(jsonPath("$.[*].incentivoT").value(hasItem(DEFAULT_INCENTIVO_T.doubleValue())))
+            .andExpect(jsonPath("$.[*].tipoLeche").value(hasItem(DEFAULT_TIPO_LECHE)))
+            .andExpect(jsonPath("$.[*].flete").value(hasItem(DEFAULT_FLETE)));
     }
     
     @Test
@@ -280,12 +267,13 @@ public class RecepcionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(recepcion.getId().intValue()))
-            .andExpect(jsonPath("$.idProveedor").value(DEFAULT_ID_PROVEEDOR))
             .andExpect(jsonPath("$.litros").value(DEFAULT_LITROS.doubleValue()))
             .andExpect(jsonPath("$.tiempo").value(DEFAULT_TIEMPO.toString()))
             .andExpect(jsonPath("$.turno").value(DEFAULT_TURNO))
             .andExpect(jsonPath("$.incentivoLT").value(DEFAULT_INCENTIVO_LT.doubleValue()))
-            .andExpect(jsonPath("$.incentivoT").value(DEFAULT_INCENTIVO_T.doubleValue()));
+            .andExpect(jsonPath("$.incentivoT").value(DEFAULT_INCENTIVO_T.doubleValue()))
+            .andExpect(jsonPath("$.tipoLeche").value(DEFAULT_TIPO_LECHE))
+            .andExpect(jsonPath("$.flete").value(DEFAULT_FLETE));
     }
 
 
@@ -305,111 +293,6 @@ public class RecepcionResourceIT {
 
         defaultRecepcionShouldBeFound("id.lessThanOrEqual=" + id);
         defaultRecepcionShouldNotBeFound("id.lessThan=" + id);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsEqualToSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor equals to DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.equals=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor equals to UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.equals=" + UPDATED_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsNotEqualToSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor not equals to DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.notEquals=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor not equals to UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.notEquals=" + UPDATED_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsInShouldWork() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor in DEFAULT_ID_PROVEEDOR or UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.in=" + DEFAULT_ID_PROVEEDOR + "," + UPDATED_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor equals to UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.in=" + UPDATED_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor is not null
-        defaultRecepcionShouldBeFound("idProveedor.specified=true");
-
-        // Get all the recepcionList where idProveedor is null
-        defaultRecepcionShouldNotBeFound("idProveedor.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor is greater than or equal to DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.greaterThanOrEqual=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor is greater than or equal to UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.greaterThanOrEqual=" + UPDATED_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor is less than or equal to DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.lessThanOrEqual=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor is less than or equal to SMALLER_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.lessThanOrEqual=" + SMALLER_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsLessThanSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor is less than DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.lessThan=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor is less than UPDATED_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.lessThan=" + UPDATED_ID_PROVEEDOR);
-    }
-
-    @Test
-    @Transactional
-    public void getAllRecepcionsByIdProveedorIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        recepcionRepository.saveAndFlush(recepcion);
-
-        // Get all the recepcionList where idProveedor is greater than DEFAULT_ID_PROVEEDOR
-        defaultRecepcionShouldNotBeFound("idProveedor.greaterThan=" + DEFAULT_ID_PROVEEDOR);
-
-        // Get all the recepcionList where idProveedor is greater than SMALLER_ID_PROVEEDOR
-        defaultRecepcionShouldBeFound("idProveedor.greaterThan=" + SMALLER_ID_PROVEEDOR);
     }
 
 
@@ -860,6 +743,162 @@ public class RecepcionResourceIT {
 
     @Test
     @Transactional
+    public void getAllRecepcionsByTipoLecheIsEqualToSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche equals to DEFAULT_TIPO_LECHE
+        defaultRecepcionShouldBeFound("tipoLeche.equals=" + DEFAULT_TIPO_LECHE);
+
+        // Get all the recepcionList where tipoLeche equals to UPDATED_TIPO_LECHE
+        defaultRecepcionShouldNotBeFound("tipoLeche.equals=" + UPDATED_TIPO_LECHE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByTipoLecheIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche not equals to DEFAULT_TIPO_LECHE
+        defaultRecepcionShouldNotBeFound("tipoLeche.notEquals=" + DEFAULT_TIPO_LECHE);
+
+        // Get all the recepcionList where tipoLeche not equals to UPDATED_TIPO_LECHE
+        defaultRecepcionShouldBeFound("tipoLeche.notEquals=" + UPDATED_TIPO_LECHE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByTipoLecheIsInShouldWork() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche in DEFAULT_TIPO_LECHE or UPDATED_TIPO_LECHE
+        defaultRecepcionShouldBeFound("tipoLeche.in=" + DEFAULT_TIPO_LECHE + "," + UPDATED_TIPO_LECHE);
+
+        // Get all the recepcionList where tipoLeche equals to UPDATED_TIPO_LECHE
+        defaultRecepcionShouldNotBeFound("tipoLeche.in=" + UPDATED_TIPO_LECHE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByTipoLecheIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche is not null
+        defaultRecepcionShouldBeFound("tipoLeche.specified=true");
+
+        // Get all the recepcionList where tipoLeche is null
+        defaultRecepcionShouldNotBeFound("tipoLeche.specified=false");
+    }
+                @Test
+    @Transactional
+    public void getAllRecepcionsByTipoLecheContainsSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche contains DEFAULT_TIPO_LECHE
+        defaultRecepcionShouldBeFound("tipoLeche.contains=" + DEFAULT_TIPO_LECHE);
+
+        // Get all the recepcionList where tipoLeche contains UPDATED_TIPO_LECHE
+        defaultRecepcionShouldNotBeFound("tipoLeche.contains=" + UPDATED_TIPO_LECHE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByTipoLecheNotContainsSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where tipoLeche does not contain DEFAULT_TIPO_LECHE
+        defaultRecepcionShouldNotBeFound("tipoLeche.doesNotContain=" + DEFAULT_TIPO_LECHE);
+
+        // Get all the recepcionList where tipoLeche does not contain UPDATED_TIPO_LECHE
+        defaultRecepcionShouldBeFound("tipoLeche.doesNotContain=" + UPDATED_TIPO_LECHE);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByFleteIsEqualToSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete equals to DEFAULT_FLETE
+        defaultRecepcionShouldBeFound("flete.equals=" + DEFAULT_FLETE);
+
+        // Get all the recepcionList where flete equals to UPDATED_FLETE
+        defaultRecepcionShouldNotBeFound("flete.equals=" + UPDATED_FLETE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByFleteIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete not equals to DEFAULT_FLETE
+        defaultRecepcionShouldNotBeFound("flete.notEquals=" + DEFAULT_FLETE);
+
+        // Get all the recepcionList where flete not equals to UPDATED_FLETE
+        defaultRecepcionShouldBeFound("flete.notEquals=" + UPDATED_FLETE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByFleteIsInShouldWork() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete in DEFAULT_FLETE or UPDATED_FLETE
+        defaultRecepcionShouldBeFound("flete.in=" + DEFAULT_FLETE + "," + UPDATED_FLETE);
+
+        // Get all the recepcionList where flete equals to UPDATED_FLETE
+        defaultRecepcionShouldNotBeFound("flete.in=" + UPDATED_FLETE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByFleteIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete is not null
+        defaultRecepcionShouldBeFound("flete.specified=true");
+
+        // Get all the recepcionList where flete is null
+        defaultRecepcionShouldNotBeFound("flete.specified=false");
+    }
+                @Test
+    @Transactional
+    public void getAllRecepcionsByFleteContainsSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete contains DEFAULT_FLETE
+        defaultRecepcionShouldBeFound("flete.contains=" + DEFAULT_FLETE);
+
+        // Get all the recepcionList where flete contains UPDATED_FLETE
+        defaultRecepcionShouldNotBeFound("flete.contains=" + UPDATED_FLETE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllRecepcionsByFleteNotContainsSomething() throws Exception {
+        // Initialize the database
+        recepcionRepository.saveAndFlush(recepcion);
+
+        // Get all the recepcionList where flete does not contain DEFAULT_FLETE
+        defaultRecepcionShouldNotBeFound("flete.doesNotContain=" + DEFAULT_FLETE);
+
+        // Get all the recepcionList where flete does not contain UPDATED_FLETE
+        defaultRecepcionShouldBeFound("flete.doesNotContain=" + UPDATED_FLETE);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllRecepcionsByProveedorIsEqualToSomething() throws Exception {
         // Get already existing entity
         Personal proveedor = recepcion.getProveedor();
@@ -881,12 +920,13 @@ public class RecepcionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(recepcion.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idProveedor").value(hasItem(DEFAULT_ID_PROVEEDOR)))
             .andExpect(jsonPath("$.[*].litros").value(hasItem(DEFAULT_LITROS.doubleValue())))
             .andExpect(jsonPath("$.[*].tiempo").value(hasItem(DEFAULT_TIEMPO.toString())))
             .andExpect(jsonPath("$.[*].turno").value(hasItem(DEFAULT_TURNO)))
             .andExpect(jsonPath("$.[*].incentivoLT").value(hasItem(DEFAULT_INCENTIVO_LT.doubleValue())))
-            .andExpect(jsonPath("$.[*].incentivoT").value(hasItem(DEFAULT_INCENTIVO_T.doubleValue())));
+            .andExpect(jsonPath("$.[*].incentivoT").value(hasItem(DEFAULT_INCENTIVO_T.doubleValue())))
+            .andExpect(jsonPath("$.[*].tipoLeche").value(hasItem(DEFAULT_TIPO_LECHE)))
+            .andExpect(jsonPath("$.[*].flete").value(hasItem(DEFAULT_FLETE)));
 
         // Check, that the count call also returns 1
         restRecepcionMockMvc.perform(get("/api/recepcions/count?sort=id,desc&" + filter))
@@ -933,12 +973,13 @@ public class RecepcionResourceIT {
         // Disconnect from session so that the updates on updatedRecepcion are not directly saved in db
         em.detach(updatedRecepcion);
         updatedRecepcion
-            .idProveedor(UPDATED_ID_PROVEEDOR)
             .litros(UPDATED_LITROS)
             .tiempo(UPDATED_TIEMPO)
             .turno(UPDATED_TURNO)
             .incentivoLT(UPDATED_INCENTIVO_LT)
-            .incentivoT(UPDATED_INCENTIVO_T);
+            .incentivoT(UPDATED_INCENTIVO_T)
+            .tipoLeche(UPDATED_TIPO_LECHE)
+            .flete(UPDATED_FLETE);
 
         restRecepcionMockMvc.perform(put("/api/recepcions")
             .contentType(MediaType.APPLICATION_JSON)
@@ -949,12 +990,13 @@ public class RecepcionResourceIT {
         List<Recepcion> recepcionList = recepcionRepository.findAll();
         assertThat(recepcionList).hasSize(databaseSizeBeforeUpdate);
         Recepcion testRecepcion = recepcionList.get(recepcionList.size() - 1);
-        assertThat(testRecepcion.getIdProveedor()).isEqualTo(UPDATED_ID_PROVEEDOR);
         assertThat(testRecepcion.getLitros()).isEqualTo(UPDATED_LITROS);
         assertThat(testRecepcion.getTiempo()).isEqualTo(UPDATED_TIEMPO);
         assertThat(testRecepcion.getTurno()).isEqualTo(UPDATED_TURNO);
         assertThat(testRecepcion.getIncentivoLT()).isEqualTo(UPDATED_INCENTIVO_LT);
         assertThat(testRecepcion.getIncentivoT()).isEqualTo(UPDATED_INCENTIVO_T);
+        assertThat(testRecepcion.getTipoLeche()).isEqualTo(UPDATED_TIPO_LECHE);
+        assertThat(testRecepcion.getFlete()).isEqualTo(UPDATED_FLETE);
     }
 
     @Test

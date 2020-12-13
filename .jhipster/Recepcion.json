@@ -2,13 +2,6 @@
     "name": "Recepcion",
     "fields": [
         {
-            "fieldName": "idProveedor",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "litros",
             "fieldType": "Float",
             "fieldValidateRules": [
@@ -38,6 +31,22 @@
         {
             "fieldName": "incentivoT",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "tipoLeche",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "80"
+        },
+        {
+            "fieldName": "flete",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "80"
         }
     ],
     "relationships": [

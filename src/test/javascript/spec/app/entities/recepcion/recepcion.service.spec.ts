@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Recepcion(0, 0, 0, currentDate, 'AAAAAAA', 0, 0);
+      elemDefault = new Recepcion(0, 0, currentDate, 'AAAAAAA', 0, 0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -69,12 +69,13 @@ describe('Service Tests', () => {
       it('should update a Recepcion', () => {
         const returnedFromService = Object.assign(
           {
-            idProveedor: 1,
             litros: 1,
             tiempo: currentDate.format(DATE_TIME_FORMAT),
             turno: 'BBBBBB',
             incentivoLT: 1,
             incentivoT: 1,
+            tipoLeche: 'BBBBBB',
+            flete: 'BBBBBB',
           },
           elemDefault
         );
@@ -96,12 +97,13 @@ describe('Service Tests', () => {
       it('should return a list of Recepcion', () => {
         const returnedFromService = Object.assign(
           {
-            idProveedor: 1,
             litros: 1,
             tiempo: currentDate.format(DATE_TIME_FORMAT),
             turno: 'BBBBBB',
             incentivoLT: 1,
             incentivoT: 1,
+            tipoLeche: 'BBBBBB',
+            flete: 'BBBBBB',
           },
           elemDefault
         );

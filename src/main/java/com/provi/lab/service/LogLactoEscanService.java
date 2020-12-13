@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.opencsv.CSVReader;
@@ -136,7 +137,11 @@ public class LogLactoEscanService {
 
         //Processing CSV File
         for (int i = 0; i < files.length; i++) {
+
+            ArrayList fqlechesArray = new ArrayList<FQLeche>();
+            Boolean anyError = false;
             String fileName = this.lactoescanToread + "\\Processing\\" + files[i].getName();
+
             try{
                 Reader reader = Files.newBufferedReader((Paths.get(fileName)), StandardCharsets.UTF_8);
                 CSVReader csvReader = new CSVReader(reader);
@@ -148,6 +153,7 @@ public class LogLactoEscanService {
                     if(nextRecord.length != 13){
                         this.createNewLog(2, fileName, numberRow,
                             "La fila contiene más o menos columnas de las esperadas.");
+                        anyError = true;
                     }
 
                     FQLecheCriteria fqc = new FQLecheCriteria();
@@ -170,6 +176,7 @@ public class LogLactoEscanService {
                         case 0:
                             this.createNewLog(2, fileName, numberRow,
                                 String.format("No se encontró un FQLeche creado para la fecha %s y el proovedor con identificador %s", nextRecord[0], nextRecord[2]));
+                                anyError = true;
                         break;
                         case 1:
                             //Actualizar element encontrado
@@ -183,29 +190,37 @@ public class LogLactoEscanService {
                             lactoScan.setLactosa(Double.parseDouble(nextRecord[11]));
                             lactoScan.setAgua(Double.parseDouble(nextRecord[12]));
 
-                            fqLecheRepository.save(lactoScan);
+                            fqlechesArray.add(lactoScan);
 
                         break;
                         default:
                             this.createNewLog(2, fileName, numberRow,
                                 String.format("Se encontró más de un FQLeche creado para la fecha %s y el proovedor con identificador %s", nextRecord[0], nextRecord[2]));
+                                anyError = true;
                         break;
                     }
-
                     numberRow = numberRow++;
                 }
             }catch(Exception ioe){
                 log.error(ioe.getMessage());
                 this.createNewLog(1, fileName, -1,
                     "Archivo mal formateado, no es posible leer como csv");
+                anyError=true;
                 try {
                     Files.move(new File(this.lactoescanToread + "\\Processing\\" +  files[i].getName()).toPath(),
                         new File(this.lactoescanToread + "\\Error\\" + files[i].getName()).toPath(),
                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException ex) {
-                    log.debug(ex.getMessage());
+                    log.debug(ex.toString());
                 }
             }
+
+            if(!anyError){
+                fqlechesArray.forEach(fql -> {
+                    fqLecheRepository.save((FQLeche) fql);
+                });
+            }
+
             // Move file to read if completed
             try {
                 Files.move(new File(this.lactoescanToread + "\\Processing\\" +  files[i].getName()).toPath(),

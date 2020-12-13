@@ -23,12 +23,13 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="idProveedor"><span jhiTranslate="labprovidenciaApp.recepcion.idProveedor">Id Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="litros"><span jhiTranslate="labprovidenciaApp.recepcion.litros">Litros</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="tiempo"><span jhiTranslate="labprovidenciaApp.recepcion.tiempo">Tiempo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="turno"><span jhiTranslate="labprovidenciaApp.recepcion.turno">Turno</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="incentivoLT"><span jhiTranslate="labprovidenciaApp.recepcion.incentivoLT">Incentivo LT</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="incentivoT"><span jhiTranslate="labprovidenciaApp.recepcion.incentivoT">Incentivo T</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tipoLeche"><span jhiTranslate="labprovidenciaApp.recepcion.tipoLeche">Tipo Leche</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="flete"><span jhiTranslate="labprovidenciaApp.recepcion.flete">Flete</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.recepcion.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -36,12 +37,13 @@
             <tbody>
                 <tr *ngFor="let recepcion of recepcions ;trackBy: trackId">
                     <td><a [routerLink]="['/recepcion', recepcion.id, 'view']">{{ recepcion.id }}</a></td>
-                    <td>{{ recepcion.idProveedor }}</td>
                     <td>{{ recepcion.litros }}</td>
                     <td>{{ recepcion.tiempo | date:'medium' }}</td>
                     <td>{{ recepcion.turno }}</td>
                     <td>{{ recepcion.incentivoLT }}</td>
                     <td>{{ recepcion.incentivoT }}</td>
+                    <td>{{ recepcion.tipoLeche }}</td>
+                    <td>{{ recepcion.flete }}</td>
                     <td>
                         <div *ngIf="recepcion.proveedor">
                             <a [routerLink]="['/personal', recepcion.proveedor?.id, 'view']" >{{ recepcion.proveedor?.nombre }}</a>
