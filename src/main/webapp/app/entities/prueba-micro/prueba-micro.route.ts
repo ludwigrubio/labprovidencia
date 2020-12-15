@@ -40,7 +40,7 @@ export const pruebaMicroRoute: Routes = [
     component: PruebaMicroComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'id,desc',
       pageTitle: 'labprovidenciaApp.pruebaMicro.home.title',
     },
     canActivate: [UserRouteAccessService],

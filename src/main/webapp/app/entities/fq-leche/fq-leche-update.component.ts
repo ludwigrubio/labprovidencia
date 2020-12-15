@@ -65,7 +65,7 @@ export class FQLecheUpdateComponent implements OnInit {
     dummy5: [],
     observaciones: [null, [Validators.maxLength(100)]],
     area: [null, Validators.required],
-    recepcion: [null, Validators.required],
+    recepcion: [null],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
     contenedor: [null],

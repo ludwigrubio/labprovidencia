@@ -40,7 +40,7 @@ export const fQCremaRoute: Routes = [
     component: FQCremaComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'fecha,desc',
       pageTitle: 'labprovidenciaApp.fQCrema.home.title',
     },
     canActivate: [UserRouteAccessService],

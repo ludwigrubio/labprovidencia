@@ -40,7 +40,7 @@ export const fQMantequillaRoute: Routes = [
     component: FQMantequillaComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'fecha,desc',
       pageTitle: 'labprovidenciaApp.fQMantequilla.home.title',
     },
     canActivate: [UserRouteAccessService],

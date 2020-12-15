@@ -40,7 +40,7 @@ export const logLactoEscanRoute: Routes = [
     component: LogLactoEscanComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'fecha,asc',
       pageTitle: 'labprovidenciaApp.logLactoEscan.home.title',
     },
     canActivate: [UserRouteAccessService],

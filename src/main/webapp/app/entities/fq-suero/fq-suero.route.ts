@@ -40,7 +40,7 @@ export const fQSueroRoute: Routes = [
     component: FQSueroComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'fecha,desc',
       pageTitle: 'labprovidenciaApp.fQSuero.home.title',
     },
     canActivate: [UserRouteAccessService],
