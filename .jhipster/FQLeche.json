@@ -126,7 +126,6 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "recepcion",
             "otherEntityRelationshipName": "fQLeche",
-            "relationshipValidateRules": "required",
             "relationshipName": "recepcion",
             "otherEntityField": "id"
         },
@@ -152,6 +151,13 @@
             "otherEntityRelationshipName": "fQCrema",
             "relationshipName": "contenedor",
             "otherEntityField": "contenedor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "proceso",
+            "otherEntityRelationshipName": "fQCrema",
+            "relationshipName": "proceso",
+            "otherEntityField": "proceso"
         }
     ],
     "changelogDate": "20200922135126",

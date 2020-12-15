@@ -177,6 +177,10 @@ public class FQLecheQueryService extends QueryService<FQLeche> {
                 specification = specification.and(buildSpecification(criteria.getContenedorId(),
                     root -> root.join(FQLeche_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
+            if (criteria.getProcesoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProcesoId(),
+                    root -> root.join(FQLeche_.proceso, JoinType.LEFT).get(Proceso_.id)));
+            }
         }
         return specification;
     }

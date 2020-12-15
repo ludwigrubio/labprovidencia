@@ -40,7 +40,7 @@ export const fQLecheRoute: Routes = [
     component: FQLecheComponent,
     data: {
       authorities: [Authority.USER],
-      defaultSort: 'id,asc',
+      defaultSort: 'fecha,desc',
       pageTitle: 'labprovidenciaApp.fQLeche.home.title',
     },
     canActivate: [UserRouteAccessService],
@@ -76,7 +76,7 @@ export const fQLecheRoute: Routes = [
       fQLeche: FQLecheResolve,
     },
     data: {
-      authorities: [Authority.ADMIN, Authority.EDITOR],
+      authorities: [Authority.USER],
       pageTitle: 'labprovidenciaApp.fQLeche.home.title',
     },
     canActivate: [UserRouteAccessService],

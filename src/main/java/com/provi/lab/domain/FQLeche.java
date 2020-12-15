@@ -105,8 +105,7 @@ public class FQLeche extends AbstractAuditingEntity implements Serializable {
     @JsonIgnoreProperties(value = "fQLeches", allowSetters = true)
     private Area area;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties(value = "fQLeches", allowSetters = true)
     private Recepcion recepcion;
 
@@ -123,6 +122,10 @@ public class FQLeche extends AbstractAuditingEntity implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "fQCremas", allowSetters = true)
     private Contenedor contenedor;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "fQCremas", allowSetters = true)
+    private Proceso proceso;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -508,6 +511,19 @@ public class FQLeche extends AbstractAuditingEntity implements Serializable {
 
     public void setContenedor(Contenedor contenedor) {
         this.contenedor = contenedor;
+    }
+
+    public Proceso getProceso() {
+        return proceso;
+    }
+
+    public FQLeche proceso(Proceso proceso) {
+        this.proceso = proceso;
+        return this;
+    }
+
+    public void setProceso(Proceso proceso) {
+        this.proceso = proceso;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

@@ -85,6 +85,8 @@ public class FQLecheCriteria implements Serializable, Criteria {
 
     private LongFilter contenedorId;
 
+    private LongFilter procesoId;
+
     public FQLecheCriteria() {
     }
 
@@ -119,6 +121,7 @@ public class FQLecheCriteria implements Serializable, Criteria {
         this.analistaId = other.analistaId == null ? null : other.analistaId.copy();
         this.proveedorId = other.proveedorId == null ? null : other.proveedorId.copy();
         this.contenedorId = other.contenedorId == null ? null : other.contenedorId.copy();
+        this.procesoId = other.procesoId == null ? null : other.procesoId.copy();
     }
 
     @Override
@@ -366,6 +369,14 @@ public class FQLecheCriteria implements Serializable, Criteria {
         this.contenedorId = contenedorId;
     }
 
+    public LongFilter getProcesoId() {
+        return procesoId;
+    }
+
+    public void setProcesoId(LongFilter procesoId) {
+        this.procesoId = procesoId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -406,7 +417,8 @@ public class FQLecheCriteria implements Serializable, Criteria {
             Objects.equals(recepcionId, that.recepcionId) &&
             Objects.equals(analistaId, that.analistaId) &&
             Objects.equals(proveedorId, that.proveedorId) &&
-            Objects.equals(contenedorId, that.contenedorId);
+            Objects.equals(contenedorId, that.contenedorId) &&
+            Objects.equals(procesoId, that.procesoId);
     }
 
     @Override
@@ -441,7 +453,8 @@ public class FQLecheCriteria implements Serializable, Criteria {
         recepcionId,
         analistaId,
         proveedorId,
-        contenedorId
+        contenedorId,
+        procesoId
         );
     }
 
@@ -479,6 +492,7 @@ public class FQLecheCriteria implements Serializable, Criteria {
                 (analistaId != null ? "analistaId=" + analistaId + ", " : "") +
                 (proveedorId != null ? "proveedorId=" + proveedorId + ", " : "") +
                 (contenedorId != null ? "contenedorId=" + contenedorId + ", " : "") +
+                (procesoId != null ? "procesoId=" + procesoId + ", " : "") +
             "}";
     }
 

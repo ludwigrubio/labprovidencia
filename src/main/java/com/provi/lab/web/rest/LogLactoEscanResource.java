@@ -141,18 +141,4 @@ public class LogLactoEscanResource {
         logLactoEscanService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * {@code GET  /tinas/creacion/:id} : create by tinas count.
-     *
-     * @param count the count of tinas.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} or with status {@code 404 (Not Found)}.
-     */
-    @GetMapping("/tinas/creacion/{count}")
-    public ResponseEntity<Void> createTinasByCount(@PathVariable Long count) {
-        log.debug("Request to create number of tinas : {}", count);
-
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, count.toString())).build();
-
-    }
 }

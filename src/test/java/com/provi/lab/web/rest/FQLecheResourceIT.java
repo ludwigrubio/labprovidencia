@@ -7,6 +7,7 @@ import com.provi.lab.domain.Recepcion;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
 import com.provi.lab.domain.Contenedor;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.repository.FQLecheRepository;
 import com.provi.lab.service.FQLecheService;
 import com.provi.lab.service.dto.FQLecheCriteria;
@@ -191,16 +192,6 @@ public class FQLecheResourceIT {
         }
         fQLeche.setArea(area);
         // Add required entity
-        Recepcion recepcion;
-        if (TestUtil.findAll(em, Recepcion.class).isEmpty()) {
-            recepcion = RecepcionResourceIT.createEntity(em);
-            em.persist(recepcion);
-            em.flush();
-        } else {
-            recepcion = TestUtil.findAll(em, Recepcion.class).get(0);
-        }
-        fQLeche.setRecepcion(recepcion);
-        // Add required entity
         UserExtra userExtra;
         if (TestUtil.findAll(em, UserExtra.class).isEmpty()) {
             userExtra = UserExtraResourceIT.createEntity(em);
@@ -264,16 +255,6 @@ public class FQLecheResourceIT {
             area = TestUtil.findAll(em, Area.class).get(0);
         }
         fQLeche.setArea(area);
-        // Add required entity
-        Recepcion recepcion;
-        if (TestUtil.findAll(em, Recepcion.class).isEmpty()) {
-            recepcion = RecepcionResourceIT.createUpdatedEntity(em);
-            em.persist(recepcion);
-            em.flush();
-        } else {
-            recepcion = TestUtil.findAll(em, Recepcion.class).get(0);
-        }
-        fQLeche.setRecepcion(recepcion);
         // Add required entity
         UserExtra userExtra;
         if (TestUtil.findAll(em, UserExtra.class).isEmpty()) {
@@ -2880,8 +2861,12 @@ public class FQLecheResourceIT {
     @Test
     @Transactional
     public void getAllFQLechesByRecepcionIsEqualToSomething() throws Exception {
-        // Get already existing entity
-        Recepcion recepcion = fQLeche.getRecepcion();
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+        Recepcion recepcion = RecepcionResourceIT.createEntity(em);
+        em.persist(recepcion);
+        em.flush();
+        fQLeche.setRecepcion(recepcion);
         fQLecheRepository.saveAndFlush(fQLeche);
         Long recepcionId = recepcion.getId();
 
@@ -2942,6 +2927,26 @@ public class FQLecheResourceIT {
 
         // Get all the fQLecheList where contenedor equals to contenedorId + 1
         defaultFQLecheShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQLechesByProcesoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQLecheRepository.saveAndFlush(fQLeche);
+        Proceso proceso = ProcesoResourceIT.createEntity(em);
+        em.persist(proceso);
+        em.flush();
+        fQLeche.setProceso(proceso);
+        fQLecheRepository.saveAndFlush(fQLeche);
+        Long procesoId = proceso.getId();
+
+        // Get all the fQLecheList where proceso equals to procesoId
+        defaultFQLecheShouldBeFound("procesoId.equals=" + procesoId);
+
+        // Get all the fQLecheList where proceso equals to procesoId + 1
+        defaultFQLecheShouldNotBeFound("procesoId.equals=" + (procesoId + 1));
     }
 
     /**
