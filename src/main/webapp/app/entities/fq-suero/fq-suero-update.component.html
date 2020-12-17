@@ -219,7 +219,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQMantequilla.contenedor" for="field_contenedor">Contenedor</label>
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQSuero.contenedor" for="field_contenedor">Contenedor</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-contenedor"><fa-icon icon="list"></fa-icon></span>
@@ -231,6 +231,14 @@
                                [resultFormatter]="formatterContenedor"
                                [editable]='false' />
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQSuero.proceso" for="field_proceso">Proceso</label>
+                    <select class="form-control" id="field_proceso" name="proceso" formControlName="proceso">
+                        <option *ngIf="!editForm.get('proceso')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="procesoOption.id === editForm.get('proceso')!.value?.id ? editForm.get('proceso')!.value : procesoOption" *ngFor="let procesoOption of procesos; trackBy: trackById">{{ procesoOption.proceso }}</option>
+                    </select>
                 </div>
             </div>
 

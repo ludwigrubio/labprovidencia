@@ -19,6 +19,8 @@ import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
 import { IContenedor } from 'app/shared/model/contenedor.model';
 import { ContenedorService } from 'app/entities/contenedor/contenedor.service';
+import { IProceso } from 'app/shared/model/proceso.model';
+import { ProcesoService } from 'app/entities/proceso/proceso.service';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { debounceTime } from 'rxjs/operators';
@@ -26,7 +28,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
-type SelectableEntity = IArea | IProducto | IUserExtra | IPersonal;
+type SelectableEntity = IArea | IProducto | IUserExtra | IPersonal | IProceso;
 
 @Component({
   selector: 'jhi-fq-suero-update',
@@ -34,6 +36,7 @@ type SelectableEntity = IArea | IProducto | IUserExtra | IPersonal;
 })
 export class FQSueroUpdateComponent implements OnInit {
   isSaving = false;
+  procesos: IProceso[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -58,6 +61,7 @@ export class FQSueroUpdateComponent implements OnInit {
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
     contenedor: [null],
+    proceso: [null],
   });
 
   constructor(
@@ -67,6 +71,7 @@ export class FQSueroUpdateComponent implements OnInit {
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
     protected contenedorService: ContenedorService,
+    protected procesoService: ProcesoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected accountService: AccountService
@@ -81,6 +86,8 @@ export class FQSueroUpdateComponent implements OnInit {
       }
 
       this.updateForm(fQSuero);
+
+      this.procesoService.query().subscribe((res: HttpResponse<IProceso[]>) => (this.procesos = res.body || []));
 
       this.accountService.getAuthenticationState().subscribe(account => {
         if (account!['id']) {
@@ -116,6 +123,7 @@ export class FQSueroUpdateComponent implements OnInit {
       analista: fQSuero.analista,
       proveedor: fQSuero.proveedor,
       contenedor: fQSuero.contenedor,
+      proceso: fQSuero.proceso,
     });
   }
 
@@ -158,6 +166,7 @@ export class FQSueroUpdateComponent implements OnInit {
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
       contenedor: this.editForm.get(['contenedor'])!.value,
+      proceso: this.editForm.get(['proceso'])!.value,
     };
   }
 

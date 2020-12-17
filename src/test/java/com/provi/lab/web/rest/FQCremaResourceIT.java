@@ -7,6 +7,7 @@ import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
 import com.provi.lab.domain.Contenedor;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.repository.FQCremaRepository;
 import com.provi.lab.service.FQCremaService;
 import com.provi.lab.service.dto.FQCremaCriteria;
@@ -1507,6 +1508,26 @@ public class FQCremaResourceIT {
 
         // Get all the fQCremaList where contenedor equals to contenedorId + 1
         defaultFQCremaShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQCremasByProcesoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQCremaRepository.saveAndFlush(fQCrema);
+        Proceso proceso = ProcesoResourceIT.createEntity(em);
+        em.persist(proceso);
+        em.flush();
+        fQCrema.setProceso(proceso);
+        fQCremaRepository.saveAndFlush(fQCrema);
+        Long procesoId = proceso.getId();
+
+        // Get all the fQCremaList where proceso equals to procesoId
+        defaultFQCremaShouldBeFound("procesoId.equals=" + procesoId);
+
+        // Get all the fQCremaList where proceso equals to procesoId + 1
+        defaultFQCremaShouldNotBeFound("procesoId.equals=" + (procesoId + 1));
     }
 
     /**

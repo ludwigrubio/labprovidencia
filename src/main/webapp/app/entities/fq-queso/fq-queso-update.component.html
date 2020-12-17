@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQQueso.observaciones" for="field_observaciones">Observaciones</label>
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQCrema.observaciones" for="field_observaciones">Observaciones</label>
                     <input type="text" class="form-control" name="observaciones" id="field_observaciones"
                            formControlName="observaciones"/>
                     <div *ngIf="editForm.get('observaciones')!.invalid && (editForm.get('observaciones')!.dirty || editForm.get('observaciones')!.touched)">
@@ -238,7 +238,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQMantequilla.contenedor" for="field_contenedor">Contenedor</label>
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQQueso.contenedor" for="field_contenedor">Contenedor</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-contenedor"><fa-icon icon="list"></fa-icon></span>
@@ -251,6 +251,15 @@
                                [editable]='false' />
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.fQQueso.proceso" for="field_proceso">Proceso</label>
+                    <select class="form-control" id="field_proceso" name="proceso" formControlName="proceso">
+                        <option *ngIf="!editForm.get('proceso')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="procesoOption.id === editForm.get('proceso')!.value?.id ? editForm.get('proceso')!.value : procesoOption" *ngFor="let procesoOption of procesos; trackBy: trackById">{{ procesoOption.proceso }}</option>
+                    </select>
+                </div>
+
             </div>
 
             <div>

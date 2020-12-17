@@ -117,6 +117,13 @@
             "otherEntityRelationshipName": "fQSuero",
             "relationshipName": "contenedor",
             "otherEntityField": "contenedor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "proceso",
+            "otherEntityRelationshipName": "fQSuero",
+            "relationshipName": "proceso",
+            "otherEntityField": "proceso"
         }
     ],
     "changelogDate": "20200922135526",

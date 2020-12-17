@@ -138,6 +138,10 @@ public class FQCremaQueryService extends QueryService<FQCrema> {
                 specification = specification.and(buildSpecification(criteria.getContenedorId(),
                     root -> root.join(FQCrema_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
+            if (criteria.getProcesoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProcesoId(),
+                    root -> root.join(FQCrema_.proceso, JoinType.LEFT).get(Proceso_.id)));
+            }
         }
         return specification;
     }

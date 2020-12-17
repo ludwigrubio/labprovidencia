@@ -85,6 +85,10 @@ public class FQCrema extends AbstractAuditingEntity implements Serializable {
     @JsonIgnoreProperties(value = "fQCremas", allowSetters = true)
     private Contenedor contenedor;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = "fQCremas", allowSetters = true)
+    private Proceso proceso;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -300,6 +304,19 @@ public class FQCrema extends AbstractAuditingEntity implements Serializable {
 
     public void setContenedor(Contenedor contenedor) {
         this.contenedor = contenedor;
+    }
+
+    public Proceso getProceso() {
+        return proceso;
+    }
+
+    public FQCrema proceso(Proceso proceso) {
+        this.proceso = proceso;
+        return this;
+    }
+
+    public void setProceso(Proceso proceso) {
+        this.proceso = proceso;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

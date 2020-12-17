@@ -135,6 +135,10 @@ public class FQMantequillaQueryService extends QueryService<FQMantequilla> {
                 specification = specification.and(buildSpecification(criteria.getContenedorId(),
                     root -> root.join(FQMantequilla_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
+            if (criteria.getProcesoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProcesoId(),
+                    root -> root.join(FQMantequilla_.proceso, JoinType.LEFT).get(Proceso_.id)));
+            }
         }
         return specification;
     }

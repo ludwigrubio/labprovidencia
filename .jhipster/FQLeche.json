@@ -148,14 +148,14 @@
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "contenedor",
-            "otherEntityRelationshipName": "fQCrema",
+            "otherEntityRelationshipName": "fQLeche",
             "relationshipName": "contenedor",
             "otherEntityField": "contenedor"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "proceso",
-            "otherEntityRelationshipName": "fQCrema",
+            "otherEntityRelationshipName": "fQLeche",
             "relationshipName": "proceso",
             "otherEntityField": "proceso"
         }

@@ -27,11 +27,12 @@
       "proveedor": "Proveedor",
       "ph": "PH",
       "contenedor": "Contenedor",
-      "dummy1": "Dummy1",
-      "dummy2": "Dummy2",
-      "dummy3": "Dummy3",
-      "dummy4": "Dummy4",
-      "dummy5": "Dummy5"
+      "dummy1": "Dummy 1",
+      "dummy2": "Dummy 2",
+      "dummy3": "Dummy 3",
+      "dummy4": "Dummy 4",
+      "dummy5": "Dummy 5",
+      "proceso": "Proceso"
     }
   }
 }

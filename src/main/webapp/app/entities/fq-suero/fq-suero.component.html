@@ -124,6 +124,8 @@
                     <th scope="col"  jhiSortBy="producto.producto"><span jhiTranslate="labprovidenciaApp.fQSuero.producto">Producto</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.fQSuero.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.fQSuero.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contenedor.contenedor"><span jhiTranslate="labprovidenciaApp.fQQueso.contenedor">Contenedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proceso.proceso"><span jhiTranslate="labprovidenciaApp.fQQueso.proceso">Proceso</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -159,6 +161,16 @@
                     <td>
                         <div *ngIf="fQSuero.proveedor">
                             <a [routerLink]="['/personal', fQSuero.proveedor?.id, 'view']" >{{ fQSuero.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQSuero.contenedor">
+                            <a [routerLink]="['/contenedor', fQSuero.contenedor?.id, 'view']" >{{ fQSuero.contenedor?.contenedor }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQSuero.proceso">
+                            <a [routerLink]="['/proceso', fQSuero.proceso?.id, 'view']" >{{ fQSuero.proceso?.proceso }}</a>
                         </div>
                     </td>
                     <td class="text-right">

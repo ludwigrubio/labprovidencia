@@ -132,6 +132,7 @@
                     <th scope="col"  jhiSortBy="recepcion.id"><span jhiTranslate="labprovidenciaApp.fQLeche.recepcion">Recepcion</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.fQLeche.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.fQLeche.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contenedor.contenedor"><span jhiTranslate="labprovidenciaApp.fQLeche.contenedor">Contenedor</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proceso.proceso"><span jhiTranslate="labprovidenciaApp.fQLeche.proceso">Proceso</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -176,6 +177,11 @@
                     <td>
                         <div *ngIf="fQLeche.proveedor">
                             <a [routerLink]="['/personal', fQLeche.proveedor?.id, 'view']" >{{ fQLeche.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="fQLeche.contenedor">
+                            <a [routerLink]="['/contenedor', fQLeche.contenedor?.id, 'view']" >{{ fQLeche.contenedor?.contenedor }}</a>
                         </div>
                     </td>
                     <td>

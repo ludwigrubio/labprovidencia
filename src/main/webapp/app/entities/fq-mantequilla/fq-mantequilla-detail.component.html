@@ -78,6 +78,12 @@
                         <a [routerLink]="['/contenedor', fQMantequilla.contenedor?.id, 'view']">{{ fQMantequilla.contenedor?.contenedor }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQMantequilla.proceso">Proceso</span></dt>
+                <dd>
+                    <div *ngIf="fQMantequilla.proceso">
+                        <a [routerLink]="['/proceso', fQMantequilla.proceso?.id, 'view']">{{ fQMantequilla.proceso?.proceso }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

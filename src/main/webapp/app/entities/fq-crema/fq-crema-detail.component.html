@@ -24,27 +24,27 @@
                 <dd>
                     <span>{{ fQCrema.grasa }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.ph">PH</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.ph">Ph</span></dt>
                 <dd>
                     <span>{{ fQCrema.ph }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy1">Dummy1</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy1">Dummy 1</span></dt>
                 <dd>
                     <span>{{ fQCrema.dummy1 }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy2">Dummy2</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy2">Dummy 2</span></dt>
                 <dd>
                     <span>{{ fQCrema.dummy2 }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy3">Dummy3</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy3">Dummy 3</span></dt>
                 <dd>
                     <span>{{ fQCrema.dummy3 }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy4">Dummy4</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy4">Dummy 4</span></dt>
                 <dd>
                     <span>{{ fQCrema.dummy4 }}</span>
                 </dd>
-                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy5">Dummy5</span></dt>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.dummy5">Dummy 5</span></dt>
                 <dd>
                     <span>{{ fQCrema.dummy5 }}</span>
                 </dd>
@@ -82,6 +82,12 @@
                         <a [routerLink]="['/contenedor', fQCrema.contenedor?.id, 'view']">{{ fQCrema.contenedor?.contenedor }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQCrema.proceso">Proceso</span></dt>
+                <dd>
+                    <div *ngIf="fQCrema.proceso">
+                        <a [routerLink]="['/proceso', fQCrema.proceso?.id, 'view']">{{ fQCrema.proceso?.proceso }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
@@ -90,7 +96,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']" type="button"
+            <button type="button"
                     [routerLink]="['/fq-crema', fQCrema.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>

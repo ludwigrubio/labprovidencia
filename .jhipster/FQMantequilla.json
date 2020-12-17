@@ -90,6 +90,13 @@
             "otherEntityRelationshipName": "fQMantequilla",
             "relationshipName": "contenedor",
             "otherEntityField": "contenedor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "proceso",
+            "otherEntityRelationshipName": "fQMantequilla",
+            "relationshipName": "proceso",
+            "otherEntityField": "proceso"
         }
     ],
     "changelogDate": "20200922135226",

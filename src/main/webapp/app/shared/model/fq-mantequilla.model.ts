@@ -4,6 +4,7 @@ import { IProducto } from 'app/shared/model/producto.model';
 import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { IContenedor } from 'app/shared/model/contenedor.model';
+import { IProceso } from 'app/shared/model/proceso.model';
 
 export interface IFQMantequilla {
   id?: number;
@@ -22,6 +23,7 @@ export interface IFQMantequilla {
   analista?: IUserExtra;
   proveedor?: IPersonal;
   contenedor?: IContenedor;
+  proceso?: IProceso;
 }
 
 export class FQMantequilla implements IFQMantequilla {
@@ -41,6 +43,7 @@ export class FQMantequilla implements IFQMantequilla {
     public producto?: IProducto,
     public analista?: IUserExtra,
     public proveedor?: IPersonal,
-    public contenedor?: IContenedor
+    public contenedor?: IContenedor,
+    public proceso?: IProceso
   ) {}
 }

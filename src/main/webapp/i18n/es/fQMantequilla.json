@@ -30,7 +30,8 @@
       "producto": "Producto",
       "analista": "Analista",
       "proveedor": "Proveedor",
-      "contenedor": "Contenedor"
+      "contenedor": "Contenedor",
+      "proceso": "Proceso"
     }
   }
 }

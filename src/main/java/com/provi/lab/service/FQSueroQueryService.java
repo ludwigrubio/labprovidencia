@@ -153,6 +153,10 @@ public class FQSueroQueryService extends QueryService<FQSuero> {
                 specification = specification.and(buildSpecification(criteria.getContenedorId(),
                     root -> root.join(FQSuero_.contenedor, JoinType.LEFT).get(Contenedor_.id)));
             }
+            if (criteria.getProcesoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProcesoId(),
+                    root -> root.join(FQSuero_.proceso, JoinType.LEFT).get(Proceso_.id)));
+            }
         }
         return specification;
     }

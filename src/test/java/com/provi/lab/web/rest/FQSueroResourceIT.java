@@ -7,6 +7,7 @@ import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
 import com.provi.lab.domain.Contenedor;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.repository.FQSueroRepository;
 import com.provi.lab.service.FQSueroService;
 import com.provi.lab.service.dto.FQSueroCriteria;
@@ -2077,6 +2078,26 @@ public class FQSueroResourceIT {
 
         // Get all the fQSueroList where contenedor equals to contenedorId + 1
         defaultFQSueroShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQSuerosByProcesoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQSueroRepository.saveAndFlush(fQSuero);
+        Proceso proceso = ProcesoResourceIT.createEntity(em);
+        em.persist(proceso);
+        em.flush();
+        fQSuero.setProceso(proceso);
+        fQSueroRepository.saveAndFlush(fQSuero);
+        Long procesoId = proceso.getId();
+
+        // Get all the fQSueroList where proceso equals to procesoId
+        defaultFQSueroShouldBeFound("procesoId.equals=" + procesoId);
+
+        // Get all the fQSueroList where proceso equals to procesoId + 1
+        defaultFQSueroShouldNotBeFound("procesoId.equals=" + (procesoId + 1));
     }
 
     /**

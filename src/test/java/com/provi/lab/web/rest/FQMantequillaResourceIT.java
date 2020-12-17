@@ -7,6 +7,7 @@ import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
 import com.provi.lab.domain.Contenedor;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.repository.FQMantequillaRepository;
 import com.provi.lab.service.FQMantequillaService;
 import com.provi.lab.service.dto.FQMantequillaCriteria;
@@ -1374,6 +1375,26 @@ public class FQMantequillaResourceIT {
 
         // Get all the fQMantequillaList where contenedor equals to contenedorId + 1
         defaultFQMantequillaShouldNotBeFound("contenedorId.equals=" + (contenedorId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllFQMantequillasByProcesoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+        Proceso proceso = ProcesoResourceIT.createEntity(em);
+        em.persist(proceso);
+        em.flush();
+        fQMantequilla.setProceso(proceso);
+        fQMantequillaRepository.saveAndFlush(fQMantequilla);
+        Long procesoId = proceso.getId();
+
+        // Get all the fQMantequillaList where proceso equals to procesoId
+        defaultFQMantequillaShouldBeFound("procesoId.equals=" + procesoId);
+
+        // Get all the fQMantequillaList where proceso equals to procesoId + 1
+        defaultFQMantequillaShouldNotBeFound("procesoId.equals=" + (procesoId + 1));
     }
 
     /**

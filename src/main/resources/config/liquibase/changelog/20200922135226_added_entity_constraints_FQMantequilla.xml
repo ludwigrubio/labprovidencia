@@ -38,5 +38,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contenedor"/>
 
+        <addForeignKeyConstraint baseColumnNames="proceso_id"
+                                 baseTableName="fq_mantequilla"
+                                 constraintName="fk_fq_mantequilla_proceso_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proceso"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -69,7 +69,7 @@ export class FQLecheUpdateComponent implements OnInit {
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
     contenedor: [null],
-    proceso: [],
+    proceso: [null],
   });
 
   constructor(

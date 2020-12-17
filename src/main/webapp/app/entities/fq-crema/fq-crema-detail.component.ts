@@ -13,10 +13,7 @@ export class FQCremaDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ fQCrema }) => {
-      this.fQCrema = fQCrema;
-      console.error(fQCrema);
-    });
+    this.activatedRoute.data.subscribe(({ fQCrema }) => (this.fQCrema = fQCrema));
   }
 
   previousState(): void {

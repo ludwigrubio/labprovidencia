@@ -114,6 +114,12 @@
                         <a [routerLink]="['/contenedor', fQQueso.contenedor?.id, 'view']">{{ fQQueso.contenedor?.contenedor }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.fQQueso.proceso">Proceso</span></dt>
+                <dd>
+                    <div *ngIf="fQQueso.proceso">
+                        <a [routerLink]="['/proceso', fQQueso.proceso?.id, 'view']">{{ fQQueso.proceso?.proceso }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
