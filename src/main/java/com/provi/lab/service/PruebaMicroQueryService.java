@@ -130,6 +130,10 @@ public class PruebaMicroQueryService extends QueryService<PruebaMicro> {
                 specification = specification.and(buildSpecification(criteria.getProveedorId(),
                     root -> root.join(PruebaMicro_.proveedor, JoinType.LEFT).get(Personal_.id)));
             }
+            if (criteria.getProcesoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getProcesoId(),
+                    root -> root.join(PruebaMicro_.proceso, JoinType.LEFT).get(Proceso_.id)));
+            }
         }
         return specification;
     }

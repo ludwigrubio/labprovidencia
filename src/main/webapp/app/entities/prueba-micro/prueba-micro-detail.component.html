@@ -72,6 +72,12 @@
                         <a [routerLink]="['/personal', pruebaMicro.proveedor?.id, 'view']">{{ pruebaMicro.proveedor?.nombre }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="labprovidenciaApp.pruebaMicro.proceso">Proceso</span></dt>
+                <dd>
+                    <div *ngIf="pruebaMicro.proceso">
+                        <a [routerLink]="['/proceso', pruebaMicro.proceso?.id, 'view']">{{ pruebaMicro.proceso?.proceso }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
@@ -80,7 +86,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EDITOR']" type="button"
+            <button type="button"
                     [routerLink]="['/prueba-micro', pruebaMicro.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>

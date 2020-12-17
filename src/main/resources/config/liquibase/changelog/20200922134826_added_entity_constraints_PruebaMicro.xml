@@ -44,5 +44,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="personal"/>
 
+        <addForeignKeyConstraint baseColumnNames="proceso_id"
+                                 baseTableName="prueba_micro"
+                                 constraintName="fk_prueba_micro_proceso_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proceso"/>
+
     </changeSet>
 </databaseChangeLog>

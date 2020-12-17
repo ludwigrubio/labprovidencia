@@ -53,6 +53,8 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
 
     private LongFilter proveedorId;
 
+    private LongFilter procesoId;
+
     public PruebaMicroCriteria() {
     }
 
@@ -71,6 +73,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         this.productoId = other.productoId == null ? null : other.productoId.copy();
         this.analistaId = other.analistaId == null ? null : other.analistaId.copy();
         this.proveedorId = other.proveedorId == null ? null : other.proveedorId.copy();
+        this.procesoId = other.procesoId == null ? null : other.procesoId.copy();
     }
 
     @Override
@@ -190,6 +193,14 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         this.proveedorId = proveedorId;
     }
 
+    public LongFilter getProcesoId() {
+        return procesoId;
+    }
+
+    public void setProcesoId(LongFilter procesoId) {
+        this.procesoId = procesoId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -214,7 +225,8 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
             Objects.equals(superficieId, that.superficieId) &&
             Objects.equals(productoId, that.productoId) &&
             Objects.equals(analistaId, that.analistaId) &&
-            Objects.equals(proveedorId, that.proveedorId);
+            Objects.equals(proveedorId, that.proveedorId) &&
+            Objects.equals(procesoId, that.procesoId);
     }
 
     @Override
@@ -233,7 +245,8 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
         superficieId,
         productoId,
         analistaId,
-        proveedorId
+        proveedorId,
+        procesoId
         );
     }
 
@@ -255,6 +268,7 @@ public class PruebaMicroCriteria implements Serializable, Criteria {
                 (productoId != null ? "productoId=" + productoId + ", " : "") +
                 (analistaId != null ? "analistaId=" + analistaId + ", " : "") +
                 (proveedorId != null ? "proveedorId=" + proveedorId + ", " : "") +
+                (procesoId != null ? "procesoId=" + procesoId + ", " : "") +
             "}";
     }
 

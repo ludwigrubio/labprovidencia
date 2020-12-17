@@ -76,6 +76,10 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
     @JsonIgnoreProperties(value = "pruebaMicros", allowSetters = true)
     private Personal proveedor;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = "pruebaMicros", allowSetters = true)
+    private Proceso proceso;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -252,6 +256,19 @@ public class PruebaMicro extends AbstractAuditingEntity implements Serializable 
 
     public void setProveedor(Personal personal) {
         this.proveedor = personal;
+    }
+
+    public Proceso getProceso() {
+        return proceso;
+    }
+
+    public PruebaMicro proceso(Proceso proceso) {
+        this.proceso = proceso;
+        return this;
+    }
+
+    public void setProceso(Proceso proceso) {
+        this.proceso = proceso;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

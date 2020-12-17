@@ -21,6 +21,8 @@ import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { UserExtraService } from 'app/entities/user-extra/user-extra.service';
 import { IPersonal } from 'app/shared/model/personal.model';
 import { PersonalService } from 'app/entities/personal/personal.service';
+import { IProceso } from 'app/shared/model/proceso.model';
+import { ProcesoService } from 'app/entities/proceso/proceso.service';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { debounceTime } from 'rxjs/operators';
@@ -28,7 +30,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
-type SelectableEntity = IArea | ICultivo | ISuperficie | IProducto | IUserExtra | IPersonal;
+type SelectableEntity = IArea | ICultivo | ISuperficie | IProducto | IUserExtra | IPersonal | IProceso;
 
 @Component({
   selector: 'jhi-prueba-micro-update',
@@ -38,6 +40,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
   isSaving = false;
   areas: IArea[] = [];
   cultivos: ICultivo[] = [];
+  procesos: IProceso[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -54,6 +57,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
     producto: [],
     analista: [null, Validators.required],
     proveedor: [null, Validators.required],
+    proceso: [null],
   });
 
   constructor(
@@ -64,6 +68,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
     protected productoService: ProductoService,
     protected userExtraService: UserExtraService,
     protected personalService: PersonalService,
+    protected procesoService: ProcesoService,
     protected activatedRoute: ActivatedRoute,
     protected accountService: AccountService,
     private fb: FormBuilder
@@ -78,6 +83,8 @@ export class PruebaMicroUpdateComponent implements OnInit {
       }
 
       this.updateForm(pruebaMicro);
+
+      this.procesoService.query().subscribe((res: HttpResponse<IProceso[]>) => (this.procesos = res.body || []));
 
       this.accountService.getAuthenticationState().subscribe(account => {
         if (account!['id']) {
@@ -115,6 +122,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
       producto: pruebaMicro.producto,
       analista: pruebaMicro.analista,
       proveedor: pruebaMicro.proveedor,
+      proceso: pruebaMicro.proceso,
     });
   }
 
@@ -149,6 +157,7 @@ export class PruebaMicroUpdateComponent implements OnInit {
       producto: this.editForm.get(['producto'])!.value,
       analista: this.editForm.get(['analista'])!.value,
       proveedor: this.editForm.get(['proveedor'])!.value,
+      proceso: this.editForm.get(['proceso'])!.value,
     };
   }
 

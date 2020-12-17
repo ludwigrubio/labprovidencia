@@ -193,6 +193,15 @@
                         This field is required.
                     </small>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="labprovidenciaApp.pruebaMicro.proceso" for="field_proceso">Proceso</label>
+                    <select class="form-control" id="field_proceso" name="proceso" formControlName="proceso">
+                        <option *ngIf="!editForm.get('proceso')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="procesoOption.id === editForm.get('proceso')!.value?.id ? editForm.get('proceso')!.value : procesoOption" *ngFor="let procesoOption of procesos; trackBy: trackById">{{ procesoOption.proceso }}</option>
+                    </select>
+                </div>
+
             </div>
 
             <div>

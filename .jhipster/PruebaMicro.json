@@ -89,6 +89,13 @@
             "relationshipValidateRules": "required",
             "relationshipName": "proveedor",
             "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "proceso",
+            "otherEntityRelationshipName": "pruebaMicro",
+            "relationshipName": "proceso",
+            "otherEntityField": "proceso"
         }
     ],
     "changelogDate": "20200922134826",

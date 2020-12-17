@@ -5,6 +5,7 @@ import { ISuperficie } from 'app/shared/model/superficie.model';
 import { IProducto } from 'app/shared/model/producto.model';
 import { IUserExtra } from 'app/shared/model/user-extra.model';
 import { IPersonal } from 'app/shared/model/personal.model';
+import { IProceso } from 'app/shared/model/proceso.model';
 
 export interface IPruebaMicro {
   id?: number;
@@ -21,6 +22,7 @@ export interface IPruebaMicro {
   producto?: IProducto;
   analista?: IUserExtra;
   proveedor?: IPersonal;
+  proceso?: IProceso;
 }
 
 export class PruebaMicro implements IPruebaMicro {
@@ -38,6 +40,7 @@ export class PruebaMicro implements IPruebaMicro {
     public superficie?: ISuperficie,
     public producto?: IProducto,
     public analista?: IUserExtra,
-    public proveedor?: IPersonal
+    public proveedor?: IPersonal,
+    public proceso?: IProceso
   ) {}
 }

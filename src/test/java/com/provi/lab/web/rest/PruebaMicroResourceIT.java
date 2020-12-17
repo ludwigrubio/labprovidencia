@@ -8,6 +8,7 @@ import com.provi.lab.domain.Superficie;
 import com.provi.lab.domain.Producto;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Personal;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.repository.PruebaMicroRepository;
 import com.provi.lab.service.PruebaMicroService;
 import com.provi.lab.service.dto.PruebaMicroCriteria;
@@ -1002,6 +1003,26 @@ public class PruebaMicroResourceIT {
 
         // Get all the pruebaMicroList where proveedor equals to proveedorId + 1
         defaultPruebaMicroShouldNotBeFound("proveedorId.equals=" + (proveedorId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllPruebaMicrosByProcesoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        pruebaMicroRepository.saveAndFlush(pruebaMicro);
+        Proceso proceso = ProcesoResourceIT.createEntity(em);
+        em.persist(proceso);
+        em.flush();
+        pruebaMicro.setProceso(proceso);
+        pruebaMicroRepository.saveAndFlush(pruebaMicro);
+        Long procesoId = proceso.getId();
+
+        // Get all the pruebaMicroList where proceso equals to procesoId
+        defaultPruebaMicroShouldBeFound("procesoId.equals=" + procesoId);
+
+        // Get all the pruebaMicroList where proceso equals to procesoId + 1
+        defaultPruebaMicroShouldNotBeFound("procesoId.equals=" + (procesoId + 1));
     }
 
     /**

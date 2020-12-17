@@ -28,7 +28,9 @@
       "cultivo": "Cultivo",
       "superficie": "Superficie",
       "analista": "Analista",
-      "proveedor": "Proveedor"
+      "proveedor": "Proveedor",
+      "contendor": "Contenedor",
+      "proceso": "Proceso"
     }
   }
 }

@@ -173,6 +173,7 @@
                     <th scope="col"  jhiSortBy="cultivo.cultivo"><span jhiTranslate="labprovidenciaApp.pruebaMicro.cultivo">Cultivo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="analista.nombreCompleto"><span jhiTranslate="labprovidenciaApp.pruebaMicro.analista">Analista</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="proveedor.nombre"><span jhiTranslate="labprovidenciaApp.pruebaMicro.proveedor">Proveedor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="proceso.proceso"><span jhiTranslate="labprovidenciaApp.pruebaMicro.proceso">Proceso</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -215,6 +216,11 @@
                     <td>
                         <div *ngIf="pruebaMicro.proveedor">
                             <a [routerLink]="['/personal', pruebaMicro.proveedor?.id, 'view']" >{{ pruebaMicro.proveedor?.nombre }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pruebaMicro.proceso">
+                            <a [routerLink]="['/proceso', pruebaMicro.proceso?.id, 'view']" >{{ pruebaMicro.proceso?.proceso }}</a>
                         </div>
                     </td>
                     <td class="text-right">
