@@ -183,4 +183,6 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  lactoescan-toread: 'C:\Users\Desarrollo\Desktop\LactoScan'
+  lactoescan-readed: 'C:\Users\Desarrollo\Desktop\LactoScan\Read'

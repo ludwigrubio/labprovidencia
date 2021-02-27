@@ -176,7 +176,7 @@ public class LogLactoEscanService {
                         case 0:
                             this.createNewLog(2, fileName, numberRow,
                                 String.format("No se encontró un FQLeche creado para la fecha %s y el proovedor con identificador %s", nextRecord[0], nextRecord[2]));
-                                anyError = true;
+                            anyError = true;
                         break;
                         case 1:
                             //Actualizar element encontrado
@@ -196,7 +196,7 @@ public class LogLactoEscanService {
                         default:
                             this.createNewLog(2, fileName, numberRow,
                                 String.format("Se encontró más de un FQLeche creado para la fecha %s y el proovedor con identificador %s", nextRecord[0], nextRecord[2]));
-                                anyError = true;
+                            anyError = true;
                         break;
                     }
                     numberRow = numberRow++;
@@ -219,16 +219,25 @@ public class LogLactoEscanService {
                 fqlechesArray.forEach(fql -> {
                     fqLecheRepository.save((FQLeche) fql);
                 });
+                // Move file to read if completed
+                try {
+                    Files.move(new File(this.lactoescanToread + "\\Processing\\" +  files[i].getName()).toPath(),
+                        new File(this.lactoescanToread + "\\Read\\" + files[i].getName()).toPath(),
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    log.debug(ex.getMessage());
+                }
+            }else{
+                try {
+                    Files.move(new File(this.lactoescanToread + "\\Processing\\" +  files[i].getName()).toPath(),
+                        new File(this.lactoescanToread + "\\Error\\" + files[i].getName()).toPath(),
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    log.debug(ex.getMessage());
+                }
             }
 
-            // Move file to read if completed
-            try {
-                Files.move(new File(this.lactoescanToread + "\\Processing\\" +  files[i].getName()).toPath(),
-                    new File(this.lactoescanToread + "\\Read\\" + files[i].getName()).toPath(),
-                    java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException ex) {
-                log.debug(ex.getMessage());
-            }
+
         }
     }
 

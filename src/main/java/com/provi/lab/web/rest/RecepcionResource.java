@@ -1,6 +1,7 @@
 package com.provi.lab.web.rest;
 
 import com.provi.lab.domain.FQLeche;
+import com.provi.lab.domain.Proceso;
 import com.provi.lab.domain.UserExtra;
 import com.provi.lab.domain.Recepcion;
 import com.provi.lab.service.*;
@@ -54,16 +55,20 @@ public class RecepcionResource {
 
     private final FQLecheService fqLecheService;
 
+    private final ProcesoService procesoService;
+
     public RecepcionResource(RecepcionService recepcionService,
                              RecepcionQueryService recepcionQueryService,
                              UserService userService,
                              UserExtraService userExtraService,
-                             FQLecheService fqLecheService) {
+                             FQLecheService fqLecheService,
+                             ProcesoService procesoService) {
         this.recepcionService = recepcionService;
         this.recepcionQueryService = recepcionQueryService;
         this.userService = userService;
         this.userExtraService = userExtraService;
         this.fqLecheService = fqLecheService;
+        this.procesoService = procesoService;
     }
 
     /**
@@ -80,6 +85,7 @@ public class RecepcionResource {
             throw new BadRequestAlertException("A new recepcion cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Recepcion result = recepcionService.save(recepcion);
+        Proceso proceso1 = procesoService.findOne(new Long(1)).get();
 
         ZonedDateTime zdt = ZonedDateTime.now(ZoneId.systemDefault());
         UserExtra analista = userExtraService.findOne(userService.getUserWithAuthorities().get().getId()).get();
@@ -90,7 +96,7 @@ public class RecepcionResource {
         fqLeche.setRecepcion(result);
         fqLeche.setAnalista(analista);
         fqLeche.setProveedor(result.getProveedor());
-        //fqLeche.setProceso()
+        fqLeche.setProceso(proceso1);
         fqLeche.setArea(analista.getArea());
         FQLeche fq = fqLecheService.save(fqLeche);
 

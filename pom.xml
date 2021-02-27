@@ -941,6 +941,11 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-undertow</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>com.opencsv</groupId>
+                    <artifactId>opencsv</artifactId>
+                    <version>5.2</version>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1020,6 +1025,7 @@
                         <artifactId>git-commit-id-plugin</artifactId>
                     </plugin>
                 </plugins>
+
             </build>
             <properties>
                 <!-- default Spring profiles -->

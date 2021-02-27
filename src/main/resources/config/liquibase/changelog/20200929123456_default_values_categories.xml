@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
 
-    <changeSet id="20200929123456-1" author="ludwig" context="pro">
+    <changeSet id="20200929123456-1" author="ludwig" context="prod">
         <loadData
             file="config/liquibase/data/relacion.csv"
             separator=","
@@ -18,7 +18,7 @@
             <column name="last_modified_date" type="date"/>
         </loadData>
     </changeSet>
-    <changeSet id="20200929123456-2" author="ludwig">
+    <changeSet id="20200929123456-2" author="ludwig" context="prod">
         <loadData
             file="config/liquibase/data/area.csv"
             separator=","
@@ -33,7 +33,7 @@
             <column name="last_modified_date" type="date"/>
         </loadData>
     </changeSet>
-    <changeSet id="20200929123456-3" author="ludwig">
+    <changeSet id="20200929123456-3" author="ludwig" context="prod">
         <loadData
             file="config/liquibase/data/cultivo.csv"
             separator=","
@@ -47,7 +47,7 @@
             <column name="last_modified_date" type="date"/>
         </loadData>
     </changeSet>
-    <changeSet id="20200929123456-4" author="ludwig">
+    <changeSet id="20200929123456-4" author="ludwig" context="prod">
         <loadData
             file="config/liquibase/data/superficie.csv"
             separator=","
@@ -60,6 +60,56 @@
             <column name="created_date" type="date"/>
             <column name="last_modified_by" type="string"/>
             <column name="last_modified_date" type="date"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-5" author="ludwig" context="prod">
+        <loadData
+            file="config/liquibase/data/proceso.csv"
+            separator=";"
+            encoding="UTF-8"
+            tableName="proceso">
+            <column name="id" type="numeric"/>
+            <column name="proceso" type="string"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-6" author="ludwig" context="prod">
+        <loadData
+            file="config/liquibase/data/personal.csv"
+            separator=";"
+            encoding="UTF-8"
+            tableName="personal">
+            <column name="id" type="numeric"/>
+            <column name="nombre" type="string"/>
+            <column name="apellido_1" type="string"/>
+            <column name="apellido_2" type="string"/>
+            <column name="alias" type="string"/>
+            <column name="domicilio" type="string"/>
+            <column name="colonia" type="string"/>
+            <column name="localidad" type="string"/>
+            <column name="estado" type="string"/>
+            <column name="pais" type="string"/>
+            <column name="latitud" type="string"/>
+            <column name="longitud" type="string"/>
+            <column name="cp" type="numeric"/>
+            <column name="telefono" type="string"/>
+            <column name="email" type="string"/>
+            <column name="rfc" type="string"/>
+            <column name="inicio" type="datetime"/>
+            <column name="fin" type="datetime"/>
+            <column name="cargo" type="string"/>
+            <column name="comentario" type="string"/>
+            <column name="relacion_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="20200929123456-7" author="jhipster" context="prod">
+        <loadData
+            file="config/liquibase/data/user_extra.csv"
+            separator=";"
+            tableName="user_extra">
+            <column name="id" type="numeric"/>
+            <column name="nombre_completo" type="string"/>
+            <column name="area_id" type="numeric"/>
+            <column name="personal_id" type="numeric"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

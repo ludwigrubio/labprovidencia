@@ -1,0 +1,2 @@
+id;nombre;apellido_1;apellido_2;alias;domicilio;colonia;localidad;estado;pais;latitud;longitud;cp;telefono;email;rfc;inicio;fin;cargo;comentario;relacion_id
+1;Default;Default;Default;;Sin Calle;Sin Colonia;;Jalisco;Mexico;;;45000;101010;lacteos@lacteos.com;0;2020-09-11T18:09:33;2020-09-11T13:13:27;default;Usuario default del sistema;2

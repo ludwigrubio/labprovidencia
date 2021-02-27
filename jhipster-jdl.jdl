@@ -182,4 +182,11 @@ skipClient TipoProducto, Relacion, UserExtra, Recepcion
 // Set pagination options
 paginate all with pagination
 
+entity LogArchivo{
+	tipo Integer required,
+	fecha Instant required,
+	archivo String maxlength(300) required,
+	numeroDeFila Integer,
+	error String maxlength(200) required,
+}
 
